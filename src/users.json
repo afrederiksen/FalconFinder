@@ -1,0 +1,21 @@
+{"users":[
+  {
+  	"id":1,
+  	"firstName":"Robbie",
+  	"lastName":"White",
+    "address": "123 Park Avenue",
+    "email":"rwhite@gmail.com",
+    "accountId":1,
+    "type":"Registered",
+    "suspended": false
+  },{
+  	"id":2,
+  	"firstName":"Amy",
+  	"lastName":"Smith",
+    "address": "765 Jefferson Rd.",
+    "email":"asmith@gmail.com",
+    "accountId":2,
+    "type":"Author",
+    "suspended": false
+  }
+]}

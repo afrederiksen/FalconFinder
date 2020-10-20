@@ -1,0 +1,54 @@
+{"listings":[
+  {
+    "listingId":1,
+    "address": "",
+    "description": "",
+    "distance_from_russell": 0.0,
+    "coordinates": "",
+    "type": "",
+    "available": true,
+    "landlordId": 1,
+    "reviews": [
+      {
+        "reviewId": 0,
+        "userId": 0,
+        "review": "",
+        "rating": 5
+      }
+    ]
+  },{
+    "listingId":2,
+    "address": "",
+    "description": "",
+    "distance_from_russell": 0.0,
+    "coordinates": "",
+    "type": "",
+    "available": true,
+    "landlordId": 2,
+    "reviews": [
+      {
+        "reviewId": 0,
+        "userId": 0,
+        "review": "",
+        "rating": 5
+      }
+    ]
+  },{
+    "listingId":3,
+    "address": "",
+    "description": "",
+    "distance_from_russell": 0.0,
+    "coordinates": "",
+    "type": "",
+    "available": true,
+    "landlordId": 3,
+    "reviews": [
+      {
+        "reviewId": 0,
+        "userId": 0,
+        "review": "",
+        "rating": 5
+      }
+    ]
+  }
+]}
