@@ -7,10 +7,10 @@ public class User {
 	
 	public User(String UUID, String Email, String Password, boolean Suspended, String type) {
 		this.UUID = UUID;
-    this.Email = Email;
-    this.Password = Password;
-    this.Suspended = Suspended;
-    this.type = type;
+    		this.Email = Email;
+   		this.Password = Password;
+    		this.Suspended = Suspended;
+    		this.type = type;
 	}
 	
 	public String getUserType(String UUID) {
