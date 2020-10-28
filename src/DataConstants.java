@@ -1,6 +1,5 @@
 public abstract class DataConstants {
   protected static final String LISTINGS_FILE_NAME = "src/JSON/listings.json";
-  protected static final String LISTING = "listing";
   protected static final String LISTING_ADDRESS = "address";
   protected static final String LISTING_ID = "listingId";
   protected static final String LISTING_LANDLORD_ID = "landlordId";
@@ -17,4 +16,19 @@ public abstract class DataConstants {
   protected static final String LISTING_AMENITIES_FIREPLACE = "fireplace";
   protected static final String LISTING_AMENITIES_WIFI = "wifi";
   protected static final String LISTING_AMENITIES_POOL = "pool";
+  protected static final String LISTING_REVIEWS_USER_ID = "userId";
+  protected static final String LISTING_REVIEWS_REVIEW = "review";
+  protected static final String LISTING_REVIEWS_RATING = "rating";
+
+  protected static final String USERS_FILE_NAME = "src/JSON/users.json";
+  protected static final String USER_ID = "id";
+  protected static final String USER_FIRST_NAME = "firstName";
+  protected static final String USER_LAST_NAME = "lastName";
+  protected static final String USER_ADDRESS = "address";
+  protected static final String USER_EMAIL = "email";
+  protected static final String USER_PASSWORD = "password";
+  protected static final String USER_STUDENT_ID = "studentId";
+  protected static final String USER_TYPE = "type";
+  protected static final String USER_SUSPENDED = "suspended";
+  protected static final String USER_FAVORITE_LISTINGS = "favorite_listings";
 }

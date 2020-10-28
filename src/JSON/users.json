@@ -5,8 +5,9 @@
   	"lastName":"White",
     "address": "123 Park Avenue",
     "email":"rwhite@gmail.com",
-    "accountId":1,
+    "password": "Password123",
     "type":"Registered",
+    "studentId": "Q420321",
     "suspended": false,
     "favorite_listings":""
   },{
@@ -15,8 +16,9 @@
   	"lastName":"Smith",
     "address": "765 Jefferson Rd.",
     "email":"asmith@gmail.com",
-    "accountId":2,
+    "password": "Password123",
     "type":"Author",
+    "studentId": "N/A",
     "suspended": false,
     "favorite_listings": ""
   }
