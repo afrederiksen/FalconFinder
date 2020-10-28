@@ -68,7 +68,7 @@ public class User {
 	}
 	
 	public String getListing(String ListingID) {
-		return "";
+		return ListingID;
 	}
 
 	

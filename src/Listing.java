@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Listing {
-	private String ListingID;
+	private int ListingID;
 	private String LandlordID;
 	private String Description;
 	private double DistanceFromRussellHouse;
@@ -25,5 +25,14 @@ public class Listing {
 	public void setAvailability(boolean available) {
 		
 	}
+
+	public int getListingID() {
+		return ListingID;
+	}
+
+	public void setListingID(int listingID) {
+		ListingID = listingID;
+	}
+	
 	
 }
