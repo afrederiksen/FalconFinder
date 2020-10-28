@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class Platform {
 	//Login user????
-	User user = new User();
+	User user = new User(null, null, null, false, null);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
 	}
 	public void mainStage() {
 		Scanner scan = new Scanner(System.in);
-		if(this.isGuest()) {
+		if(user == null) {
 			System.out.println("Guest View:\n" + 
 					"1. Login\n" + 
 					"2. Register\n" + 
@@ -69,7 +69,7 @@ public class Platform {
 			break;
 		}
 		}
-		else if(user.getUserType(user.getUUID()).equalsIgnoreCase("Landlord")) {
+		else if(user.getUserType().equalsIgnoreCase("Landlord")) {
 			System.out.println("Leasee View:\n" + 
 					"1. View listings\n" + 
 					"2. Post listings\n" + 
@@ -94,7 +94,7 @@ public class Platform {
 			break;
 		}
 		}
-		if(user.getUserType(user.getUUID()).equalsIgnoreCase("Admin")) {
+		if(user.getUserType().equalsIgnoreCase("Admin")) {
 			System.out.println("Leasee View:\n" + 
 					"1. User Administration\n" + 
 					"2. Listing Management\n" + 
@@ -115,6 +115,7 @@ public class Platform {
 			break;
 		}
 		}
+	}
 	}
 		public void login() {
 			Scanner scan = new Scanner(System.in);
