@@ -154,7 +154,7 @@ public class Platform {
 				System.out.println("Welcome to FalconFinder " + user + "!");
 			}
 			else {
-				System.out.println("Error passwords did not match! Try again")
+				System.out.println("Error passwords did not match! Try again");
 			}
 			}
 			//Return to main stage
@@ -209,7 +209,14 @@ public class Platform {
 				mainStage();
 			}
 			else {
-				fetchMessages(messageWindow);
+				if(user.getMessages().size() >= 6) {
+					fetchMessages(startingWindow, 6);
+				}
+				else {
+					fetchMessages(startingWindow, user.getMessages().size());
+
+				}
+				//starting how many...
 				System.out.println("7. Back a page.\n"
 						+ "8. Foward a page.\n9.Return to main menu");
 				int userInput = scan.nextInt();
@@ -218,10 +225,11 @@ public class Platform {
 				System.out.println("Sender: " + user.getMessages().get(startingWindow).getSender());
 				System.out.println("Data: " + user.getMessages().get(startingWindow));
 			}
+				//Go back a packge so decrecase starting window by 6 and display 6...
 				else if(userInput == 7) {
 					if(startingWindow>6) {
 						startingWindow-=6;
-						fetchMessages(startingWindow);
+						fetchMessages(startingWindow, 6);
 					}
 					else {
 						System.out.println("Error! You don't have that many messages. You aren't thattt popular.");
@@ -235,7 +243,7 @@ public class Platform {
 						else {
 							startingWindow+=6;
 						}
-						fetchMessages(startingWindow);
+						fetchMessages(startingWindow, messageWindow-startingWindow);
 					}
 					else {
 						System.out.println("Error! You don't have that many messages. You aren't thattt popular.");
@@ -249,9 +257,9 @@ public class Platform {
 			
 		}
 		
-		private void fetchMessages(int windowStart) {
-			for(int i = 0; i<windowStart; i++) {
-				System.out.println((i+1)+ ". " + user.getMessages().get(i).getSender() + " | " + user.getMessages().get(i).getTitle());
+		private void fetchMessages(int windowStart, int howMany) {
+			for(int i = 0; i<howMany; i++) {
+				System.out.println((i+1)+ ". " + user.getMessages().get(windowStart+i).getSender() + " | " + user.getMessages().get(windowStart+i).getTitle());
 			}
 		}
 //Leases
@@ -273,7 +281,13 @@ public class Platform {
 					mainStage();
 				}
 				else {
-					fetchLeases(messageWindow);
+					if(user.getLeases().size() >= 6) {
+						fetchMessages(startingWindow, 6);
+					}
+					else {
+						fetchMessages(startingWindow, user.getLeases().size());
+
+					}
 					System.out.println("7. Back a page.\n"
 							+ "8. Foward a page.\n9.Return to main menu");
 					int userInput = scan.nextInt();
@@ -286,7 +300,7 @@ public class Platform {
 					else if(userInput == 7) {
 						if(startingWindow>6) {
 							startingWindow-=6;
-							fetchLeases(startingWindow);
+							fetchLeases(startingWindow, 6);
 						}
 						else {
 							System.out.println("Error! You don't have that many leases. You aren't Trump.");
@@ -300,7 +314,7 @@ public class Platform {
 							else {
 								startingWindow+=6;
 							}
-							fetchLeases(startingWindow);
+							fetchLeases(startingWindow, messageWindow-startingWindow);
 						}
 						else {
 							System.out.println("Error! You don't have that many leases. You aren't Trump.");
@@ -314,9 +328,9 @@ public class Platform {
 				
 			}
 			
-			private void fetchLeases(int windowStart) {
-				for(int i = 0; i<windowStart; i++) {
-					System.out.println((i+1)+ ". " + user.getLeases().get(i).getProperty() + " | " + user.getLeases().get(i).getDuration());
+			private void fetchLeases(int windowStart, int howMany) {
+				for(int i = 0; i<howMany; i++) {
+					System.out.println((i+1)+ ". " + user.getLeases().get(windowStart+i).getProperty() + " | " + user.getLeases().get(windowStart + i).getDuration());
 				}
 }
 }
