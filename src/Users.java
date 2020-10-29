@@ -19,4 +19,10 @@ public class Users {
   public ArrayList<User> getUsers() {
     return userList;
   }
+
+  public static void addUser(String id, String firstName, String lastName, String address, String email,
+      String password, String type, String favoriteListings) {
+    userList.add(new User(id, firstName, lastName, address, email, password, type, favoriteListings));
+    DataWriter.saveUsers();
+  }
 }

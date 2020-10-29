@@ -6,13 +6,13 @@ public class Leasee extends User {
 
 	ArrayList<Lease> leases = new ArrayList<Lease>();
 	ArrayList<String> favoriteProperties = new ArrayList<String>();
-	Landlord l1 = new Landlord("none", "test", "gmail", "password", "none", "none", "none", false);
+	Landlord l1 = new Landlord("userid", "test", "lastname", "address", "email", "password", "type");
 	ArrayList<Listing> listings = l1.copyList();
 	String USCID = "";
 
 	public Leasee(String id, String firstName, String lastName, String address, String email,
-		      String password, String studentId, String type, boolean suspended, String favoriteListings) {
-		super(id, firstName, lastName, address, email, password, studentId, type, suspended, favoriteListings);
+		      String password, String type,  String favoriteListings) {
+		super(id, firstName, lastName, address, email, password, type, favoriteListings);
 		leases = new ArrayList<Lease>();
 		favoriteProperties = new ArrayList<String>();
 	}
