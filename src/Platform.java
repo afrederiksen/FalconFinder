@@ -134,7 +134,7 @@ public class Platform {
 		}
 		public static void register() {
 			boolean notDone = true;
-			if(!guest) {
+			if(guest) {
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Username:");
 			String username = scan.nextLine();
@@ -154,7 +154,7 @@ public class Platform {
 			if(password.equals(confirmPassword)) {
 				//USER CREATION PASS
 				notDone = false;
-				System.out.println("Welcome to FalconFinder " + user + "!");
+				System.out.println("Welcome to FalconFinder " + user.getFirstName() + "!");
 			}
 			else {
 				System.out.println("Error passwords did not match! Try again");
