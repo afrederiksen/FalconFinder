@@ -201,7 +201,7 @@ public class Platform {
 
   public static void viewListings() {
     for (Listing listing : landlord.listings) {
-      System.out.println(listing);
+      System.out.println("ID: " + listing.getListingId() + " | Description: " + listing.getDescription() + " | Rating: " + listing.getRating());
     }
     Scanner scan = new Scanner(System.in);
     System.out.println("Enter any key to return back to the main page");
@@ -325,7 +325,101 @@ public class Platform {
   }
 
   public static void postListing() {
-    // Implement post listing based on other files...
+    Scanner scan = new Scanner(System.in);
+	  System.out.println("Create a listing!\n if you wish to continue press y");
+    if(scan.nextLine().equalsIgnoreCase("y")) {
+    	System.out.println("What is the address?");
+    	String address = scan.nextLine();
+    	System.out.println("What is the description?");
+    	String description = scan.nextLine();
+    	System.out.println("What is the distance from Russel House?");
+    	double distanceFromRussellHouse = scan.nextDouble();
+    	System.out.println("What type of lease is this? (lease/sublease)");
+    	String type = scan.nextLine();
+    	System.out.println("Is it available? (y/n)");
+    	String availableStr = scan.nextLine();
+    	boolean available;
+    	if(availableStr.equalsIgnoreCase("y") || availableStr.equalsIgnoreCase("yes"))
+    		available=true;
+    	else {
+    		available=false;
+    	}
+    	System.out.println("Does the unit have a washer? (y/n)");
+    	String washerStr = scan.nextLine();
+    	boolean amenitiesWasher;
+    	if(washerStr.equalsIgnoreCase("y") || washerStr.equalsIgnoreCase("yes")) {
+    		amenitiesWasher=true;
+    	}
+    	else {
+    		amenitiesWasher=false;
+    	}
+    	System.out.println("Does the unit have AC? (y/n)");
+    	String ACStr = scan.nextLine();
+    	boolean amenitiesAC;
+    	if(ACStr.equalsIgnoreCase("y") || ACStr.equalsIgnoreCase("yes")) {
+    		amenitiesAC=true;
+    	}
+    	else {
+    		amenitiesAC=false;
+    	}    	
+    	System.out.println("Does the unit have furniture? (y/n)");
+    	String furnitureStr = scan.nextLine();
+    	boolean amenitiesFurniture;
+    	if(furnitureStr.equalsIgnoreCase("y") || furnitureStr.equalsIgnoreCase("yes")) {
+    		amenitiesFurniture=true;
+    	}
+    	else {
+    		amenitiesFurniture=false;
+    	} 
+    	System.out.println("Does the unit have a patio? (y/n)");
+    	String patioStr = scan.nextLine();
+    	boolean amenitiesPatio;
+    	if(patioStr.equalsIgnoreCase("y") || patioStr.equalsIgnoreCase("yes")) {
+    		amenitiesPatio=true;
+    	}
+    	else {
+    		amenitiesPatio=false;
+    	} 
+    	System.out.println("Does the unit have a dishwasher? (y/n)");
+    	String dishwasherStr = scan.nextLine();
+    	boolean amenitiesDishwasher;
+    	if(dishwasherStr.equalsIgnoreCase("y") || dishwasherStr.equalsIgnoreCase("yes")) {
+    		amenitiesDishwasher=true;
+    	}
+    	else {
+    		amenitiesDishwasher=false;
+    	} 
+    	System.out.println("Does the unit have a fireplace? (y/n)");
+    	String FirePlaceStr = scan.nextLine();
+    	boolean amenitiesFireplace;
+    	if(FirePlaceStr.equalsIgnoreCase("y") || FirePlaceStr.equalsIgnoreCase("yes")) {
+    		amenitiesFireplace=true;
+    	}
+    	else {
+    		amenitiesFireplace=false;
+    	} 
+    	System.out.println("Does the unit have Wi-Fi? (y/n)");
+    	String WiFiStr = scan.nextLine();
+    	boolean amenitiesWifi;
+    	if(WiFiStr.equalsIgnoreCase("y") || WiFiStr.equalsIgnoreCase("yes")) {
+    		amenitiesWifi=true;
+    	}
+    	else {
+    		amenitiesWifi=false;
+    	} 
+    	System.out.println("Does the unit have a pool? (y/n)");
+    	String poolStr = scan.nextLine();
+    	boolean amenitiesPool;
+    	if(poolStr.equalsIgnoreCase("y") || poolStr.equalsIgnoreCase("yes")) {
+    		amenitiesPool=true;
+    	}
+    	else {
+    		amenitiesPool=false;
+    	} 
+    	new Listing(landlord.getNumListings(),  address,  description,  distanceFromRussellHouse,
+       type,  available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
+       amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
+       amenitiesFireplace,  amenitiesWifi,  amenitiesPool);  }
   }
 
   // Leases

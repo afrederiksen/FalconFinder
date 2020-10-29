@@ -7,7 +7,7 @@ public class Listing {
   private double distanceFromRussellHouse;
   private String type;
   private boolean available;
-  private int landlordId;
+  private String landlordId;
   private boolean amenitiesWasher;
   private boolean amenitiesAC;
   private boolean amenitiesFurniture;
@@ -20,7 +20,7 @@ public class Listing {
   private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
   public Listing(int listingId, String address, String description, double distanceFromRussellHouse,
-      String type, boolean available, int landlordId, boolean amenitiesWasher, boolean amenitiesAC,
+      String type, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
       boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
       boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
     this.listingId = listingId;
