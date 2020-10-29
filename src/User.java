@@ -71,6 +71,11 @@ public class User {
 		return ListingID;
 	}
 
+	public void logout() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
 
