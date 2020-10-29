@@ -66,18 +66,18 @@ public class User {
 
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
-      firstName = null;
-		  lastName = null;;
-	    address = null;
-		  email = null;
-		  password = null;
-		  studentId = null;
-		  type = null;
-		  suspended = false;
-		  favoriteListings = null;
-		  messages = null;
-		  leases = null;
-      System.out.println("Your account has been terminated.");
+	firstName = null;
+	lastName = null;;
+	address = null;
+	email = null;
+	password = null;
+	studentId = null;
+	type = null;
+	suspended = false;
+	favoriteListings = null;
+	messages = null;
+	leases = null;
+        System.out.println("Your account has been terminated.");
       
     }
 
