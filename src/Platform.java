@@ -197,9 +197,21 @@ public class Platform {
 			for(String fav : leasee.favoriteProperties) {
 				System.out.println(fav);
 			}
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Enter any key to return back to the main page");
+			if(!scan.nextLine().equalsIgnoreCase(null)) {
+				mainStage();
+			}
 		}
 		public void viewListings() {
-			
+			for(Listing listing : landlord.listings) {
+				System.out.println(listing);
+			}
+			Scanner scan = new Scanner(System.in);
+			System.out.println("Enter any key to return back to the main page");
+			if(!scan.nextLine().equalsIgnoreCase(null)) {
+				mainStage();
+			}
 		}
 		public void manageAccount() {
 			{
@@ -289,9 +301,9 @@ public class Platform {
 						+ "8. Foward a page.\n9.Return to main menu");
 				int userInput = scan.nextInt();
 				if(userInput >= 1 && userInput <= 6) {
-				System.out.println("Title: " + user.getMessages().get(startingWindow).getTitle());
-				System.out.println("Sender: " + user.getMessages().get(startingWindow).getSender());
-				System.out.println("Data: " + user.getMessages().get(startingWindow));
+				System.out.println("Title: " + user.getMessages().get(startingWindow+(userInput-1)).getTitle());
+				System.out.println("Sender: " + user.getMessages().get(startingWindow+(userInput-1)).getSender());
+				System.out.println("Data: " + user.getMessages().get(startingWindow+(userInput-1)).getData());
 			}
 				//Go back a packge so decrecase starting window by 6 and display 6...
 				else if(userInput == 7) {
@@ -360,10 +372,10 @@ public class Platform {
 							+ "8. Foward a page.\n9.Return to main menu");
 					int userInput = scan.nextInt();
 					if(userInput >= 1 && userInput <= 6) {
-					System.out.println("Property: " + user.getLeases().get(startingWindow).getProperty());
-					System.out.println("Duration: " + user.getLeases().get(startingWindow).getDuration());
-					System.out.println("Landlord ID: " + user.getLeases().get(startingWindow).getLandlordUUID());
-					System.out.println("Date Signed: " + user.getLeases().get(startingWindow).getDateSigned());
+					System.out.println("Property: " + user.getLeases().get(startingWindow+(userInput-1)).getProperty());
+					System.out.println("Duration: " + user.getLeases().get(startingWindow+(userInput-1)).getDuration());
+					System.out.println("Landlord ID: " + user.getLeases().get(startingWindow+(userInput-1)).getLandlordUUID());
+					System.out.println("Date Signed: " + user.getLeases().get(startingWindow+(userInput-1)).getDateSigned());
 				}
 					else if(userInput == 7) {
 						if(startingWindow>6) {
