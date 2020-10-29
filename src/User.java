@@ -7,24 +7,20 @@ public class User {
   private String address;
   private String email;
   private String password;
-  private String studentId;
   private String type;
-  private boolean suspended;
   private String favoriteListings;
   private ArrayList<Messages> messages = new ArrayList<Messages>();
   private ArrayList<Lease> leases = new ArrayList<Lease>();
 
   public User(String id, String firstName, String lastName, String address, String email,
-      String password, String studentId, String type, boolean suspended, String favoriteListings) {
+      String password, String type, String favoriteListings) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.email = email;
     this.password = password;
-    this.studentId = studentId;
     this.type = type;
-    this.suspended = suspended;
     this.favoriteListings = favoriteListings;
   }
 
