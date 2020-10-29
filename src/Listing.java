@@ -17,7 +17,14 @@ public class Listing {
 			double DistanceFromCampus, String type, String PictureID, String Review, int Rating) {
 		
 	}
-	
+
+	public Listing(int listingId2, String address, String description2, double distanceFromRussell, String type,
+			boolean available, int landlordId2, boolean amenitiesWasher, boolean amenitiesAC,
+			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher, boolean amenitiesFireplace,
+			boolean amenitiesWifi, boolean amenitiesPool) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addReview(String review) {
 		for(int i = 0; i < ReviewList.size(); i++) {
 			if(ReviewList.get(i) == null)

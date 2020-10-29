@@ -5,7 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataReader extends DataConstants {
-  public static ArrayList<Listing> loadListing() {
+  public static void loadListing() {
     ArrayList<Listing> listings = new ArrayList<Listing>();
 
     try {

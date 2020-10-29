@@ -12,7 +12,7 @@ public class User {
 	
 	public User(String UUID, String Email, String Password, boolean Suspended, String type) {
 		this.UUID = UUID;
-    		this.Email = Email;
+    		this.setEmail(Email);
    		this.Password = Password;
     		this.Suspended = Suspended;
     		this.type = type;
@@ -43,7 +43,7 @@ public class User {
 	
 	public void changeEmail(String newEmail) {
 		if(newEmail.contains("@")) {
-			this.Email = newEmail;
+			this.setEmail(newEmail);
 		}
 		else {
 			System.out.println("Error! Please enter a valid email.");
@@ -77,6 +77,25 @@ public class User {
 
 	public void logout() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public String getEmail() {
+		return Email;
+	}
+
+	public void setEmail(String email) {
+		Email = email;
+	}
+
+	public Object getPassword() {
+		return Password;
+	}
+
+	public void deleteAccount(String terminateConfirmation) {
+		if(terminateConfirmation.equals("TERMINATE")) {
+			//Delete User Account
+		}
 		
 	}
 	

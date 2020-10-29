@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Platform {
 	//Login user????
 	User user = new User(null, null, null, false, null);
+	Leasee leasee = new Leasee(null, null, null, false, null);
+	Landlord landlord = new Landlord(null, null, null, false, null);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
@@ -191,7 +193,72 @@ public class Platform {
 				break;
 			}
 			}
+		public void viewFavoriteList() {
+			for(String fav : leasee.favoriteProperties) {
+				System.out.println(fav);
+			}
+		}
+		public void viewListings() {
 			
+		}
+		public void manageAccount() {
+			{
+				Scanner scan = new Scanner(System.in);
+					System.out.println("Manage Account:\r\n" + 
+							"	1. Edit email" + user.getEmail() + "\r\n"  +
+							"	2. Change password\r\n" + 
+							"	3. Terminate account\r\n" + 
+							"	9. Return to main menu");
+				switch(scan.nextInt()) {
+				case 1:
+					System.out.println("What do you want the new email to be? Send \"exit\" to quit");
+					String newEmail = scan.nextLine();
+					if(!newEmail.equalsIgnoreCase("exit")) {
+						user.changeEmail(newEmail);
+					}
+					else {
+						this.mainStage();
+					}
+					break;
+				case 2:
+					System.out.println("What is your old password? Send \"exit\" to quit");
+					String oldPassword = scan.nextLine();
+					if(!oldPassword.equalsIgnoreCase("exit")) {
+							boolean notDone = true;
+							while(notDone) {
+								System.out.println("Password");
+								String password = scan.nextLine();
+								System.out.println("Confirm password");
+								String confirmPassword = scan.nextLine();
+							if(password.equals(confirmPassword)) {
+								user.resetPassword(oldPassword, confirmPassword);
+								notDone = false;
+								System.out.println("Password was sucessfully changed !");
+							}
+							else {
+								System.out.println("Error passwords did not match! Try again");
+							}
+							}
+					}
+					else {
+						this.mainStage();
+					}					break;
+				case 3:
+					System.out.println("If you wish to terminate your account please write the following\n" + 
+							"\"DELETE MY ACCOUNT\"\nAny other input will bring you back to the main menu.");
+					if(scan.nextLine().equals("DELETE MY ACCOUNT")) {
+						System.out.println("User account terminate. Goodbye.");
+						user.deleteAccount("TERMINATE");
+						System.exit(0);
+					}
+					break;
+				case 9:
+					this.mainStage();
+					break;
+				}
+				}
+			
+		}
 		public void viewMessages() {
 			Scanner scan = new Scanner(System.in);
 			if(!(user.getUserType() == "Leasee") || !(user.getUserType() == "Landlord")) {
