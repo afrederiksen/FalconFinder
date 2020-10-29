@@ -1,0 +1,21 @@
+{"leasees":[
+  {
+  	"landlordId":"charles_parker",
+  	"firstName":"Charles",
+  	"lastName":"Parker",
+    "address": "311 Road Avenue",
+    "email":"cparker@gmail.com",
+    "password": "Password123",
+    "type":"Author",
+    "listings": []
+  },{
+  	"landlordId": "arnold_luis",
+  	"firstName":"Arnold",
+  	"lastName":"Luis",
+    "address": "1332 Roberto St.",
+    "email":"aluis@gmail.com",
+    "password": "Password123",
+    "type":"Author",
+    "listings": []
+  }
+]}

@@ -1,4 +1,3 @@
-
 import java.io.FileReader;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
@@ -6,7 +5,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 public class DataReader extends DataConstants {
-  public static ArrayList<Listing> loadListing() {
+
+  public static ArrayList<Listing> loadListings() {
     ArrayList<Listing> listings = new ArrayList<Listing>();
     ArrayList<Review> reviews = new ArrayList<Review>();
 
@@ -55,7 +55,7 @@ public class DataReader extends DataConstants {
 
   }
 
-  public static ArrayList<User> loadUser() {
+  public static ArrayList<User> loadUsers() {
     ArrayList<User> users = new ArrayList<User>();
 
     try {
@@ -70,13 +70,9 @@ public class DataReader extends DataConstants {
         String address = (String) userJSON.get(USER_ADDRESS);
         String email = (String) userJSON.get(USER_EMAIL);
         String password = (String) userJSON.get(USER_PASSWORD);
-        String studentId = (String) userJSON.get(USER_STUDENT_ID);
         String type = (String) userJSON.get(USER_TYPE);
-        boolean suspended = (boolean) userJSON.get(USER_SUSPENDED);
-        String favoriteListings = (String) userJSON.get(USER_FAVORITE_LISTINGS);
 
-        users.add(new User(id, firstName, lastName, address, email, password, studentId, type,
-            suspended, favoriteListings));
+        users.add(new User(id, firstName, lastName, address, email, password, type));
       }
 
       return users;
@@ -89,7 +85,73 @@ public class DataReader extends DataConstants {
 
   }
 
-  public static ArrayList<Lease> loadLease() {
+  public static ArrayList<Leasee> loadLeasees() {
+    ArrayList<Leasee> leasees = new ArrayList<Leasee>();
+
+    try {
+      FileReader reader = new FileReader(LEASEES_FILE_NAME);
+      JSONArray leaseesJSON = (JSONArray) new JSONParser().parse(reader);
+
+      for (int i = 0; i < leaseesJSON.size(); i++) {
+        JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
+        String leaseeId = (String) leaseeJSON.get(LEASEE_ID);
+        String firstName = (String) leaseeJSON.get(LEASEE_FIRST_NAME);
+        String lastName = (String) leaseeJSON.get(LEASEE_LAST_NAME);
+        String address = (String) leaseeJSON.get(LEASEE_ADDRESS);
+        String email = (String) leaseeJSON.get(LEASEE_EMAIL);
+        String password = (String) leaseeJSON.get(LEASEE_PASSWORD);
+        String studentId = (String) leaseeJSON.get(LEASEE_STUDENT_ID);
+        String type = (String) leaseeJSON.get(LEASEE_TYPE);
+        ArrayList<Listing> favoriteListings =
+            (ArrayList<Listing>) leaseeJSON.get(LEASEE_FAVORITE_LISTINGS);
+
+        leasees.add(new Leasee(leaseeId, firstName, lastName, address, email, password, studentId,
+            type, favoriteListings));
+      }
+
+      return leasees;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return null;
+
+  }
+
+  public static ArrayList<Landlord> loadLandlords() {
+    ArrayList<Landlord> landlords = new ArrayList<Landlord>();
+
+    try {
+      FileReader reader = new FileReader(LANDLORDS_FILE_NAME);
+      JSONArray landlordsJSON = (JSONArray) new JSONParser().parse(reader);
+
+      for (int i = 0; i < landlordsJSON.size(); i++) {
+        JSONObject landlordJSON = (JSONObject) landlordsJSON.get(i);
+        String landlordId = (String) landlordJSON.get(LANDLORD_ID);
+        String firstName = (String) landlordJSON.get(LANDLORD_FIRST_NAME);
+        String lastName = (String) landlordJSON.get(LANDLORD_LAST_NAME);
+        String address = (String) landlordJSON.get(LANDLORD_ADDRESS);
+        String email = (String) landlordJSON.get(LANDLORD_EMAIL);
+        String password = (String) landlordJSON.get(LANDLORD_PASSWORD);
+        String type = (String) landlordJSON.get(LANDLORD_TYPE);
+        ArrayList<Listing> listings = (ArrayList<Listing>) landlordJSON.get(LANDLORD_LISTINGS);
+
+        landlords.add(new Landlord(landlordId, firstName, lastName, address, email, password, type,
+            listings));
+      }
+
+      return landlords;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return null;
+
+  }
+
+  public static ArrayList<Lease> loadLeases() {
     ArrayList<Lease> leases = new ArrayList<Lease>();
 
     try {
@@ -99,14 +161,13 @@ public class DataReader extends DataConstants {
       for (int i = 0; i < leasesJSON.size(); i++) {
         JSONObject leaseJSON = (JSONObject) leasesJSON.get(i);
         int leaseId = (int) leaseJSON.get(LEASE_ID);
-        int landlordId = (int) leaseJSON.get(LEASE_LANDLORD_ID);
-        int leaseeId = (int) leaseJSON.get(LEASE_LEASEE_ID);
-        int cosignerId = (int) leaseJSON.get(LEASE_COSIGNER_ID);
+        String landlordId = (String) leaseJSON.get(LEASE_LANDLORD_ID);
+        String leaseeId = (String) leaseJSON.get(LEASE_LEASEE_ID);
         String date = (String) leaseJSON.get(LEASE_DATE);
         String address = (String) leaseJSON.get(LEASE_ADDRESS);
         String duration = (String) leaseJSON.get(LEASE_DURATION);
 
-        leases.add(new Lease(leaseId, landlordId, leaseeId, cosignerId, date, address, duration));
+        leases.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
       }
 
       return leases;

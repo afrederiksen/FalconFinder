@@ -5,7 +5,7 @@ public class Users {
   private static ArrayList<User> userList = new ArrayList<User>();
 
   private Users() {
-    userList = DataReader.loadUser();
+    userList = DataReader.loadUsers();
   }
 
   public static Users getInstance() {
@@ -18,12 +18,5 @@ public class Users {
 
   public ArrayList<User> getUsers() {
     return userList;
-  }
-
-  public static void addUser(String id, String firstName, String lastName, String address, String email,
-      String password, String studentId, String type, boolean suspended, String favoriteListings) {
-    userList.add(new User(id, firstName, lastName, address, email, password, studentId, type,
-        suspended, favoriteListings));
-    DataWriter.saveUsers();
   }
 }

@@ -78,12 +78,80 @@ public class DataWriter extends DataConstants {
     userDetails.put(USER_ADDRESS, user.getAddress());
     userDetails.put(USER_EMAIL, user.getEmail());
     userDetails.put(USER_PASSWORD, user.getPassword());
-    userDetails.put(USER_STUDENT_ID, user.getStudentId());
     userDetails.put(USER_TYPE, user.getType());
-    userDetails.put(USER_SUSPENDED, user.isSuspended());
-    userDetails.put(USER_FAVORITE_LISTINGS, user.getFavoriteListings());
 
     return userDetails;
+  }
+
+  public static void saveLeasees() {
+    Leasees leaseesList = Leasees.getInstance();
+    ArrayList<Leasee> leasees = leaseesList.getLeasees();
+    JSONArray jsonLeasees = new JSONArray();
+
+    // creating all the json objects
+    for (int i = 0; i < leasees.size(); i++) {
+      jsonLeasees.add(getLeaseeJSON(leasees.get(i)));
+    }
+
+    // Write JSON file
+    try (FileWriter file = new FileWriter(LEASEES_FILE_NAME)) {
+
+      file.write(jsonLeasees.toJSONString());
+      file.flush();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static JSONObject getLeaseeJSON(Leasee leasee) {
+    JSONObject leaseeDetails = new JSONObject();
+    leaseeDetails.put(LEASEE_ID, leasee.getId());
+    leaseeDetails.put(LEASEE_FIRST_NAME, leasee.getFirstName());
+    leaseeDetails.put(LEASEE_LAST_NAME, leasee.getLastName());
+    leaseeDetails.put(LEASEE_ADDRESS, leasee.getAddress());
+    leaseeDetails.put(LEASEE_EMAIL, leasee.getEmail());
+    leaseeDetails.put(LEASEE_PASSWORD, leasee.getPassword());
+    leaseeDetails.put(LEASEE_STUDENT_ID, leasee.getStudentId());
+    leaseeDetails.put(LEASEE_TYPE, leasee.getType());
+    leaseeDetails.put(LEASEE_FAVORITE_LISTINGS, leasee.getFavoriteListings());
+
+    return leaseeDetails;
+  }
+
+  public static void saveLandlords() {
+    Landlords landlordsList = Landlords.getInstance();
+    ArrayList<Landlord> landlords = landlordsList.getLandlords();
+    JSONArray jsonLandlords = new JSONArray();
+
+    // creating all the json objects
+    for (int i = 0; i < landlords.size(); i++) {
+      jsonLandlords.add(getLandlordJSON(landlords.get(i)));
+    }
+
+    // Write JSON file
+    try (FileWriter file = new FileWriter(LANDLORDS_FILE_NAME)) {
+
+      file.write(jsonLandlords.toJSONString());
+      file.flush();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static JSONObject getLandlordJSON(Landlord landlord) {
+    JSONObject landlordDetails = new JSONObject();
+    landlordDetails.put(LANDLORD_ID, landlord.getId());
+    landlordDetails.put(LANDLORD_FIRST_NAME, landlord.getFirstName());
+    landlordDetails.put(LANDLORD_LAST_NAME, landlord.getLastName());
+    landlordDetails.put(LANDLORD_ADDRESS, landlord.getAddress());
+    landlordDetails.put(LANDLORD_EMAIL, landlord.getEmail());
+    landlordDetails.put(LANDLORD_PASSWORD, landlord.getPassword());
+    landlordDetails.put(LANDLORD_TYPE, landlord.getType());
+    landlordDetails.put(LANDLORD_LISTINGS, landlord.getFavoriteListings());
+
+    return landlordDetails;
   }
 
   public static void saveLeases() {
@@ -112,7 +180,6 @@ public class DataWriter extends DataConstants {
     leaseDetails.put(LEASE_ID, lease.getLeaseId());
     leaseDetails.put(LEASE_LANDLORD_ID, lease.getLandlordId());
     leaseDetails.put(LEASE_LEASEE_ID, lease.getLeaseeId());
-    leaseDetails.put(LEASE_COSIGNER_ID, lease.getCosignerId());
     leaseDetails.put(LEASE_DATE, lease.getDate());
     leaseDetails.put(LEASE_ADDRESS, lease.getAddress());
     leaseDetails.put(LEASE_DURATION, lease.getDuration());

@@ -27,16 +27,33 @@ public abstract class DataConstants {
   protected static final String USER_ADDRESS = "address";
   protected static final String USER_EMAIL = "email";
   protected static final String USER_PASSWORD = "password";
-  protected static final String USER_STUDENT_ID = "studentId";
   protected static final String USER_TYPE = "type";
-  protected static final String USER_SUSPENDED = "suspended";
-  protected static final String USER_FAVORITE_LISTINGS = "favorite_listings";
+
+  protected static final String LEASEES_FILE_NAME = "src/JSON/leasees.json";
+  protected static final String LEASEE_ID = "leaseeId";
+  protected static final String LEASEE_FIRST_NAME = "firstName";
+  protected static final String LEASEE_LAST_NAME = "lastName";
+  protected static final String LEASEE_ADDRESS = "address";
+  protected static final String LEASEE_EMAIL = "email";
+  protected static final String LEASEE_PASSWORD = "password";
+  protected static final String LEASEE_STUDENT_ID = "studentId";
+  protected static final String LEASEE_TYPE = "type";
+  protected static final String LEASEE_FAVORITE_LISTINGS = "favorite_listings";
+
+  protected static final String LANDLORDS_FILE_NAME = "src/JSON/landlords.json";
+  protected static final String LANDLORD_ID = "landlordId";
+  protected static final String LANDLORD_FIRST_NAME = "firstName";
+  protected static final String LANDLORD_LAST_NAME = "lastName";
+  protected static final String LANDLORD_ADDRESS = "address";
+  protected static final String LANDLORD_EMAIL = "email";
+  protected static final String LANDLORD_PASSWORD = "password";
+  protected static final String LANDLORD_TYPE = "type";
+  protected static final String LANDLORD_LISTINGS = "listings";
 
   protected static final String LEASES_FILE_NAME = "src/JSON/leases.json";
   protected static final String LEASE_ID = "leaseId";
   protected static final String LEASE_LANDLORD_ID = "landlordId";
   protected static final String LEASE_LEASEE_ID = "leaseeId";
-  protected static final String LEASE_COSIGNER_ID = "cosignerId";
   protected static final String LEASE_DATE = "date";
   protected static final String LEASE_ADDRESS = "address";
   protected static final String LEASE_DURATION = "duration";

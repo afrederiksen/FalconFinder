@@ -1,0 +1,23 @@
+{"leasees":[
+  {
+    "leaseeId":"robbie_white",
+  	"firstName":"Robbie",
+  	"lastName":"White",
+    "address": "123 Park Avenue",
+    "email":"rwhite@gmail.com",
+    "password": "Password123",
+    "type":"Registered",
+    "studentId": "Q420321",
+    "favorite_listings": []
+  },{
+  	"leaseeId": "amy_smith",
+  	"firstName":"Amy",
+  	"lastName":"Smith",
+    "address": "765 Jefferson Rd.",
+    "email":"asmith@gmail.com",
+    "password": "Password123",
+    "type":"Registered",
+    "studentId": "Q333201",
+    "favorite_listings": []
+  }
+]}

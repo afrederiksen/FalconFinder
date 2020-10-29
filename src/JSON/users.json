@@ -6,10 +6,7 @@
     "address": "123 Park Avenue",
     "email":"rwhite@gmail.com",
     "password": "Password123",
-    "type":"Registered",
-    "studentId": "Q420321",
-    "suspended": false,
-    "favorite_listings":""
+    "type":"Registered"
   },{
   	"id":2,
   	"firstName":"Amy",
@@ -17,9 +14,6 @@
     "address": "765 Jefferson Rd.",
     "email":"asmith@gmail.com",
     "password": "Password123",
-    "type":"Author",
-    "studentId": "N/A",
-    "suspended": false,
-    "favorite_listings": ""
+    "type":"Author"
   }
 ]}
