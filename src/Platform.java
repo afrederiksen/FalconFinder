@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Platform {
 	//Login user????
 	User user = new User(null, null, null, false, null);
-	Leasee leasee = new Leasee(null, null, null, false, null);
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
@@ -66,7 +65,7 @@ public class Platform {
 			this.manageAccount();
 			break;
 		case 9:
-			this.logout();
+			user.logout();
 			break;
 		}
 		}
@@ -91,7 +90,7 @@ public class Platform {
 			this.manageAccount();
 			break;
 		case 9:
-			this.logout();
+			user.logout();
 			break;
 		}
 		}
@@ -112,7 +111,7 @@ public class Platform {
 			this.manageAccount();
 			break;
 		case 9:
-			this.logout();
+			user.logout();
 			break;
 		}
 		}
@@ -130,10 +129,6 @@ public class Platform {
 			else {
 				System.out.println("You are already logged in!");
 			}
-		}
-		public void logout() {
-			user.logout();
-			System.out.println("Thanks for using FalconFinder. Goodbye.");
 		}
 		public void register() {
 			boolean notDone = true;
@@ -196,16 +191,7 @@ public class Platform {
 				break;
 			}
 			}
-		public void viewFavoriteList() {
-			Scanner scan = new Scanner(System.in);
-			for(String fav : leasee.favoriteProperties) {
-				System.out.println(fav);
-			}
-			System.out.println("9. Return to main menu");
-			if(scan.nextInt() == 9) {
-				mainStage();
-			}
-		}
+			
 		public void viewMessages() {
 			Scanner scan = new Scanner(System.in);
 			if(!(user.getUserType() == "Leasee") || !(user.getUserType() == "Landlord")) {
@@ -236,11 +222,11 @@ public class Platform {
 						+ "8. Foward a page.\n9.Return to main menu");
 				int userInput = scan.nextInt();
 				if(userInput >= 1 && userInput <= 6) {
-				System.out.println("Title: " + user.getMessages().get(startingWindow+(userInput-1)).getTitle());
-				System.out.println("Sender: " + user.getMessages().get(startingWindow+(userInput-1)).getSender());
-				System.out.println("Data: " + user.getMessages().get(startingWindow+(userInput-1)));
+				System.out.println("Title: " + user.getMessages().get(startingWindow).getTitle());
+				System.out.println("Sender: " + user.getMessages().get(startingWindow).getSender());
+				System.out.println("Data: " + user.getMessages().get(startingWindow));
 			}
-				//Go back a page so decrease starting window by 6 and display 6...
+				//Go back a packge so decrecase starting window by 6 and display 6...
 				else if(userInput == 7) {
 					if(startingWindow>6) {
 						startingWindow-=6;
@@ -307,10 +293,10 @@ public class Platform {
 							+ "8. Foward a page.\n9.Return to main menu");
 					int userInput = scan.nextInt();
 					if(userInput >= 1 && userInput <= 6) {
-					System.out.println("Property: " + user.getLeases().get(startingWindow+(userInput-1)).getProperty());
-					System.out.println("Duration: " + user.getLeases().get(startingWindow+(userInput-1)).getDuration());
-					System.out.println("Landlord ID: " + user.getLeases().get(startingWindow+(userInput-1)).getLandlordUUID());
-					System.out.println("Date Signed: " + user.getLeases().get(startingWindow+(userInput-1)).getDateSigned());
+					System.out.println("Property: " + user.getLeases().get(startingWindow).getProperty());
+					System.out.println("Duration: " + user.getLeases().get(startingWindow).getDuration());
+					System.out.println("Landlord ID: " + user.getLeases().get(startingWindow).getLandlordUUID());
+					System.out.println("Date Signed: " + user.getLeases().get(startingWindow).getDateSigned());
 				}
 					else if(userInput == 7) {
 						if(startingWindow>6) {

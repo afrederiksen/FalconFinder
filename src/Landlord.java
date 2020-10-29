@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -68,6 +69,10 @@ public class Landlord extends User{
 
 	public ArrayList<Listing> copyList() {
 		return listings;
+	}
+	
+	public ArrayList<Lease> copyLeases() {
+		return Leases;
 	}
 
 }

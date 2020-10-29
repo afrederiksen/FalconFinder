@@ -70,12 +70,15 @@ public class User {
 	public String getListing(String ListingID) {
 		return ListingID;
 	}
+	
+	public String getUUID() {
+		return UUID;
+	}
 
 	public void logout() {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
 }
 
