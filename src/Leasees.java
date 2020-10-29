@@ -20,11 +20,11 @@ public class Leasees {
     return leaseeList;
   }
 
-  public static void addLeasee(String id, String firstName, String lastName, String address,
-      String email, String password, String studentId, String type, boolean suspended,
-      String favoriteListings) {
-    leaseeList.add(new Leasee(id, firstName, lastName, address, email, password, studentId, type,
-        suspended, favoriteListings));
+  public static void addLeasee(String leaseeId, String firstName, String lastName, String address,
+      String email, String password, String studentId, String type,
+      ArrayList<Listing> favoriteListings) {
+    leaseeList.add(new Leasee(leaseeId, firstName, lastName, address, email, password, type,
+        favoriteListings));
     DataWriter.saveLeasees();
   }
 }

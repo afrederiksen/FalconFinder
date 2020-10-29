@@ -78,14 +78,7 @@ public class DataWriter extends DataConstants {
     userDetails.put(USER_ADDRESS, user.getAddress());
     userDetails.put(USER_EMAIL, user.getEmail());
     userDetails.put(USER_PASSWORD, user.getPassword());
-<<<<<<< HEAD
     userDetails.put(USER_TYPE, user.getType());
-=======
-    //userDetails.put(USER_STUDENT_ID, user.getStudentId());
-    userDetails.put(USER_TYPE, user.getType());
-    //userDetails.put(USER_SUSPENDED, user.isSuspended());
-    userDetails.put(USER_FAVORITE_LISTINGS, user.getFavoriteListings());
->>>>>>> 9e5d7a510871d1c76ed4200b143a884afc9ea2e2
 
     return userDetails;
   }
@@ -156,7 +149,7 @@ public class DataWriter extends DataConstants {
     landlordDetails.put(LANDLORD_EMAIL, landlord.getEmail());
     landlordDetails.put(LANDLORD_PASSWORD, landlord.getPassword());
     landlordDetails.put(LANDLORD_TYPE, landlord.getType());
-    landlordDetails.put(LANDLORD_LISTINGS, landlord.getFavoriteListings());
+    landlordDetails.put(LANDLORD_LISTINGS, landlord.getListings());
 
     return landlordDetails;
   }

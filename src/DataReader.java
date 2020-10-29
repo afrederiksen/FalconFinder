@@ -105,8 +105,8 @@ public class DataReader extends DataConstants {
         ArrayList<Listing> favoriteListings =
             (ArrayList<Listing>) leaseeJSON.get(LEASEE_FAVORITE_LISTINGS);
 
-        leasees.add(new Leasee(leaseeId, firstName, lastName, address, email, password, studentId,
-            type, favoriteListings));
+        leasees.add(new Leasee(leaseeId, firstName, lastName, address, email, password, type,
+            favoriteListings));
       }
 
       return leasees;

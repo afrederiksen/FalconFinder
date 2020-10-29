@@ -1,18 +1,16 @@
 public class Lease {
   private int leaseId;
-  private int landlordId;
-  private int leaseeId;
-  private int cosignerId;
+  private String landlordId;
+  private String leaseeId;
   private String date;
   private String address;
   private String duration;
 
-  public Lease(int leaseId, int landlordId, int leaseeId, int cosignerId, String date,
-      String address, String duration) {
+  public Lease(int leaseId, String landlordId, String leaseeId, String date, String address,
+      String duration) {
     this.leaseId = leaseId;
     this.landlordId = landlordId;
     this.leaseeId = leaseeId;
-    this.cosignerId = cosignerId;
     this.date = date;
     this.address = address;
     this.duration = duration;
@@ -35,43 +33,29 @@ public class Lease {
   /**
    * @return the landlordId
    */
-  public int getLandlordId() {
+  public String getLandlordId() {
     return landlordId;
   }
 
   /**
    * @param landlordId the landlordId to set
    */
-  public void setLandlordId(int landlordId) {
+  public void setLandlordId(String landlordId) {
     this.landlordId = landlordId;
   }
 
   /**
    * @return the leaseeId
    */
-  public int getLeaseeId() {
+  public String getLeaseeId() {
     return leaseeId;
   }
 
   /**
    * @param leaseeId the leaseeId to set
    */
-  public void setLeaseeId(int leaseeId) {
+  public void setLeaseeId(String leaseeId) {
     this.leaseeId = leaseeId;
-  }
-
-  /**
-   * @return the cosignerId
-   */
-  public int getCosignerId() {
-    return cosignerId;
-  }
-
-  /**
-   * @param cosignerId the cosignerId to set
-   */
-  public void setCosignerId(int cosignerId) {
-    this.cosignerId = cosignerId;
   }
 
   /**

@@ -5,7 +5,7 @@ public class Listings {
   private static ArrayList<Listing> listingList = new ArrayList<Listing>();
 
   private Listings() {
-    listingList = DataReader.loadListing();
+    listingList = DataReader.loadListings();
   }
 
   public static Listings getInstance() {

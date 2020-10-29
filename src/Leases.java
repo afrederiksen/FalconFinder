@@ -5,7 +5,7 @@ public class Leases {
   private static ArrayList<Lease> leaseList = new ArrayList<Lease>();
 
   private Leases() {
-    leaseList = DataReader.loadLease();
+    leaseList = DataReader.loadLeases();
   }
 
   public static Leases getInstance() {
@@ -20,9 +20,9 @@ public class Leases {
     return leaseList;
   }
 
-  public void addLease(int leaseId, int landlordId, int leaseeId, int cosignerId, String date,
-      String address, String duration) {
-    leaseList.add(new Lease(leaseId, landlordId, leaseeId, cosignerId, date, address, duration));
+  public void addLease(int leaseId, String landlordId, String leaseeId, String date, String address,
+      String duration) {
+    leaseList.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
     DataWriter.saveLeases();
   }
 }

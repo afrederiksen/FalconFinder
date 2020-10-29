@@ -2,14 +2,57 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Landlord extends User {
-  private ArrayList<Lease> Leases;
-  public ArrayList<Listing> listings;
+  private ArrayList<Lease> Leases = new ArrayList<Lease>();
+  public ArrayList<Listing> listings = new ArrayList<Listing>();
   private int numListings;
 
-  public Landlord(String id, String firstName, String lastName, String address, String email,
-      String password, String type, boolean suspended) {
-    super(id, firstName, lastName, address, email, password, "none", type, suspended, "none");
+  public Landlord(String landlordId, String firstName, String lastName, String address,
+      String email, String password, String type, ArrayList<Listing> listings) {
+    super(landlordId, firstName, lastName, address, email, password, type);
+    this.listings = listings;
     this.numListings = listings.size();
+  }
+
+  /**
+   * @return the leases
+   */
+  public ArrayList<Lease> getLeases() {
+    return Leases;
+  }
+
+  /**
+   * @param leases the leases to set
+   */
+  public void setLeases(ArrayList<Lease> leases) {
+    Leases = leases;
+  }
+
+  /**
+   * @return the listings
+   */
+  public ArrayList<Listing> getListings() {
+    return listings;
+  }
+
+  /**
+   * @param listings the listings to set
+   */
+  public void setListings(ArrayList<Listing> listings) {
+    this.listings = listings;
+  }
+
+  /**
+   * @return the numListings
+   */
+  public int getNumListings() {
+    return numListings;
+  }
+
+  /**
+   * @param numListings the numListings to set
+   */
+  public void setNumListings(int numListings) {
+    this.numListings = numListings;
   }
 
   public void postListing(int id, String address, String description, double DistanceFromRuss,
@@ -19,7 +62,7 @@ public class Landlord extends User {
     Listing listing = new Listing(id, address, description, DistanceFromRuss, type, available,
         landlordID, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
         amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool);
-    for (int i = 0; i < getnumListings(); i++) {
+    for (int i = 0; i < getNumListings(); i++) {
       if (listings.get(i) == null) {
         listings.add(listing);
         return;
@@ -32,30 +75,14 @@ public class Landlord extends User {
     listing.setListingId(ID);
   }
 
-  public int getnumListings() {
-    return this.numListings;
-  }
-
   public void removeListing(int listingID) {
-    for (int i = 0; i < getnumListings(); i++) {
+    for (int i = 0; i < getNumListings(); i++) {
       if (listings.get(i).getListingId() == listingID) {
         listings.remove(i);
         return;
       }
     }
     numListings--;
-  }
-
-  public String getLease(String LeaseID) {
-    return LeaseID;
-  }
-
-  public ArrayList<Listing> copyList() {
-    return listings;
-  }
-
-  public ArrayList<Lease> copyLeases() {
-    return Leases;
   }
 
 }

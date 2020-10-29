@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class User {
   private String id;
   private String firstName;
@@ -8,11 +6,9 @@ public class User {
   private String email;
   private String password;
   private String type;
-  private String favoriteListings;
-  private ArrayList<Lease> leases = new ArrayList<Lease>();
 
   public User(String id, String firstName, String lastName, String address, String email,
-      String password, String type, String favoriteListings) {
+      String password, String type) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -20,18 +16,8 @@ public class User {
     this.email = email;
     this.password = password;
     this.type = type;
-    this.favoriteListings = favoriteListings;
   }
-  public User(String id, String firstName, String lastName, String address, String email,
-	      String password, String type) {
-	    this.id = id;
-	    this.firstName = firstName;
-	    this.lastName = lastName;
-	    this.address = address;
-	    this.email = email;
-	    this.password = password;
-	    this.type = type;
-	  }
+
   public void resetPassword(String oldPassword, String newPassword) {
     if (oldPassword.equals(this.password)) {
       this.password = newPassword;
@@ -66,16 +52,14 @@ public class User {
 
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
-	firstName = null;
-	lastName = null;;
-	address = null;
-	email = null;
-	password = null;
-	type = null;
-	favoriteListings = null;
-	leases = null;
-        System.out.println("Your account has been terminated.");
-      
+      firstName = null;
+      lastName = null;;
+      address = null;
+      email = null;
+      password = null;
+      type = null;
+      System.out.println("Your account has been terminated.");
+
     }
 
   }
@@ -176,38 +160,6 @@ public class User {
    */
   public void setType(String type) {
     this.type = type;
-  }
-
-  /**
-   * @return the favoriteListings
-   */
-  public String getFavoriteListings() {
-    return favoriteListings;
-  }
-
-  /**
-   * @param favoriteListings the favoriteListings to set
-   */
-  public void setFavoriteListings(String favoriteListings) {
-    this.favoriteListings = favoriteListings;
-  }
-
-  /**
-   * @return the messages
-   */
-
-  /**
-   * @return the leases
-   */
-  public ArrayList<Lease> getLeases() {
-    return leases;
-  }
-
-  /**
-   * @param leases the leases to set
-   */
-  public void setLeases(ArrayList<Lease> leases) {
-    this.leases = leases;
   }
 
 }
