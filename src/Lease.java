@@ -10,10 +10,19 @@ public class Lease {
 	private String duration;
 	
 	public Lease(String LeaseUUID, String LandlordUUID, String LeaseeUUID, Date DateSigned) {
+		this.LeaseeUUID = LeaseUUID;
+		this.LandlordUUID = LandlordUUID;
+		this.LeaseeUUID = LeaseeUUID;
+		this.DateSigned = DateSigned;
 		
 	}
 	
 	public Lease(String LeaseUUID, String LandlordUUID, String LeaseeUUID, String CoSignerUUID, Date DateSigned) {
+		this.LeaseeUUID = LeaseUUID;
+		this.LandlordUUID = LandlordUUID;
+		this.LeaseeUUID = LeaseeUUID;
+		this.CoSignerUUID = CoSignerUUID;
+		this.DateSigned = DateSigned;
 		
 	}
 	public String getLeaseUUID() {
