@@ -22,7 +22,7 @@ public class DataReader extends DataConstants {
         double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
         String type = (String) listingJSON.get(LISTING_TYPE);
         boolean available = (boolean) listingJSON.get(LISTING_AVAILABLE);
-        int landlordId = (int) listingJSON.get(LISTING_LANDLORD_ID);
+        String landlordId = (String) listingJSON.get(LISTING_LANDLORD_ID);
         boolean amenitiesWasher = (boolean) listingJSON.get(LISTING_AMENITIES_WASHER);
         boolean amenitiesAC = (boolean) listingJSON.get(LISTING_AMENITIES_AC);
         boolean amenitiesFurniture = (boolean) listingJSON.get(LISTING_AMENITIES_FURNITURE);
