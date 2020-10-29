@@ -9,7 +9,6 @@ public class User {
   private String password;
   private String type;
   private String favoriteListings;
-  private ArrayList<Messages> messages = new ArrayList<Messages>();
   private ArrayList<Lease> leases = new ArrayList<Lease>();
 
   public User(String id, String firstName, String lastName, String address, String email,
@@ -23,7 +22,16 @@ public class User {
     this.type = type;
     this.favoriteListings = favoriteListings;
   }
-
+  public User(String id, String firstName, String lastName, String address, String email,
+	      String password, String type) {
+	    this.id = id;
+	    this.firstName = firstName;
+	    this.lastName = lastName;
+	    this.address = address;
+	    this.email = email;
+	    this.password = password;
+	    this.type = type;
+	  }
   public void resetPassword(String oldPassword, String newPassword) {
     if (oldPassword.equals(this.password)) {
       this.password = newPassword;
@@ -63,11 +71,8 @@ public class User {
 	address = null;
 	email = null;
 	password = null;
-	studentId = null;
 	type = null;
-	suspended = false;
 	favoriteListings = null;
-	messages = null;
 	leases = null;
         System.out.println("Your account has been terminated.");
       
@@ -160,20 +165,6 @@ public class User {
   }
 
   /**
-   * @return the studentId
-   */
-  public String getStudentId() {
-    return studentId;
-  }
-
-  /**
-   * @param studentId the studentId to set
-   */
-  public void setStudentId(String studentId) {
-    this.studentId = studentId;
-  }
-
-  /**
    * @return the type
    */
   public String getType() {
@@ -185,20 +176,6 @@ public class User {
    */
   public void setType(String type) {
     this.type = type;
-  }
-
-  /**
-   * @return the suspended
-   */
-  public boolean isSuspended() {
-    return suspended;
-  }
-
-  /**
-   * @param suspended the suspended to set
-   */
-  public void setSuspended(boolean suspended) {
-    this.suspended = suspended;
   }
 
   /**
@@ -218,16 +195,6 @@ public class User {
   /**
    * @return the messages
    */
-  public ArrayList<Messages> getMessages() {
-    return messages;
-  }
-
-  /**
-   * @param messages the messages to set
-   */
-  public void setMessages(ArrayList<Messages> messages) {
-    this.messages = messages;
-  }
 
   /**
    * @return the leases

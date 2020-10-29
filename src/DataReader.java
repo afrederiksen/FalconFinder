@@ -70,13 +70,10 @@ public class DataReader extends DataConstants {
         String address = (String) userJSON.get(USER_ADDRESS);
         String email = (String) userJSON.get(USER_EMAIL);
         String password = (String) userJSON.get(USER_PASSWORD);
-        String studentId = (String) userJSON.get(USER_STUDENT_ID);
         String type = (String) userJSON.get(USER_TYPE);
-        boolean suspended = (boolean) userJSON.get(USER_SUSPENDED);
         String favoriteListings = (String) userJSON.get(USER_FAVORITE_LISTINGS);
 
-        users.add(new User(id, firstName, lastName, address, email, password, studentId, type,
-            suspended, favoriteListings));
+        users.add(new User(id, firstName, lastName, address, email, password, type, favoriteListings));
       }
 
       return users;

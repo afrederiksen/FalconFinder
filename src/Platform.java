@@ -78,8 +78,7 @@ public class Platform {
 				System.out.println("Leasee View:\n" + 
 						"1. View listings\n" + 
 						"2. Post listings\n" + 
-						"3. View messages\n" + 
-						"4. Manage Account\n" + 
+						"3. Manage Account\n" + 
 						"9. Logout\n");
 				switch(scan.nextInt()) {
 				case 1:
@@ -87,30 +86,6 @@ public class Platform {
 					break;
 				case 2:
 					postListing();
-					break;
-				case 3:
-					viewMessages();
-					break;
-				case 4:
-					manageAccount();
-					break;
-				case 9:
-					user.logout();
-					break;
-				}
-			}
-			if(user.getType().equalsIgnoreCase("Admin")) {
-				System.out.println("Leasee View:\n" + 
-						"1. User Administration\n" + 
-						"2. Listing Management\n" + 
-						"3. Manage Account\n" + 
-						"9. Logout\n");
-				switch(scan.nextInt()) {
-				case 1:
-					userAdministration();
-					break;
-				case 2:
-					listingManagement();
 					break;
 				case 3:
 					manageAccount();
@@ -156,10 +131,6 @@ public class Platform {
 			String email = scan.nextLine();
 			System.out.println("Landlord or Leasee?:");
 			String type = scan.nextLine();
-			if(type.equalsIgnoreCase("leasee")) {
-				System.out.println("USCID:");
-				String USCID = scan.nextLine();
-
 				while(notDone) {
 					System.out.println("Password");
 					String password = scan.nextLine();
@@ -168,7 +139,7 @@ public class Platform {
 					if(password.equals(confirmPassword)) {
 						//USER CREATION PASS
 						notDone = false;
-						User user1 = new User(username, firstName, lastName, address, email, password, USCID, type, false, null);
+						User user1 = new User(username, firstName, lastName, address, email, password, type);
 						//Users.addUser(username, firstName, lastName, address, email, password, USCID, type, false, null);
 						userList.add(user1);
 						System.out.println("Welcome to FalconFinder " + user1.getFirstName() + "!");
@@ -176,7 +147,6 @@ public class Platform {
 					else {
 						System.out.println("Error passwords did not match! Try again");
 					}
-				}
 			}
 			//Return to main stage
 			mainStage();
@@ -193,19 +163,29 @@ public class Platform {
 				"3. Search by price\n" + 
 				"4. Search by distance\n" + 
 				"9. Return to main menu\n");
+		String searchTerm;
 		switch(scan.nextInt()) {
 		case 1:
-			//Search by Title
+			//Search by title
+			System.out.println("Please enter the title you wish to search by");
+			 searchTerm = scan.nextLine();
 			break;
 		case 2:
-			//Search by amenities
+			//Search by amentities
+			//Need enum support
+			System.out.println("Please enter the amentities you wish to search for");
+			 searchTerm = scan.nextLine();
 			break;
 		case 3:
 			//Search by price;
+			System.out.println("Please enter the max price you wish to search by");
+			 searchTerm = scan.nextLine();
 			break;
 		case 4:
 			//Search by distance
-			break;
+			System.out.println("Please enter the max distnace you wish to search by");
+			 searchTerm = scan.nextLine();			
+			 break;
 		case 9:
 			mainStage();
 			break;
@@ -230,18 +210,6 @@ public class Platform {
 		if(!scan.nextLine().equalsIgnoreCase(null)) {
 			mainStage();
 		}
-	}
-	public static void userAdministration() {
-		System.out.println("Enter USER ID or type exit\r\n" + 
-				"	1. Change role\r\n" + 
-				"	2. Suspend account\r\n" + 
-				"	3. Delete account\r\n" + 
-				"	4. View leases\r\n" + 
-				"	5. View user data\r\n" + 
-				"	9. Back to main menu");
-	}
-	public static void listingManagement() {
-		System.out.println("1. Modify listing\n2. Create listing");
 	}
 	public static void reviewListings() {
 		System.out.println("Which of the following properties do you wish to review?");
@@ -309,77 +277,6 @@ public class Platform {
 	public static void postListing() {
 		//Implement post listing based on other files...
 	}
-	public static void viewMessages() {
-		Scanner scan = new Scanner(System.in);
-		if(!(user.getType() == "Leasee") || !(user.getType() == "Landlord")) {
-			System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
-		}
-		int messageWindow = 0;
-		int startingWindow = 0;
-		if(user.getMessages().size() >= 6) {
-			messageWindow = 6;
-		}
-		else {
-			messageWindow = user.getMessages().size();
-		}
-		if(messageWindow == 0) {
-			System.out.println("No new mail... Returning to main menu.");
-			mainStage();
-		}
-		else {
-			if(user.getMessages().size() >= 6) {
-				fetchMessages(startingWindow, 6);
-			}
-			else {
-				fetchMessages(startingWindow, user.getMessages().size());
-
-			}
-			//starting how many...
-			System.out.println("7. Back a page.\n"
-					+ "8. Foward a page.\n9.Return to main menu");
-			int userInput = scan.nextInt();
-			if(userInput >= 1 && userInput <= 6) {
-				System.out.println("Title: " + user.getMessages().get(startingWindow+(userInput-1)).getTitle());
-				System.out.println("Sender: " + user.getMessages().get(startingWindow+(userInput-1)).getSender());
-				System.out.println("Data: " + user.getMessages().get(startingWindow+(userInput-1)).getData());
-			}
-			//Go back a packge so decrecase starting window by 6 and display 6...
-			else if(userInput == 7) {
-				if(startingWindow>6) {
-					startingWindow-=6;
-					fetchMessages(startingWindow, 6);
-				}
-				else {
-					System.out.println("Error! You don't have that many messages. You aren't thattt popular.");
-				}
-			}
-			else if(userInput == 8) {
-				if(startingWindow<messageWindow) {
-					if((messageWindow-startingWindow)<6) {
-						startingWindow+=(messageWindow-startingWindow);
-					}
-					else {
-						startingWindow+=6;
-					}
-					fetchMessages(startingWindow, messageWindow-startingWindow);
-				}
-				else {
-					System.out.println("Error! You don't have that many messages. You aren't thattt popular.");
-				}
-			}
-			else if(userInput == 9) {
-				mainStage();
-			}
-		}
-
-
-	}
-
-	private static void fetchMessages(int windowStart, int howMany) {
-		for(int i = 0; i<howMany; i++) {
-			System.out.println((i+1)+ ". " + user.getMessages().get(windowStart+i).getSender() + " | " + user.getMessages().get(windowStart+i).getTitle());
-		}
-	}
 	//Leases
 	public static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
@@ -400,10 +297,10 @@ public class Platform {
 		}
 		else {
 			if(user.getLeases().size() >= 6) {
-				fetchMessages(startingWindow, 6);
+				fetchLeases(startingWindow, 6);
 			}
 			else {
-				fetchMessages(startingWindow, user.getLeases().size());
+				fetchLeases(startingWindow, user.getLeases().size());
 
 			}
 			System.out.println("7. Back a page.\n"
@@ -442,10 +339,7 @@ public class Platform {
 				mainStage();
 			}
 		}
-
-
 	}
-
 	private static void fetchLeases(int windowStart, int howMany) {
 		for(int i = 0; i<howMany; i++) {
 			System.out.println((i+1)+ ". " + user.getLeases().get(windowStart+i).getAddress() + " | " + user.getLeases().get(windowStart + i).getDuration());

@@ -11,8 +11,8 @@ public class Leasee extends User {
 	String USCID = "";
 
 	public Leasee(String id, String firstName, String lastName, String address, String email,
-		      String password, String studentId, String type, boolean suspended, String favoriteListings) {
-		super(id, firstName, lastName, address, email, password, studentId, type, suspended, favoriteListings);
+		      String password, String type,  String favoriteListings) {
+		super(id, firstName, lastName, address, email, password, type, favoriteListings);
 		leases = new ArrayList<Lease>();
 		favoriteProperties = new ArrayList<String>();
 	}
