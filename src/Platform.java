@@ -36,39 +36,35 @@ public class Platform {
 			if(user.getType().equalsIgnoreCase("Leasee")) {
 				System.out.println("Leasee View:\n" + 
 						"1. Search Listings\n" + 
-						"2. View messages\n" + 
-						"3. View leases\n" + 
-						"4. View favorite listings\n" + 
-						"5. Review Listings\n" + 
-						"6. Post Sublease/Lease takeover\n" + 
-						"7. View subleases\n" + 
-						"8. Manage Account\n" + 
+						"2. View leases\n" + 
+						"3. View favorite listings\n" + 
+						"4. Review Listings\n" + 
+						"5. Post Sublease/Lease takeover\n" + 
+						"6. View subleases\n" + 
+						"7. Manage Account\n" + 
 						"9. Logout\n");
 				switch(scan.nextInt()) {
 				case 1:
 					searchListings();
 					break;
 				case 2:
-					viewMessages();
-					break;
-				case 3:
 					viewLeases();
 					break;
-				case 4:
+				case 3:
 					viewFavoriteList();
 					break;
-				case 5:
+				case 4:
 					reviewListings();
 					break;
-				case 6:
+				case 5:
 					postListing();
 					break;
-				case 7:
+				case 6:
 					viewListings();
 					break;
-				case 8:
+				case 7:
 					manageAccount();
-					break;
+					break;							
 				case 9:
 					user.logout();
 					break;
