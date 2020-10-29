@@ -23,7 +23,7 @@ public class Messages {
 		this.data = data;
 	}
 	public String getType() {
-		return sender;
+		return type;
 	}
 	public void setType(String type) {
 		this.type = type;

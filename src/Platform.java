@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
 public class Platform {
-	//Login user????
-	User user = new User(null, null, null, false, null);
-	Leasee leasee = new Leasee(null, null, null, false, null);
-	Landlord landlord = new Landlord(null, null, null, false, null);
+	 //Login user????
+	static User user;
+	static Leasee leasee;
+	static Landlord landlord;
+	static boolean guest = true;
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	
+		mainStage();
 	}
-	public void mainStage() {
+	public static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		if(user == null) {
 			System.out.println("Guest View:\n" + 
@@ -18,13 +18,13 @@ public class Platform {
 					"3. Search Listings");
 			switch(scan.nextInt()) {
 			case 1:
-				this.login();
+				login();
 				break;
 			case 2:
-				this.register();
+				register();
 				break;
 			case 3:
-				this.searchListings();
+				searchListings();
 				break;
 			default:
 				System.out.println("Sorry, the choice you answered was not correct. Please try again.");
@@ -43,28 +43,28 @@ public class Platform {
 					"9. Logout\n");
 		switch(scan.nextInt()) {
 		case 1:
-			this.searchListings();
+			searchListings();
 			break;
 		case 2:
-			this.viewMessages();
+			viewMessages();
 			break;
 		case 3:
-			this.viewLeases();
+			viewLeases();
 			break;
 		case 4:
-			this.viewFavoriteList();
+			viewFavoriteList();
 			break;
 		case 5:
-			this.reviewListings();
+			reviewListings();
 			break;
 		case 6:
-			this.postListing();
+			postListing();
 			break;
 		case 7:
-			this.viewListings();
+			viewListings();
 			break;
 		case 8:
-			this.manageAccount();
+			manageAccount();
 			break;
 		case 9:
 			user.logout();
@@ -80,16 +80,16 @@ public class Platform {
 					"9. Logout\n");
 		switch(scan.nextInt()) {
 		case 1:
-			this.viewListings();
+			viewListings();
 			break;
 		case 2:
-			this.postListing();
+			postListing();
 			break;
 		case 3:
-			this.viewMessages();
+			viewMessages();
 			break;
 		case 4:
-			this.manageAccount();
+			manageAccount();
 			break;
 		case 9:
 			user.logout();
@@ -104,13 +104,13 @@ public class Platform {
 					"9. Logout\n");
 		switch(scan.nextInt()) {
 		case 1:
-			this.userAdministration();
+			userAdministration();
 			break;
 		case 2:
-			this.listingManagement();
+			listingManagement();
 			break;
 		case 3:
-			this.manageAccount();
+			manageAccount();
 			break;
 		case 9:
 			user.logout();
@@ -119,9 +119,9 @@ public class Platform {
 		}
 	}
 	}
-		public void login() {
+		public static void login() {
 			Scanner scan = new Scanner(System.in);
-			if(this.isGuest()) {
+			if(guest) {
 				System.out.println("Username:");
 				String username = scan.nextLine();
 				System.out.println("Password");
@@ -132,9 +132,9 @@ public class Platform {
 				System.out.println("You are already logged in!");
 			}
 		}
-		public void register() {
+		public static void register() {
 			boolean notDone = true;
-			if(this.isGuest()) {
+			if(!guest) {
 			Scanner scan = new Scanner(System.in);
 			System.out.println("Username:");
 			String username = scan.nextLine();
@@ -161,13 +161,13 @@ public class Platform {
 			}
 			}
 			//Return to main stage
-			this.mainStage();
+			mainStage();
 		}
 			else {
 				System.out.println("You are already logged in!");
 			}
 		}
-		public void searchListings() {
+		public static void searchListings() {
 			Scanner scan = new Scanner(System.in);
 				System.out.println("Search Listings:\n" + 
 						"1. Search by title\n" + 
@@ -189,11 +189,11 @@ public class Platform {
 				//Search by distance
 				break;
 			case 9:
-				this.mainStage();
+				mainStage();
 				break;
 			}
 			}
-		public void viewFavoriteList() {
+		public static void viewFavoriteList() {
 			for(String fav : leasee.favoriteProperties) {
 				System.out.println(fav);
 			}
@@ -203,7 +203,7 @@ public class Platform {
 				mainStage();
 			}
 		}
-		public void viewListings() {
+		public static void viewListings() {
 			for(Listing listing : landlord.listings) {
 				System.out.println(listing);
 			}
@@ -213,7 +213,7 @@ public class Platform {
 				mainStage();
 			}
 		}
-		public void userAdministration() {
+		public static void userAdministration() {
 			System.out.println("Enter USER ID or type exit\r\n" + 
 					"	1. Change role\r\n" + 
 					"	2. Suspend account\r\n" + 
@@ -222,15 +222,15 @@ public class Platform {
 					"	5. View user data\r\n" + 
 					"	9. Back to main menu");
 		}
-		public void listingManagement() {
+		public static void listingManagement() {
 			System.out.println("1. Modify listing\n2. Create listing");
 		}
-		public void reviewListings() {
+		public static void reviewListings() {
 			System.out.println("Which of the following properties do you wish to review?");
-				this.fetchLeases(0, user.getLeases().size());
+				fetchLeases(0, user.getLeases().size());
 				//Implement user menu
 				}
-		public void manageAccount() {
+		public static void manageAccount() {
 			{
 				Scanner scan = new Scanner(System.in);
 					System.out.println("Manage Account:\r\n" + 
@@ -246,7 +246,7 @@ public class Platform {
 						user.changeEmail(newEmail);
 					}
 					else {
-						this.mainStage();
+						Platform.mainStage();
 					}
 					break;
 				case 2:
@@ -270,7 +270,7 @@ public class Platform {
 							}
 					}
 					else {
-						this.mainStage();
+						Platform.mainStage();
 					}					break;
 				case 3:
 					System.out.println("If you wish to terminate your account please write the following\n" + 
@@ -282,16 +282,16 @@ public class Platform {
 					}
 					break;
 				case 9:
-					this.mainStage();
+					Platform.mainStage();
 					break;
 				}
 				}
 			
 		}
-		public void postListing() {
+		public static void postListing() {
 			//Implement post listing based on other files...
 		}
-		public void viewMessages() {
+		public static void viewMessages() {
 			Scanner scan = new Scanner(System.in);
 			if(!(user.getUserType() == "Leasee") || !(user.getUserType() == "Landlord")) {
 				System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
@@ -357,13 +357,13 @@ public class Platform {
 			
 		}
 		
-		private void fetchMessages(int windowStart, int howMany) {
+		private static void fetchMessages(int windowStart, int howMany) {
 			for(int i = 0; i<howMany; i++) {
 				System.out.println((i+1)+ ". " + user.getMessages().get(windowStart+i).getSender() + " | " + user.getMessages().get(windowStart+i).getTitle());
 			}
 		}
 //Leases
-			public void viewLeases() {
+			public static void viewLeases() {
 				Scanner scan = new Scanner(System.in);
 				if(!(user.getUserType().equalsIgnoreCase("leasee") ||  !(user.getUserType().equalsIgnoreCase("landlord")))) {
 					System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
@@ -428,7 +428,7 @@ public class Platform {
 				
 			}
 			
-			private void fetchLeases(int windowStart, int howMany) {
+			private static void fetchLeases(int windowStart, int howMany) {
 				for(int i = 0; i<howMany; i++) {
 					System.out.println((i+1)+ ". " + user.getLeases().get(windowStart+i).getProperty() + " | " + user.getLeases().get(windowStart + i).getDuration());
 				}

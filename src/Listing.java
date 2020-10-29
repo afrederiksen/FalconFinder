@@ -54,7 +54,7 @@ public class Listing {
 	}
 	
 	public void setAvailability(boolean available) {
-		
+		this.Availability = available;
 	}
 
 	public int getListingID() {

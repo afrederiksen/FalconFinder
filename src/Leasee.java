@@ -29,7 +29,7 @@ public class Leasee extends User {
 	}
 
 	public void contactLandlord(String landlord, String message) {
-
+		//Approach: get user origin and write a message to their messages array.
 	}
 
 	public void signLease(boolean signed, String date) {
