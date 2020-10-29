@@ -20,7 +20,7 @@ public class Users {
     return userList;
   }
 
-  public void addUser(int id, String firstName, String lastName, String address, String email,
+  public static void addUser(String id, String firstName, String lastName, String address, String email,
       String password, String studentId, String type, boolean suspended, String favoriteListings) {
     userList.add(new User(id, firstName, lastName, address, email, password, studentId, type,
         suspended, favoriteListings));

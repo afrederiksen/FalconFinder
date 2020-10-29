@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class User {
-  private int id;
+  private String id;
   private String firstName;
   private String lastName;
   private String address;
@@ -14,7 +14,7 @@ public class User {
   private ArrayList<Messages> messages = new ArrayList<Messages>();
   private ArrayList<Lease> leases = new ArrayList<Lease>();
 
-  public User(int id, String firstName, String lastName, String address, String email,
+  public User(String id, String firstName, String lastName, String address, String email,
       String password, String studentId, String type, boolean suspended, String favoriteListings) {
     this.id = id;
     this.firstName = firstName;
@@ -86,14 +86,14 @@ public class User {
   /**
    * @return the id
    */
-  public int getId() {
+  public String getId() {
     return id;
   }
 
   /**
    * @param id the id to set
    */
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

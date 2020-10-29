@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 	
-	Landlord l1 = new Landlord(0, "test", "gmail", "password", "none", "none", "none", false);
+	Landlord l1 = new Landlord("none", "test", "gmail", "password", "none", "none", "none", false);
 	ArrayList<Listing> listings = l1.copyList();
 	ArrayList<Lease> leases = l1.copyLeases();
 	ArrayList<User> users = new ArrayList<User>();
 	
-	public Admin(int id, String firstName, String lastName, String address, String Email, String Password, String type, boolean Suspended) {
+	public Admin(String id, String firstName, String lastName, String address, String Email, String Password, String type, boolean Suspended) {
 		super(id, firstName, lastName, address, Email, Password, "none", type, Suspended, "none");
 		users = new ArrayList<User>();
 	}
@@ -21,16 +21,16 @@ public class Admin extends User {
 		}
 	}
 
-	public void removeUser(int UUID) {
+	public void removeUser(String UUID) {
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getId() == UUID) {
+			if(users.get(i).getId().equalsIgnoreCase(UUID)) {
 				users.remove(i);
 				return;
 			}
 		}
 	}
 
-	public void addUser(int id, String firstName, String lastName, String address, String email,
+	public void addUser(String id, String firstName, String lastName, String address, String email,
 		      String password, String studentId, String type, boolean suspended, String favoriteListings) {
 		User u1 = new User(id, firstName, lastName, address, email, password, studentId, type, suspended, favoriteListings);
 		for(int i = 0; i < users.size(); i++) {

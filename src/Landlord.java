@@ -9,7 +9,7 @@ public class Landlord extends User{
 	public final double russLong = 81.0272; //Russell House Longitude
 	public final int R = 6371; // Radius of the earth
 
-	public Landlord(int id, String firstName, String lastName, String address, String email,
+	public Landlord(String id, String firstName, String lastName, String address, String email,
 		      String password, String type, boolean suspended) {
 		super(id, firstName, lastName, address, email, password, "none", type, suspended, "none");
 		this.numListings = listings.size();
