@@ -55,10 +55,6 @@ public class User {
     }
   }
 
-  public void logout() {
-    System.out.println("Logging out.");
-    
-  }
 
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
