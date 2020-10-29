@@ -16,7 +16,7 @@ public class Platform {
 
   public static void mainStage() {
     Scanner scan = new Scanner(System.in);
-    if (user == null) {
+    if (guest) {
       System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. Search Listings");
       switch (scan.nextInt()) {
         case 1:
@@ -32,10 +32,10 @@ public class Platform {
           System.out.println("Sorry, the choice you answered was not correct. Please try again.");
 
       }
-      if (user.getType().equalsIgnoreCase("Leasee")) {
+      if (leasee.getType().equalsIgnoreCase("Leasee")) {
         System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. View leases\n"
             + "3. View favorite listings\n" + "4. Review Listings\n"
-            + "5. Post Sublease/Lease takeover\n" + "6. View subleases\n" + "7. Manage Account\n"
+            + "5. Manage Account\n"
             + "9. Logout\n");
         switch (scan.nextInt()) {
           case 1:
@@ -51,19 +51,13 @@ public class Platform {
             reviewListings();
             break;
           case 5:
-            postListing();
-            break;
-          case 6:
-            viewListings();
-            break;
-          case 7:
             manageAccount();
             break;
           case 9:
             logout();
             break;
         }
-      } else if (user.getType().equalsIgnoreCase("Landlord")) {
+      } else if (landlord.getType().equalsIgnoreCase("Landlord")) {
         System.out.println("Leasee View:\n" + "1. View listings\n" + "2. Post listings\n"
             + "3. Manage Account\n" + "9. Logout\n");
         switch (scan.nextInt()) {
@@ -96,6 +90,9 @@ public class Platform {
         if ((userList.get(i).getId().equals(username))
             && (userList.get(i).getPassword().equals(password))) {
           user = userList.get(i);
+        }
+        else {
+        	System.out.println("Incorrect username or password");
         }
       }
     } else {
@@ -192,8 +189,8 @@ public class Platform {
   }
 
   public static void viewFavoriteList() {
-    for (String fav : leasee.favoriteListings) {
-      System.out.println(fav);
+    for (Listing listing : leasee.getFavoriteListings()) {
+      System.out.println(listing.getLandlordId() + " | " + listing.getDescription());
     }
     Scanner scan = new Scanner(System.in);
     System.out.println("Enter any key to return back to the main page");
@@ -222,15 +219,17 @@ public class Platform {
   public static void manageAccount() {
     {
       Scanner scan = new Scanner(System.in);
-      System.out.println("Manage Account:\r\n" + "	1. Edit email" + user.getEmail() + "\r\n"
-          + "	2. Change password\r\n" + "	3. Terminate account\r\n"
-          + "	9. Return to main menu");
+
+      if(leasee.getType().equalsIgnoreCase("leasee")) {
+          System.out.println("Manage Account:\r\n" + "	1. Edit email (" + leasee.getEmail() + ")\r\n"
+                  + "	2. Change password\r\n" + "	3. Terminate account\r\n"
+                  + "	9. Return to main menu");
       switch (scan.nextInt()) {
         case 1:
           System.out.println("What do you want the new email to be? Send \"exit\" to quit");
           String newEmail = scan.nextLine();
           if (!newEmail.equalsIgnoreCase("exit")) {
-            user.changeEmail(newEmail);
+            leasee.changeEmail(newEmail);
           } else {
             Platform.mainStage();
           }
@@ -246,7 +245,7 @@ public class Platform {
               System.out.println("Confirm password");
               String confirmPassword = scan.nextLine();
               if (password.equals(confirmPassword)) {
-                user.resetPassword(oldPassword, confirmPassword);
+                leasee.resetPassword(oldPassword, confirmPassword);
                 notDone = false;
                 System.out.println("Password was sucessfully changed !");
               } else {
@@ -262,13 +261,64 @@ public class Platform {
               + "\"DELETE MY ACCOUNT\"\nAny other input will bring you back to the main menu.");
           if (scan.nextLine().equals("DELETE MY ACCOUNT")) {
             System.out.println("User account terminate. Goodbye.");
-            user.deleteAccount("TERMINATE");
+            leasee.deleteAccount("TERMINATE");
             System.exit(0);
           }
           break;
         case 9:
           Platform.mainStage();
           break;
+      }
+      }
+      else if(landlord.getType().equalsIgnoreCase("landlord")) {
+              System.out.println("Manage Account:\r\n" + "	1. Edit email (" + landlord.getEmail() + ")\r\n"
+                      + "	2. Change password\r\n" + "	3. Terminate account\r\n"
+                      + "	9. Return to main menu");
+          switch (scan.nextInt()) {
+          case 1:
+            System.out.println("What do you want the new email to be? Send \"exit\" to quit");
+            String newEmail = scan.nextLine();
+            if (!newEmail.equalsIgnoreCase("exit")) {
+            	landlord.changeEmail(newEmail);
+            } else {
+              Platform.mainStage();
+            }
+            break;
+          case 2:
+            System.out.println("What is your old password? Send \"exit\" to quit");
+            String oldPassword = scan.nextLine();
+            if (!oldPassword.equalsIgnoreCase("exit")) {
+              boolean notDone = true;
+              while (notDone) {
+                System.out.println("Password");
+                String password = scan.nextLine();
+                System.out.println("Confirm password");
+                String confirmPassword = scan.nextLine();
+                if (password.equals(confirmPassword)) {
+                	landlord.resetPassword(oldPassword, confirmPassword);
+                  notDone = false;
+                  System.out.println("Password was sucessfully changed !");
+                } else {
+                  System.out.println("Error passwords did not match! Try again");
+                }
+              }
+            } else {
+              Platform.mainStage();
+            }
+            break;
+          case 3:
+            System.out.println("If you wish to terminate your account please write the following\n"
+                + "\"DELETE MY ACCOUNT\"\nAny other input will bring you back to the main menu.");
+            if (scan.nextLine().equals("DELETE MY ACCOUNT")) {
+              System.out.println("User account terminate. Goodbye.");
+              landlord.deleteAccount("TERMINATE");
+              System.exit(0);
+            }
+            break;
+          case 9:
+            Platform.mainStage();
+            break;
+        }    	  
       }
     }
 
@@ -281,11 +331,10 @@ public class Platform {
   // Leases
   public static void viewLeases() {
     Scanner scan = new Scanner(System.in);
-    if (!(user.getType().equalsIgnoreCase("leasee")
-        || !(user.getType().equalsIgnoreCase("landlord")))) {
-      System.out
-          .println("Error: You don't have permission to do this. Maybe try logging in again?");
+    if (guest) {
+      System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
     }
+    if(leasee.getType().equalsIgnoreCase("leasee")) {
     int messageWindow = 0;
     int startingWindow = 0;
     if (leasee.getLeases().size() >= 6) {
@@ -336,12 +385,70 @@ public class Platform {
         mainStage();
       }
     }
+    }
+    if(landlord.getType().equalsIgnoreCase("landlord")) {
+    int messageWindow = 0;
+    int startingWindow = 0;
+    if (landlord.getLeases().size() >= 6) {
+      messageWindow = 6;
+    } else {
+      messageWindow = landlord.getLeases().size();
+    }
+    if (messageWindow == 0) {
+      System.out.println("No leases... Returning to main menu.");
+      mainStage();
+    } else {
+      if (landlord.getLeases().size() >= 6) {
+        fetchLeases(startingWindow, 6);
+      } else {
+        fetchLeases(startingWindow, landlord.getLeases().size());
+
+      }
+      System.out.println("7. Back a page.\n" + "8. Foward a page.\n9.Return to main menu");
+      int userInput = scan.nextInt();
+      if (userInput >= 1 && userInput <= 6) {
+        System.out.println(
+            "Leasee ID: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getLeaseeId());
+        System.out.println(
+            "Duration: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getDuration());
+        System.out.println("Date Signed: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getDate());
+      } else if (userInput == 7) {
+        if (startingWindow > 6) {
+          startingWindow -= 6;
+          fetchLeases(startingWindow, 6);
+        } else {
+          System.out.println("Error! You don't have that many leases. You aren't Trump.");
+        }
+      } else if (userInput == 8) {
+        if (startingWindow < messageWindow) {
+          if ((messageWindow - startingWindow) < 6) {
+            startingWindow += (messageWindow - startingWindow);
+          } else {
+            startingWindow += 6;
+          }
+          fetchLeases(startingWindow, messageWindow - startingWindow);
+        } else {
+          System.out.println("Error! You don't have that many leases. You aren't Trump.");
+        }
+      } else if (userInput == 9) {
+        mainStage();
+      }
+    }
+    }
   }
 
   private static void fetchLeases(int windowStart, int howMany) {
-    for (int i = 0; i < howMany; i++) {
+    if(leasee.getType().equalsIgnoreCase("leasee") ) {
+	  for (int i = 0; i < howMany; i++) {
       System.out.println((i + 1) + ". " + leasee.getLeases().get(windowStart + i).getAddress()
           + " | " + leasee.getLeases().get(windowStart + i).getDuration());
     }
+    }
+	  else if(landlord.getType().equalsIgnoreCase("landlord") ) {
+		  for (int i = 0; i < howMany; i++) {
+	      System.out.println((i + 1) + ". " + landlord.getLeases().get(windowStart + i).getLeaseeId()
+	          + " | " + landlord.getLeases().get(windowStart + i).getDuration());
+	    }
   }
+}
 }
