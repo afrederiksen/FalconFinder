@@ -58,10 +58,10 @@ public class Platform {
 			this.reviewListings();
 			break;
 		case 6:
-			this.postLease();
+			this.postListing();
 			break;
 		case 7:
-			this.viewSubleases();
+			this.viewListings();
 			break;
 		case 8:
 			this.manageAccount();
@@ -83,7 +83,7 @@ public class Platform {
 			this.viewListings();
 			break;
 		case 2:
-			this.postListings();
+			this.postListing();
 			break;
 		case 3:
 			this.viewMessages();
@@ -213,6 +213,23 @@ public class Platform {
 				mainStage();
 			}
 		}
+		public void userAdministration() {
+			System.out.println("Enter USER ID or type exit\r\n" + 
+					"	1. Change role\r\n" + 
+					"	2. Suspend account\r\n" + 
+					"	3. Delete account\r\n" + 
+					"	4. View leases\r\n" + 
+					"	5. View user data\r\n" + 
+					"	9. Back to main menu");
+		}
+		public void listingManagement() {
+			System.out.println("1. Modify listing\n2. Create listing");
+		}
+		public void reviewListings() {
+			System.out.println("Which of the following properties do you wish to review?");
+				this.fetchLeases(0, user.getLeases().size());
+				//Implement user menu
+				}
 		public void manageAccount() {
 			{
 				Scanner scan = new Scanner(System.in);
@@ -270,6 +287,9 @@ public class Platform {
 				}
 				}
 			
+		}
+		public void postListing() {
+			//Implement post listing based on other files...
 		}
 		public void viewMessages() {
 			Scanner scan = new Scanner(System.in);
@@ -357,7 +377,7 @@ public class Platform {
 					messageWindow = user.getLeases().size();
 				}
 				if(messageWindow == 0) {
-					System.out.println("No new mail... Returning to main menu.");
+					System.out.println("No leases... Returning to main menu.");
 					mainStage();
 				}
 				else {
