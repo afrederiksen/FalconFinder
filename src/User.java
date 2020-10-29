@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class User {
   private int id;
   private String firstName;
@@ -9,6 +11,8 @@ public class User {
   private String type;
   private boolean suspended;
   private String favoriteListings;
+  private ArrayList<Messages> messages = new ArrayList<Messages>();
+  private ArrayList<Lease> leases = new ArrayList<Lease>();
 
   public User(int id, String firstName, String lastName, String address, String email,
       String password, String studentId, String type, boolean suspended, String favoriteListings) {
@@ -22,6 +26,49 @@ public class User {
     this.type = type;
     this.suspended = suspended;
     this.favoriteListings = favoriteListings;
+  }
+
+  public void resetPassword(String oldPassword, String newPassword) {
+    if (oldPassword.equals(this.password)) {
+      this.password = newPassword;
+      System.out.println("Sucessfully changed password.");
+    } else {
+      System.out.println("Error! Old password was incorrect.");
+    }
+  }
+
+  public void changeEmail(String newEmail) {
+    if (newEmail.contains("@")) {
+      this.setEmail(newEmail);
+    } else {
+      System.out.println("Error! Please enter a valid email.");
+    }
+  }
+
+  public void setUserType(String type) {
+    if (type.equalsIgnoreCase("leasee")) {
+      this.type = "Leasee";
+    } else if (type.equalsIgnoreCase("landlord")) {
+      this.type = "Landlord";
+    } else if (type.equalsIgnoreCase("admin")) {
+      this.type = "Admin";
+    } else {
+      System.out.println("Incorrect type!");
+      {
+      }
+    }
+  }
+
+  public void logout() {
+    // TODO Auto-generated method stub
+
+  }
+
+  public void deleteAccount(String terminateConfirmation) {
+    if (terminateConfirmation.equals("TERMINATE")) {
+      // Delete User Account
+    }
+
   }
 
   /**
@@ -164,5 +211,32 @@ public class User {
     this.favoriteListings = favoriteListings;
   }
 
-}
+  /**
+   * @return the messages
+   */
+  public ArrayList<Messages> getMessages() {
+    return messages;
+  }
 
+  /**
+   * @param messages the messages to set
+   */
+  public void setMessages(ArrayList<Messages> messages) {
+    this.messages = messages;
+  }
+
+  /**
+   * @return the leases
+   */
+  public ArrayList<Lease> getLeases() {
+    return leases;
+  }
+
+  /**
+   * @param leases the leases to set
+   */
+  public void setLeases(ArrayList<Lease> leases) {
+    this.leases = leases;
+  }
+
+}

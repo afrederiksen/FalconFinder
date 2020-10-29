@@ -31,4 +31,13 @@ public abstract class DataConstants {
   protected static final String USER_TYPE = "type";
   protected static final String USER_SUSPENDED = "suspended";
   protected static final String USER_FAVORITE_LISTINGS = "favorite_listings";
+
+  protected static final String LEASES_FILE_NAME = "src/JSON/leases.json";
+  protected static final String LEASE_ID = "leaseId";
+  protected static final String LEASE_LANDLORD_ID = "landlordId";
+  protected static final String LEASE_LEASEE_ID = "leaseeId";
+  protected static final String LEASE_COSIGNER_ID = "cosignerId";
+  protected static final String LEASE_DATE = "date";
+  protected static final String LEASE_ADDRESS = "address";
+  protected static final String LEASE_DURATION = "duration";
 }

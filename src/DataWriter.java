@@ -85,4 +85,38 @@ public class DataWriter extends DataConstants {
 
     return userDetails;
   }
+
+  public static void saveLeases() {
+    Leases leasesList = Leases.getInstance();
+    ArrayList<Lease> leases = leasesList.getLeases();
+    JSONArray jsonLeases = new JSONArray();
+
+    // creating all the json objects
+    for (int i = 0; i < leases.size(); i++) {
+      jsonLeases.add(getLeaseJSON(leases.get(i)));
+    }
+
+    // Write JSON file
+    try (FileWriter file = new FileWriter(LEASES_FILE_NAME)) {
+
+      file.write(jsonLeases.toJSONString());
+      file.flush();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static JSONObject getLeaseJSON(Lease lease) {
+    JSONObject leaseDetails = new JSONObject();
+    leaseDetails.put(LEASE_ID, lease.getLeaseId());
+    leaseDetails.put(LEASE_LANDLORD_ID, lease.getLandlordId());
+    leaseDetails.put(LEASE_LEASEE_ID, lease.getLeaseeId());
+    leaseDetails.put(LEASE_COSIGNER_ID, lease.getCosignerId());
+    leaseDetails.put(LEASE_DATE, lease.getDate());
+    leaseDetails.put(LEASE_ADDRESS, lease.getAddress());
+    leaseDetails.put(LEASE_DURATION, lease.getDuration());
+
+    return leaseDetails;
+  }
 }

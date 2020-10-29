@@ -1,0 +1,3 @@
+public enum Amenities {
+  WASHER, AC, FURNITURE, PATIO, DISHWASHER, FIREPLACE, WIFI, POOL
+};

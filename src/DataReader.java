@@ -2,7 +2,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import jdk.nashorn.internal.parser.JSONParser;
 
 public class DataReader extends DataConstants {
   public static ArrayList<Listing> loadListing() {
@@ -79,6 +79,36 @@ public class DataReader extends DataConstants {
       }
 
       return users;
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return null;
+
+  }
+
+  public static ArrayList<Lease> loadLease() {
+    ArrayList<Lease> leases = new ArrayList<Lease>();
+
+    try {
+      FileReader reader = new FileReader(LEASES_FILE_NAME);
+      JSONArray leasesJSON = (JSONArray) new JSONParser().parse(reader);
+
+      for (int i = 0; i < leasesJSON.size(); i++) {
+        JSONObject leaseJSON = (JSONObject) leasesJSON.get(i);
+        int leaseId = (int) leaseJSON.get(LEASE_ID);
+        int landlordId = (int) leaseJSON.get(LEASE_LANDLORD_ID);
+        int leaseeId = (int) leaseJSON.get(LEASE_LEASEE_ID);
+        int cosignerId = (int) leaseJSON.get(LEASE_COSIGNER_ID);
+        String date = (String) leaseJSON.get(LEASE_DATE);
+        String address = (String) leaseJSON.get(LEASE_ADDRESS);
+        String duration = (String) leaseJSON.get(LEASE_DURATION);
+
+        leases.add(new Lease(leaseId, landlordId, leaseeId, cosignerId, date, address, duration));
+      }
+
+      return leases;
 
     } catch (Exception e) {
       e.printStackTrace();

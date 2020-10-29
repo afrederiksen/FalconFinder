@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Listing {
   private int listingId;
   private String address;
@@ -14,6 +16,8 @@ public class Listing {
   private boolean amenitiesFireplace;
   private boolean amenitiesWifi;
   private boolean amenitiesPool;
+  private ArrayList<String> ReviewList = new ArrayList<String>();
+  private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
   public Listing(int listingId, String address, String description, double distanceFromRussellHouse,
       String type, boolean available, int landlordId, boolean amenitiesWasher, boolean amenitiesAC,
@@ -34,6 +38,30 @@ public class Listing {
     this.amenitiesFireplace = amenitiesFireplace;
     this.amenitiesWifi = amenitiesWifi;
     this.amenitiesPool = amenitiesPool;
+  }
+
+  public void addReview(String review) {
+    for (int i = 0; i < ReviewList.size(); i++) {
+      if (ReviewList.get(i) == null)
+        ReviewList.add(review);
+    }
+  }
+
+  public void addRating(int rating) {
+    for (int i = 0; i < Rating.size(); i++) {
+      if (Rating.get(i) == null)
+        Rating.add(rating);
+    }
+  }
+
+  public double getRating() {
+    double total = 0;
+    for (int i = 0; i < Rating.size(); i++) {
+      if (Rating.get(i) != null)
+        total += Rating.get(i);
+    }
+    total = total / (Rating.size() + 1);
+    return total;
   }
 
   /**
@@ -244,5 +272,26 @@ public class Listing {
    */
   public void setAmenitiesPool(boolean amenitiesPool) {
     this.amenitiesPool = amenitiesPool;
+  }
+
+  /**
+   * @return the reviewList
+   */
+  public ArrayList<String> getReviewList() {
+    return ReviewList;
+  }
+
+  /**
+   * @param reviewList the reviewList to set
+   */
+  public void setReviewList(ArrayList<String> reviewList) {
+    ReviewList = reviewList;
+  }
+
+  /**
+   * @param rating the rating to set
+   */
+  public void setRating(ArrayList<Integer> rating) {
+    Rating = rating;
   }
 }
