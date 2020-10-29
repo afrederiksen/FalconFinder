@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -5,12 +6,13 @@ public class Leasee extends User {
 
 	ArrayList<Lease> leases = new ArrayList<Lease>();
 	ArrayList<String> favoriteProperties = new ArrayList<String>();
-	Landlord l1 = new Landlord("test", "gmail", "password", false, "type");
+	Landlord l1 = new Landlord("none", "test", "gmail", "password", "none", "none", "none", false);
 	ArrayList<Listing> listings = l1.copyList();
 	String USCID = "";
 
-	public Leasee(String UUID, String Email, String Password, boolean Suspended, String type) {
-		super(UUID, Email, Password, Suspended, type);
+	public Leasee(String id, String firstName, String lastName, String address, String email,
+		      String password, String studentId, String type, boolean suspended, String favoriteListings) {
+		super(id, firstName, lastName, address, email, password, studentId, type, suspended, favoriteListings);
 		leases = new ArrayList<Lease>();
 		favoriteProperties = new ArrayList<String>();
 	}
@@ -38,7 +40,7 @@ public class Leasee extends User {
 
 	public void reviewListing(int listingID, String review, int rating) {
 		for(int i = 0; i < listings.size(); i++) {
-			if(listings.get(i).getListingID() == listingID) {
+			if(listings.get(i).getListingId() == listingID) {
 				listings.get(i).addReview(review);
 				listings.get(i).addRating(rating);
 				return;

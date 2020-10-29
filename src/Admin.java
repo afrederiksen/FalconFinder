@@ -1,21 +1,20 @@
-
 import java.util.ArrayList;
 
 public class Admin extends User {
 	
-	Landlord l1 = new Landlord("test", "gmail", "password", false, "type");
+	Landlord l1 = new Landlord("none", "test", "gmail", "password", "none", "none", "none", false);
 	ArrayList<Listing> listings = l1.copyList();
 	ArrayList<Lease> leases = l1.copyLeases();
 	ArrayList<User> users = new ArrayList<User>();
 	
-	public Admin(String UUID, String Email, String Password, boolean Suspended, String type) {
-		super(UUID, Email, Password, Suspended, type);
+	public Admin(String id, String firstName, String lastName, String address, String Email, String Password, String type, boolean Suspended) {
+		super(id, firstName, lastName, address, Email, Password, "none", type, Suspended, "none");
 		users = new ArrayList<User>();
 	}
 	
 	public void removeListing(int listingID) {
 		for(int i = 0; i < listings.size(); i++) {
-			if(listings.get(i).getListingID() == listingID) {
+			if(listings.get(i).getListingId() == listingID) {
 				listings.remove(i);
 				return;
 			}
@@ -24,15 +23,16 @@ public class Admin extends User {
 
 	public void removeUser(String UUID) {
 		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getUUID().equalsIgnoreCase(UUID)) {
+			if(users.get(i).getId().equalsIgnoreCase(UUID)) {
 				users.remove(i);
 				return;
 			}
 		}
 	}
 
-	public void addUser(String UUID, String email, String password, String type) {
-		User u1 = new User(UUID, email, password, false, type);
+	public void addUser(String id, String firstName, String lastName, String address, String email,
+		      String password, String studentId, String type, boolean suspended, String favoriteListings) {
+		User u1 = new User(id, firstName, lastName, address, email, password, studentId, type, suspended, favoriteListings);
 		for(int i = 0; i < users.size(); i++) {
 			if(users.get(i) == null) {
 				users.add(u1);
@@ -41,9 +41,9 @@ public class Admin extends User {
 		}
 	}
 
-	public void purgeLease(String leaseUUID) {
+	public void purgeLease(int leaseUUID) {
 		for(int i = 0; i < leases.size(); i++) {
-			if(leases.get(i).getLeaseUUID() == leaseUUID) {
+			if(leases.get(i).getLeaseId() == leaseUUID) {
 				leases.remove(i);
 				return;
 			}

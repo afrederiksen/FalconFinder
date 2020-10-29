@@ -1,30 +1,26 @@
 import java.util.ArrayList;
 
 public class User {
-  private int id;
+  private String id;
   private String firstName;
   private String lastName;
   private String address;
   private String email;
   private String password;
-  private String studentId;
   private String type;
-  private boolean suspended;
   private String favoriteListings;
   private ArrayList<Messages> messages = new ArrayList<Messages>();
   private ArrayList<Lease> leases = new ArrayList<Lease>();
 
-  public User(int id, String firstName, String lastName, String address, String email,
-      String password, String studentId, String type, boolean suspended, String favoriteListings) {
+  public User(String id, String firstName, String lastName, String address, String email,
+      String password, String type, String favoriteListings) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
     this.email = email;
     this.password = password;
-    this.studentId = studentId;
     this.type = type;
-    this.suspended = suspended;
     this.favoriteListings = favoriteListings;
   }
 
@@ -59,14 +55,22 @@ public class User {
     }
   }
 
-  public void logout() {
-    // TODO Auto-generated method stub
-
-  }
 
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
-      // Delete User Account
+	firstName = null;
+	lastName = null;;
+	address = null;
+	email = null;
+	password = null;
+	studentId = null;
+	type = null;
+	suspended = false;
+	favoriteListings = null;
+	messages = null;
+	leases = null;
+        System.out.println("Your account has been terminated.");
+      
     }
 
   }
@@ -74,14 +78,14 @@ public class User {
   /**
    * @return the id
    */
-  public int getId() {
+  public String getId() {
     return id;
   }
 
   /**
    * @param id the id to set
    */
-  public void setId(int id) {
+  public void setId(String id) {
     this.id = id;
   }
 

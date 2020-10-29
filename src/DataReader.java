@@ -1,3 +1,4 @@
+
 import java.io.FileReader;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
@@ -63,7 +64,7 @@ public class DataReader extends DataConstants {
 
       for (int i = 0; i < usersJSON.size(); i++) {
         JSONObject userJSON = (JSONObject) usersJSON.get(i);
-        int id = (int) userJSON.get(USER_ID);
+        String id = (String) userJSON.get(USER_ID);
         String firstName = (String) userJSON.get(USER_FIRST_NAME);
         String lastName = (String) userJSON.get(USER_LAST_NAME);
         String address = (String) userJSON.get(USER_ADDRESS);
