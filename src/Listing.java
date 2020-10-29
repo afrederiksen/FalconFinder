@@ -18,6 +18,30 @@ public class Listing {
 		
 	}
 	
+	public void addReview(String review) {
+		for(int i = 0; i < ReviewList.size(); i++) {
+			if(ReviewList.get(i) == null)
+				ReviewList.add(review);
+		}
+	}
+	
+	public void addRating(int rating) {
+		for(int i = 0; i < Rating.size(); i++) {
+			if(Rating.get(i) == null)
+				Rating.add(rating);
+		}
+	}
+	
+	public double getRating() {
+		double total = 0;
+		for(int i = 0; i < Rating.size(); i++) {
+			if(Rating.get(i) != null)
+				total += Rating.get(i);
+		}
+		total = total/(Rating.size()+1);
+		return total;
+	}
+	
 	public String getReviews(String ListingID) {
 		return "";
 	}

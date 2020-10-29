@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class Landlord extends User{
 	private ArrayList<Lease> Leases;
-	private Listing[] listings;
+	public ArrayList<Listing> listings;
 	private int numListings;
 	public final double russLat = 33.9969; //Russell House Latitude
 	public final double russLong = 81.0272; //Russell House Longitude
@@ -11,14 +11,14 @@ public class Landlord extends User{
 
 	public Landlord(String UUID, String Email, String Password, boolean Suspended, String type) {
 		super(UUID, Email, Password, Suspended, type);
-		this.numListings = listings.length;
+		this.numListings = listings.size();
 	}
 
-	protected void postListing(String title, String description, double price, double Latitude, double Longitude, double DistanceFromCampus, String type, String PictureID) {
+	public void postListing(String title, String description, double price, double Latitude, double Longitude, double DistanceFromCampus, String type, String PictureID) {
 		Listing listing = new Listing(title, description, price, Latitude, Longitude, DistanceFromCampus, type, PictureID, "none", 0);
 		for(int i = 0; i < getnumListings(); i++) {
-			if(listings[i] == null) {
-				listings[i] = listing;
+			if(listings.get(i) == null) {
+				listings.add(listing);
 				return;
 			}
 		}
@@ -33,10 +33,10 @@ public class Landlord extends User{
 		return this.numListings;
 	}
 	
-	protected void removeListing(int listingID) {
+	public void removeListing(int listingID) {
 		for(int i = 0; i < getnumListings(); i++) {
-			if(listings[i].getListingID() == listingID) {
-				listings[i] = null;
+			if(listings.get(i).getListingID() == listingID) {
+				listings.remove(i);
 				return;
 			}
 		}
@@ -58,15 +58,16 @@ public class Landlord extends User{
 	    return Math.sqrt(distance);
 	}
 
-	protected void contactLeasee(String Leasee, String Message) {
+	public void contactLeasee(String Leasee, String Message) {
 		
 	}
 
-	protected String getLease(String LeaseID) {
+	public String getLease(String LeaseID) {
 		return LeaseID;
 	}
 
-	protected void postSublease(String title, String description, double price, boolean availability, ArrayList amenities, String sublease) {
-
+	public ArrayList<Listing> copyList() {
+		return listings;
 	}
+
 }

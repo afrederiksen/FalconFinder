@@ -1,19 +1,12 @@
 
 public class Admin extends User {
-	private void postListing() {
-
-	}
 
 	private void removeListing(String title) {
 
 	}
 
-	private void getDistanceFromCampus() {
-
-	}
-
 	private void removeUser(String UUID) {
-
+		
 	}
 
 	private void addUser(String UUID, String email, String password, String type) {
