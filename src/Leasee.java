@@ -6,7 +6,7 @@ public class Leasee extends User {
 
 	ArrayList<Lease> leases = new ArrayList<Lease>();
 	ArrayList<String> favoriteProperties = new ArrayList<String>();
-	Landlord l1 = new Landlord("none", "test", "gmail", "password", "none", "none", "none", false);
+	Landlord l1 = new Landlord("userid", "test", "lastname", "address", "email", "password", "type");
 	ArrayList<Listing> listings = l1.copyList();
 	String USCID = "";
 

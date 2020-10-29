@@ -66,7 +66,7 @@ public class Platform {
 					manageAccount();
 					break;							
 				case 9:
-					user.logout();
+					logout();
 					break;
 				}
 			}
@@ -87,7 +87,7 @@ public class Platform {
 					manageAccount();
 					break;
 				case 9:
-					user.logout();
+					logout();
 					break;
 				}
 			}
@@ -110,6 +110,7 @@ public class Platform {
 		else {
 			System.out.println("You are already logged in!");
 		}
+		guest = false;
 	}
 	public static void register() {
 		boolean notDone = true;
@@ -150,6 +151,20 @@ public class Platform {
 		else {
 			System.out.println("You are already logged in!");
 		}
+	}
+	public static void logout() {
+		if(!guest) {
+			user = null;
+			guest = true;
+			System.out.println("Logout Successful, Returning to Guest View...");
+		}
+		
+		else
+		{
+			System.out.println("You are not logged in!");
+		}
+		//Return to main stage
+		mainStage();
 	}
 	public static void searchListings() {
 		Scanner scan = new Scanner(System.in);
