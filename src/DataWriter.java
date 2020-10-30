@@ -34,7 +34,6 @@ public class DataWriter extends DataConstants {
     listingDetails.put(LISTING_ADDRESS, listing.getAddress());
     listingDetails.put(LISTING_DESCRIPTION, listing.getDescription());
     listingDetails.put(LISTING_DISTANCE_FROM_RUSSELL, listing.getDistanceFromRussellHouse());
-    listingDetails.put(LISTING_TYPE, listing.getType());
     listingDetails.put(LISTING_AVAILABLE, listing.isAvailable());
     listingDetails.put(LISTING_LANDLORD_ID, listing.getLandlordId());
     listingDetails.put(LISTING_AMENITIES_WASHER, listing.isAmenitiesWasher());

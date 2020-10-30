@@ -7,9 +7,9 @@ public class Landlord extends User {
   private int numListings;
 
   public Landlord(String landlordId, String firstName, String lastName, String address,
-      String email, String password, String type, ArrayList<Listing> listings) {
+      String email, String password, String type) {
     super(landlordId, firstName, lastName, address, email, password, type);
-    this.listings = listings;
+    listings = new ArrayList<Listing>();
     this.numListings = listings.size();
   }
 
@@ -56,10 +56,10 @@ public class Landlord extends User {
   }
 
   public void postListing(int id, String address, String description, double DistanceFromRuss,
-      String type, boolean available, int landlordID, boolean amenitiesWasher, boolean amenitiesAC,
+      boolean available, String landlordID, boolean amenitiesWasher, boolean amenitiesAC,
       boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
       boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
-    Listing listing = new Listing(id, address, description, DistanceFromRuss, type, available,
+    Listing listing = new Listing(id, address, description, DistanceFromRuss, available,
         landlordID, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
         amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool);
     for (int i = 0; i < getNumListings(); i++) {

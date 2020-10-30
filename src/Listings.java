@@ -4,7 +4,7 @@ public class Listings {
   private static Listings listings = null;
   private static ArrayList<Listing> listingList = new ArrayList<Listing>();
 
-  private Listings() {
+  public Listings() {
     listingList = DataReader.loadListings();
   }
 
@@ -21,11 +21,11 @@ public class Listings {
   }
 
   public void addListing(int listingId, String address, String description,
-      double distanceFromRussellHouse, String type, boolean available, int landlordId,
+      double distanceFromRussellHouse, boolean available, String landlordId,
       boolean amenitiesWasher, boolean amenitiesAC, boolean amenitiesFurniture,
       boolean amenitiesPatio, boolean amenitiesDishwasher, boolean amenitiesFireplace,
       boolean amenitiesWifi, boolean amenitiesPool) {
-    listingList.add(new Listing(listingId, address, description, distanceFromRussellHouse, type,
+    listingList.add(new Listing(listingId, address, description, distanceFromRussellHouse,
         available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
         amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
     DataWriter.saveListings();
