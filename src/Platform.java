@@ -31,6 +31,7 @@ public class Platform {
 				break;
 			default:
 				System.out.println("Sorry, the choice you answered was not correct. Please try again.");
+				mainStage();
 
 			}
 			if (user.getType().equalsIgnoreCase("Leasee")) {
