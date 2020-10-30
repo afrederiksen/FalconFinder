@@ -30,7 +30,7 @@ public class Platform {
 				searchListings();
 				break;
 			default:
-				System.out.println("Sorry, the choice you answered was not correct. Please try again.");
+				System.out.println("Invalid entry please try again.");
 				mainStage();
 
 			}
@@ -58,6 +58,9 @@ public class Platform {
 				case 9:
 					logout();
 					break;
+				default:
+				System.out.println("Invalid entry please try again.");
+				mainStage();
 				}
 			} else if (user.getType().equalsIgnoreCase("Landlord")) {
 				System.out.println("Landlord View:\n" + "1. View listings\n" + "2. Post listings\n"
@@ -75,6 +78,9 @@ public class Platform {
 				case 9:
 					logout();
 					break;
+				default:
+					System.out.println("Invalid entry please try again.");
+					mainStage();
 				}
 			}
 		}
@@ -189,6 +195,9 @@ public class Platform {
 		case 9:
 			mainStage();
 			break;
+		default:
+			System.out.println("Invalid entry please try again.");
+			searchListings();
 		}
 	}
 
@@ -272,6 +281,9 @@ public class Platform {
 				case 9:
 					Platform.mainStage();
 					break;
+				default:
+					System.out.println("Invalid entry please try again.");
+					manageAccount();
 				}
 			}
 			else if(landlord.getType().equalsIgnoreCase("landlord")) {
@@ -322,6 +334,10 @@ public class Platform {
 				case 9:
 					Platform.mainStage();
 					break;
+				default:
+					System.out.println("Invalid entry please try again.");
+					manageAccount();
+				}
 				}    	  
 			}
 		}
