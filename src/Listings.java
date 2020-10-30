@@ -4,7 +4,7 @@ public class Listings {
   private static Listings listings = null;
   private static ArrayList<Listing> listingList = new ArrayList<Listing>();
 
-  public Listings() {
+  private Listings() {
     listingList = DataReader.loadListings();
   }
 

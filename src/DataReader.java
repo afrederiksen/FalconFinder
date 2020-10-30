@@ -12,10 +12,10 @@ public class DataReader extends DataConstants {
 
     try {
       FileReader reader = new FileReader(LISTINGS_FILE_NAME);
-      JSONArray listingsJSON1 = (JSONArray) new JSONParser().parse(reader);
+      JSONArray listingsJSON = (JSONArray) new JSONParser().parse(reader);
 
-      for (int i = 0; i < listingsJSON1.size(); i++) {
-        JSONObject listingJSON = (JSONObject) listingsJSON1.get(i);
+      for (int i = 0; i < listingsJSON.size(); i++) {
+        JSONObject listingJSON = (JSONObject) listingsJSON.get(i);
         int listingId = (int) listingJSON.get(LISTING_ID);
         String address = (String) listingJSON.get(LISTING_ADDRESS);
         String description = (String) listingJSON.get(LISTING_DESCRIPTION);

@@ -33,6 +33,15 @@ public class Landlord extends User {
   public ArrayList<Listing> getListings() {
     return listings;
   }
+  
+  public void printListings() {
+	    for(int i = 0; i <= getNumListings(); i++) {
+	    	if(listings.get(i) != null)
+	    		 System.out.println(listings.get(i).toString());
+	    	else
+	    		System.out.println("You suck");
+	    }
+	  }
 
   /**
    * @param listings the listings to set
@@ -62,10 +71,14 @@ public class Landlord extends User {
     Listing listing = new Listing(id, address, description, DistanceFromRuss, available,
         landlordID, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
         amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool);
-    for (int i = 0; i < getNumListings(); i++) {
-      if (listings.get(i) == null) {
+    for (int i = 0; i <= getNumListings(); i++) {
+      if (getNumListings() == 0) {
         listings.add(listing);
         return;
+      }
+      else if(listings.get(i) == null) {
+    	  listings.add(listing);
+          return;
       }
     }
     numListings++;

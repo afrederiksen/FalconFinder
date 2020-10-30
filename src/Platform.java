@@ -9,7 +9,7 @@ public class Platform {
 	static Landlord landlord;
 	static boolean guest = true;
 	static ArrayList<User> userList = new ArrayList<User>();
-	static Listings listings = new Listings();
+	static Listings listings;
 
 	public static void main(String[] args) {
 		mainStage();
@@ -213,9 +213,7 @@ public class Platform {
 	}
 
 	public static void viewListings() {
-		for (Listing listing : listings.getListings()) {
-			System.out.println("ID: " + listing.getListingId() + " | Description: " + listing.getDescription() + " | Rating: " + listing.getRating());
-		}
+		landlord.printListings();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter any key to return back to the main page");
 		if (!scan.nextLine().equalsIgnoreCase(null)) {
@@ -342,7 +340,7 @@ public class Platform {
 			}
 		}
 
-	}
+	
 
 	public static void postListing() {
 		Scanner scan = new Scanner(System.in);
@@ -356,6 +354,7 @@ public class Platform {
 			double distanceFromRussellHouse = scan.nextDouble();
 			System.out.println("Is it available? (y/n)");
 			String availableStr = scan.nextLine();
+			scan.nextLine();
 			boolean available;
 			if(availableStr.equalsIgnoreCase("y") || availableStr.equalsIgnoreCase("yes"))
 				available=true;
@@ -434,7 +433,8 @@ public class Platform {
 			else {
 				amenitiesPool=false;
 			} 
-			listings.addListing(landlord.getNumListings(),  address,  description,  distanceFromRussellHouse, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
+			//Listings.getInstance();
+			landlord.postListing(0,  address,  description,  distanceFromRussellHouse, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
 					amenitiesFireplace,  amenitiesWifi,  amenitiesPool);  
 		}

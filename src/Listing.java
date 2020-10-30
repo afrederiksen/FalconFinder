@@ -278,4 +278,8 @@ public class Listing {
 	 public void setRating(ArrayList<Integer> rating) {
 		 Rating = rating;
 	 }
+	 
+	 public String toString() {
+		 return ("ID: " + getListingId() + " | Description: " + getDescription() + " | Rating: " + getRating());
+	 }
 }
