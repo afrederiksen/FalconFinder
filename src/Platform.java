@@ -154,6 +154,7 @@ public class Platform {
 				}
 			}
 			// Return to main stage
+			System.out.println("You may now log in!");
 			mainStage();
 		} else {
 			System.out.println("You are already logged in!");
@@ -236,7 +237,26 @@ public class Platform {
 			mainStage();
 		}
 	}
+	public static void viewListing(long listingId) {
+		for (Listing listing : listings.getListings()) {
+			if (listing.getListingId() == listingId) {
+				System.out.println("Description: " + listing.getDescription() + "\nAddress:" + listing.getAddress()
+						+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
+						+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
+				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.isAmenitiesFireplace() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
+				for (String review : listing.getReviewList()) {
+					System.out.println(review);
+				}
+				Scanner scan = new Scanner(System.in);
+				System.out.println(
+						"Type \"Lease\" if you wish to lease this property or enter any key to return back to the main page");
+				if (!scan.nextLine().equalsIgnoreCase("Lease")) {
+					mainStage();
+				}
+			}
+		}
 
+	}
 	public static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
@@ -525,7 +545,7 @@ public class Platform {
 				}
 			}
 		}
-		if(landlord.getType().equalsIgnoreCase("landlord")) {
+		else if(landlord.getType().equalsIgnoreCase("landlord")) {
 			int messageWindow = 0;
 			int startingWindow = 0;
 			if (landlord.getLeases().size() >= 6) {
