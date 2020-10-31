@@ -21,11 +21,11 @@ public class Listings {
 	}
 
 	public void addListing(long listingId, String address, String description,
-			double distanceFromRussellHouse, boolean available, String landlordId,
+			double distanceFromRussellHouse, double price, boolean available, String landlordId,
 			boolean amenitiesWasher, boolean amenitiesAC, boolean amenitiesFurniture,
 			boolean amenitiesPatio, boolean amenitiesDishwasher, boolean amenitiesFireplace,
 			boolean amenitiesWifi, boolean amenitiesPool) {
-		listingList.add(new Listing(listingId, address, description, distanceFromRussellHouse,
+		listingList.add(new Listing(listingId, address, description, distanceFromRussellHouse, price,
 				available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
 				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
 		DataWriter.saveListings();
@@ -38,6 +38,7 @@ public class Listings {
 			System.out.println("Address: " +listingList.get(i).getAddress());
 			System.out.println("Description: " +listingList.get(i).getDescription());
 			System.out.println("Distance from Russell House: " +listingList.get(i).getDistanceFromRussellHouse() + " miles");
+			System.out.println("Price: $" +listingList.get(i).getPrice() + " per month");
 			System.out.println("Is Available: " +listingList.get(i).isAvailable());
 			System.out.println("Has Washer: " +listingList.get(i).isAmenitiesDishwasher());
 			System.out.println("Has Fireplace: " +listingList.get(i).isAmenitiesFireplace());

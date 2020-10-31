@@ -5,6 +5,7 @@
     "description": "A 4 Bed, 3 Bath, 2 story, historic home along blossom street.",
     "distance_from_russell": 2.5,
     "type": "Lease",
+    "price": 2400.0,
     "available": true,
     "landlordId": "James8",
     "reviews": [
@@ -29,6 +30,7 @@
     "description": "A collection of 2 bedroom apartments nested right next to the campus' engineering building.",
     "distance_from_russell": 1.2,
     "type": "Lease",
+    "price": 800.0,
     "available": true,
     "landlordId": "Ben38",
     "reviews": [
@@ -54,6 +56,7 @@
     "description": "Quite residential 3 bed 3 bath.",
     "distance_from_russell": 2.0,
     "type": "lease",
+    "price": 1600.0,
     "available": true,
     "landlordId": "Sarah3",
     "reviews": [

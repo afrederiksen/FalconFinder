@@ -5,6 +5,7 @@ public class Listing {
 	private String address;
 	private String description;
 	private double distanceFromRussellHouse;
+	private double price;
 	private boolean available;
 	private String landlordId;
 	private boolean amenitiesWasher;
@@ -19,13 +20,14 @@ public class Listing {
 	private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
 	public Listing(long listingId, String address, String description, double distanceFromRussellHouse,
-			boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
+			double price, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
 			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
 		this.listingId = listingId;
 		this.address = address;
 		this.description = description;
 		this.distanceFromRussellHouse = distanceFromRussellHouse;
+		this.price = price;
 		this.available = available;
 		this.landlordId = landlordId;
 		this.amenitiesWasher = amenitiesWasher;
@@ -81,6 +83,10 @@ public class Listing {
 	  */
 	 public String getAddress() {
 		 return address;
+	 }
+	 
+	 public double getPrice() {
+		 return price;
 	 }
 
 	 /**
@@ -279,7 +285,17 @@ public class Listing {
 		 Rating = rating;
 	 }
 	 
-	 public String toString() {
-		 return ("ID: " + getListingId() + " | Description: " + getDescription() + " | Rating: " + getRating());
+	 public void printListing() {
+			System.out.println("Listing ID: " +getListingId());
+			System.out.println("Address: " +getAddress());
+			System.out.println("Description: " +getDescription());
+			System.out.println("Distance from Russell House: " +getDistanceFromRussellHouse() + " miles");
+			System.out.println("Price: $" +getPrice() + " per month");
+			System.out.println("Is Available: " +isAvailable());
+			System.out.println("Has Washer: " +isAmenitiesDishwasher());
+			System.out.println("Has Fireplace: " +isAmenitiesFireplace());
+			System.out.println("Has WiFi: " +isAmenitiesWifi());
+			System.out.println("Has Pool: " +isAmenitiesPool());
+			System.out.println();
 	 }
 }

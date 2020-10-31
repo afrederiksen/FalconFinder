@@ -24,6 +24,7 @@ public class DataReader extends DataConstants {
 				String description = (String) listingJSON.get(LISTING_DESCRIPTION);
 				double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
 				// String type = (String) listingJSON.get(LISTING_TYPE);
+				double price = (double) listingJSON.get("price");
 				boolean available = (boolean) listingJSON.get(LISTING_AVAILABLE);
 				String landlordId = (String) listingJSON.get(LISTING_LANDLORD_ID);
 				boolean amenitiesWasher = (boolean) listingJSON.get(LISTING_AMENITIES_WASHER);
@@ -43,7 +44,7 @@ public class DataReader extends DataConstants {
 					reviews.add(new Review(userId, review, rating));
 				}
 */
-				listings.add(new Listing(listingId, address, description, distanceFromRussell,
+				listings.add(new Listing(listingId, address, description, distanceFromRussell, price,
 						available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
 						amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
 			}
