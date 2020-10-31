@@ -195,8 +195,83 @@ public class Platform {
 		case 2:
 			// Search by amentities
 			// Need enum support
-			System.out.println("Please enter the amentities you wish to search for");
-			searchTerm = scan.nextLine();
+			System.out.println("Please enter an amenitity you wish to search for");
+			ArrayList<Listing> refinedListings = listings.getListings();
+			System.out.println("Do you want a washer? (y/n)");
+			String washerStr = scan.nextLine();
+			if(!(washerStr.equalsIgnoreCase("y") || washerStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesWasher()) {
+						refinedListings.remove(listing);
+					}
+				}
+			}
+			System.out.println("Do you want AC? (y/n)");
+			String ACStr = scan.nextLine();
+			if(!(ACStr.equalsIgnoreCase("y") || ACStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesAC()) {
+						refinedListings.remove(listing);
+					}
+				}
+			}    	
+			System.out.println("Do you want furniture? (y/n)");
+			String furnitureStr = scan.nextLine();
+			if(!(furnitureStr.equalsIgnoreCase("y") || furnitureStr.equalsIgnoreCase("yes"))) {
+			for(Listing listing : refinedListings) {
+				if(listing.isAmenitiesFurniture()) {
+					refinedListings.remove(listing);
+				}
+			}
+			}
+			System.out.println("Do you want a patio? (y/n)");
+			String patioStr = scan.nextLine();
+			if(!(patioStr.equalsIgnoreCase("y") || patioStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesPatio()) {
+						refinedListings.remove(listing);
+					}
+				}
+			}
+			System.out.println("Do you want a dishwasher? (y/n)");
+			String dishwasherStr = scan.nextLine();
+			if(!(dishwasherStr.equalsIgnoreCase("y") || dishwasherStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesDishwasher()) {
+						refinedListings.remove(listing);
+					}
+				}
+			} 
+			System.out.println("Do you want a fireplace? (y/n)");
+			String FirePlaceStr = scan.nextLine();
+			if(!(FirePlaceStr.equalsIgnoreCase("y") || FirePlaceStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesFireplace()) {
+						refinedListings.remove(listing);
+					}
+				}
+			} 
+			System.out.println("Do you want Wi-Fi? (y/n)");
+			String WiFiStr = scan.nextLine();
+			if(!(WiFiStr.equalsIgnoreCase("y") || WiFiStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesFurniture()) {
+						refinedListings.remove(listing);
+					}
+				}
+			} 
+			System.out.println("Do you want a pool? (y/n)");
+			String poolStr = scan.nextLine();
+			if(!(poolStr.equalsIgnoreCase("y") || poolStr.equalsIgnoreCase("yes"))) {
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesFurniture()) {
+						refinedListings.remove(listing);
+					}
+				}
+			}
+			for(Listing listing : refinedListings) {
+				listing.printListing();
+			}
 			break;
 		case 3:
 			// Search by price;
