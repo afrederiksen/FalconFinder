@@ -52,6 +52,7 @@ public class User {
 
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
+      id = null;
       firstName = null;
       lastName = null;;
       address = null;
