@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Listing {
-	private int listingId;
+	private long listingId;
 	private String address;
 	private String description;
 	private double distanceFromRussellHouse;
@@ -18,7 +18,7 @@ public class Listing {
 	private ArrayList<String> ReviewList = new ArrayList<String>();
 	private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
-	public Listing(int listingId, String address, String description, double distanceFromRussellHouse,
+	public Listing(long listingId, String address, String description, double distanceFromRussellHouse,
 			boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
 			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
@@ -65,7 +65,7 @@ public class Listing {
 	/**
 	 * @return the listingId
 	 */
-	 public int getListingId() {
+	 public long getListingId() {
 		return listingId;
 	}
 

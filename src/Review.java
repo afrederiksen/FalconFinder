@@ -1,9 +1,9 @@
 public class Review {
-  private int userId;
+  private long userId;
   private String review;
-  private int rating;
+  private long rating;
 
-  public Review(int userId, String review, int rating) {
+  public Review(long userId, String review, long rating) {
     this.userId = userId;
     this.review = review;
     this.rating = rating;
@@ -12,7 +12,7 @@ public class Review {
   /**
    * @return the userId
    */
-  public int getUserId() {
+  public long getUserId() {
     return userId;
   }
 
@@ -40,7 +40,7 @@ public class Review {
   /**
    * @return the rating
    */
-  public int getRating() {
+  public long getRating() {
     return rating;
   }
 

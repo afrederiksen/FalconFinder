@@ -9,7 +9,7 @@ public class Platform {
 	static Landlord landlord;
 	static boolean guest = true;
 	static ArrayList<User> userList = new ArrayList<User>();
-	static Listings listings;
+	static Listings listings = new Listings();
 
 	public static void main(String[] args) {
 		mainStage();
@@ -18,7 +18,7 @@ public class Platform {
 	public static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
-			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. Search Listings");
+			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings");
 			switch (scan.nextInt()) {
 			case 1:
 				login();
@@ -27,6 +27,9 @@ public class Platform {
 				register();
 				break;
 			case 3:
+				viewListings();
+				break;
+			case 4:
 				searchListings();
 				break;
 			default:
@@ -213,7 +216,7 @@ public class Platform {
 	}
 
 	public static void viewListings() {
-		landlord.printListings();
+		listings.printListings();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter any key to return back to the main page");
 		if (!scan.nextLine().equalsIgnoreCase(null)) {
