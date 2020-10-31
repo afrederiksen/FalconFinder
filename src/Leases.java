@@ -4,7 +4,7 @@ public class Leases {
   private static Leases leases = null;
   private static ArrayList<Lease> leaseList = new ArrayList<Lease>();
 
-  private Leases() {
+  public Leases() {
     leaseList = DataReader.loadLeases();
   }
 
@@ -24,5 +24,13 @@ public class Leases {
       String duration) {
     leaseList.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
     DataWriter.saveLeases();
+  }
+  
+  public void printLeases() {
+	  for(int i = 0; i < leaseList.size(); i ++) {
+		  System.out.println("Lease " + i + ":");
+		  System.out.println(leaseList.get(i).getDate());
+		  System.out.println(leaseList.get(i).getAddress());
+	  }  
   }
 }

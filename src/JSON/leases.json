@@ -1,8 +1,8 @@
 {"leases":[
   {
     "leaseId": 0,
-    "landlordId": 0,
-    "leaseeId": 0,
+    "landlordId": "",
+    "leaseeId": "",
     "date": "",
     "address": "",
     "duration": ""

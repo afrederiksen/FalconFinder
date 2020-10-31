@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Users {
   private static Users users = null;
-  private static ArrayList<User> userList = new ArrayList<User>();
+  public static ArrayList<User> userList = new ArrayList<User>();
 
-  private Users() {
+  public Users() {
     userList = DataReader.loadUsers();
   }
 
@@ -25,4 +25,5 @@ public class Users {
     userList.add(new User(id, firstName, lastName, address, email, password, type));
     DataWriter.saveUsers();
   }
+
 }

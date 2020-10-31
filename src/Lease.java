@@ -1,12 +1,12 @@
 public class Lease {
-  private int leaseId;
+  private long leaseId;
   private String landlordId;
   private String leaseeId;
   private String date;
   private String address;
   private String duration;
 
-  public Lease(int leaseId, String landlordId, String leaseeId, String date, String address,
+  public Lease(long leaseId, String landlordId, String leaseeId, String date, String address,
       String duration) {
     this.leaseId = leaseId;
     this.landlordId = landlordId;
@@ -19,7 +19,7 @@ public class Lease {
   /**
    * @return the leaseId
    */
-  public int getLeaseId() {
+  public long getLeaseId() {
     return leaseId;
   }
 

@@ -34,7 +34,7 @@ public class DataReader extends DataConstants {
 				boolean amenitiesFireplace = (boolean) listingJSON.get(LISTING_AMENITIES_FIREPLACE);
 				boolean amenitiesWifi = (boolean) listingJSON.get(LISTING_AMENITIES_WIFI);
 				boolean amenitiesPool = (boolean) listingJSON.get(LISTING_AMENITIES_POOL);
-				/* JSONArray reviewsArray = (JSONArray) listingJSON.get(LISTING_REVIEWS);
+				/* JSONArray reviewsArray = (JSONArray) jsonobj.get(LISTING_REVIEWS);
 				for (int j = 0; j < reviewsArray.size(); j++) {
 					JSONObject reviewJSON = (JSONObject) reviewsArray.get(i);
 					long userId = (long) reviewJSON.get(LISTING_REVIEWS_USER_ID);
@@ -62,8 +62,11 @@ public class DataReader extends DataConstants {
 		ArrayList<User> users = new ArrayList<User>();
 
 		try {
+			JSONParser parser = new JSONParser();
 			FileReader reader = new FileReader(USERS_FILE_NAME);
-			JSONArray usersJSON = (JSONArray) new JSONParser().parse(reader);
+			Object obj = parser.parse(reader);
+			JSONObject jsonobj = (JSONObject) obj;
+			JSONArray usersJSON = (JSONArray) jsonobj.get("users");
 
 			for (int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject) usersJSON.get(i);
@@ -92,8 +95,11 @@ public class DataReader extends DataConstants {
 		ArrayList<Leasee> leasees = new ArrayList<Leasee>();
 
 		try {
+			JSONParser parser = new JSONParser();
 			FileReader reader = new FileReader(LEASEES_FILE_NAME);
-			JSONArray leaseesJSON = (JSONArray) new JSONParser().parse(reader);
+			Object obj = parser.parse(reader);
+			JSONObject jsonobj = (JSONObject) obj;
+			JSONArray leaseesJSON = (JSONArray) jsonobj.get("listings");
 
 			for (int i = 0; i < leaseesJSON.size(); i++) {
 				JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
@@ -126,8 +132,11 @@ public class DataReader extends DataConstants {
 		ArrayList<Landlord> landlords = new ArrayList<Landlord>();
 
 		try {
+			JSONParser parser = new JSONParser();
 			FileReader reader = new FileReader(LANDLORDS_FILE_NAME);
-			JSONArray landlordsJSON = (JSONArray) new JSONParser().parse(reader);
+			Object obj = parser.parse(reader);
+			JSONObject jsonobj = (JSONObject) obj;
+			JSONArray landlordsJSON = (JSONArray) jsonobj.get("listings");
 
 			for (int i = 0; i < landlordsJSON.size(); i++) {
 				JSONObject landlordJSON = (JSONObject) landlordsJSON.get(i);
@@ -157,12 +166,15 @@ public class DataReader extends DataConstants {
 		ArrayList<Lease> leases = new ArrayList<Lease>();
 
 		try {
+			JSONParser parser = new JSONParser();
 			FileReader reader = new FileReader(LEASES_FILE_NAME);
-			JSONArray leasesJSON = (JSONArray) new JSONParser().parse(reader);
+			Object obj = parser.parse(reader);
+			JSONObject jsonobj = (JSONObject) obj;
+			JSONArray leasesJSON = (JSONArray) jsonobj.get("leases");
 
 			for (int i = 0; i < leasesJSON.size(); i++) {
 				JSONObject leaseJSON = (JSONObject) leasesJSON.get(i);
-				int leaseId = (int) leaseJSON.get(LEASE_ID);
+				long leaseId = (long) leaseJSON.get(LEASE_ID);
 				String landlordId = (String) leaseJSON.get(LEASE_LANDLORD_ID);
 				String leaseeId = (String) leaseJSON.get(LEASE_LEASEE_ID);
 				String date = (String) leaseJSON.get(LEASE_DATE);

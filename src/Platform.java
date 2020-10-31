@@ -8,8 +8,9 @@ public class Platform {
 	static Leasee leasee;
 	static Landlord landlord;
 	static boolean guest = true;
-	static ArrayList<User> userList = new ArrayList<User>();
 	static Listings listings = new Listings();
+	static Users users = new Users();
+	static ArrayList<User> userList = users.getUsers();
 
 	public static void main(String[] args) {
 		mainStage();
@@ -37,7 +38,7 @@ public class Platform {
 				mainStage();
 
 			}
-			if (user.getType().equalsIgnoreCase("Leasee")) {
+			if (user != null && user.getType().equalsIgnoreCase("Leasee")) {
 				System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. View leases\n"
 						+ "3. View favorite listings\n" + "4. Review Listings\n"
 						+ "5. Manage Account\n"
@@ -62,10 +63,10 @@ public class Platform {
 					logout();
 					break;
 				default:
-				System.out.println("Invalid entry please try again.");
-				mainStage();
+					System.out.println("Invalid entry please try again.");
+					mainStage();
 				}
-			} else if (user.getType().equalsIgnoreCase("Landlord")) {
+			} else if (user != null && user.getType().equalsIgnoreCase("Landlord")) {
 				System.out.println("Landlord View:\n" + "1. View listings\n" + "2. Post listings\n"
 						+ "3. Manage Account\n" + "9. Logout\n");
 				switch (scan.nextInt()) {
@@ -86,6 +87,9 @@ public class Platform {
 					mainStage();
 				}
 			}
+			else {
+				mainStage();
+			}
 		}
 	}
 
@@ -105,10 +109,11 @@ public class Platform {
 						leasee = new Leasee(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getEmail(), user.getPassword(), user.getType(), null);
 					else if(user.getType().equalsIgnoreCase("Landlord"))
 						landlord = new Landlord(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getEmail(), user.getPassword(), user.getType());
+					guest = false;
 				}
-				else {
-					System.out.println("Incorrect username or password");
-				}
+			}
+			if(guest) {
+				System.out.println("Incorrect username or password");
 			}
 		} else {
 			System.out.println("You are already logged in!");
@@ -339,11 +344,11 @@ public class Platform {
 					System.out.println("Invalid entry please try again.");
 					manageAccount();
 				}
-				}    	  
-			}
+			}    	  
 		}
+	}
 
-	
+
 
 	public static void postListing() {
 		Scanner scan = new Scanner(System.in);
