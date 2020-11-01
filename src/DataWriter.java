@@ -6,7 +6,9 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
-
+  /**
+   *fills arrayList of type Listing with JSONObjects
+  */
   public static void saveListings() {
     Listings listingsList = Listings.getInstance();
     ArrayList<Listing> listings = listingsList.getListings();
@@ -28,6 +30,10 @@ public class DataWriter extends DataConstants {
     }
   }
 
+  
+  /**
+   *returns specifics of the Listing
+  */
   public static JSONObject getListingJSON(Listing listing) {
     JSONObject listingDetails = new JSONObject();
     listingDetails.put(LISTING_ID, listing.getListingId());
@@ -48,6 +54,9 @@ public class DataWriter extends DataConstants {
     return listingDetails;
   }
 
+  /**
+   *fills arrayList of type User with JSONObjects
+  */
   public static void saveUsers() {
     Users usersList = Users.getInstance();
     ArrayList<User> users = usersList.getUsers();
@@ -82,6 +91,9 @@ public class DataWriter extends DataConstants {
     return userDetails;
   }
 
+  /**
+   *fills arrayList of type Leasee with JSONObjects
+  */
   public static void saveLeasees() {
     Leasees leaseesList = Leasees.getInstance();
     ArrayList<Leasee> leasees = leaseesList.getLeasees();
@@ -118,6 +130,9 @@ public class DataWriter extends DataConstants {
     return leaseeDetails;
   }
 
+  /**
+   *fills arrayList of type Ladnlord with JSONObjects
+  */
   public static void saveLandlords() {
     Landlords landlordsList = Landlords.getInstance();
     ArrayList<Landlord> landlords = landlordsList.getLandlords();
@@ -153,6 +168,9 @@ public class DataWriter extends DataConstants {
     return landlordDetails;
   }
 
+  /**
+   *fills arrayList of type Lease with JSONObjects
+  */
   public static void saveLeases() {
     Leases leasesList = Leases.getInstance();
     ArrayList<Lease> leases = leasesList.getLeases();
@@ -174,6 +192,10 @@ public class DataWriter extends DataConstants {
     }
   }
 
+  
+  /**
+   *creates JSONObject filled with details about the lease
+  */
   public static JSONObject getLeaseJSON(Lease lease) {
     JSONObject leaseDetails = new JSONObject();
     leaseDetails.put(LEASE_ID, lease.getLeaseId());
