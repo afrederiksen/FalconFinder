@@ -21,18 +21,18 @@ public class DataReader extends DataConstants {
 				JSONObject listingJSON = (JSONObject) listingsJSON.get(i);
 				long listingId = (long) listingJSON.get(LISTING_ID);
 				String address = (String) listingJSON.get(LISTING_ADDRESS);
-				String description = (String) listingJSON.get(LISTING_DESCRIPTION);
+				long beds = (long) listingJSON.get("beds");
 				double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
 				// String type = (String) listingJSON.get(LISTING_TYPE);
 				double price = (double) listingJSON.get("price");
 				boolean available = (boolean) listingJSON.get(LISTING_AVAILABLE);
 				String landlordId = (String) listingJSON.get(LISTING_LANDLORD_ID);
-				boolean amenitiesWasher = (boolean) listingJSON.get(LISTING_AMENITIES_WASHER);
+				boolean amenitiesWasher = (boolean) listingJSON.get("washer/dryer");
 				boolean amenitiesAC = (boolean) listingJSON.get(LISTING_AMENITIES_AC);
 				boolean amenitiesFurniture = (boolean) listingJSON.get(LISTING_AMENITIES_FURNITURE);
 				boolean amenitiesPatio = (boolean) listingJSON.get(LISTING_AMENITIES_PATIO);
 				boolean amenitiesDishwasher = (boolean) listingJSON.get(LISTING_AMENITIES_DISHWASHER);
-				boolean amenitiesFireplace = (boolean) listingJSON.get(LISTING_AMENITIES_FIREPLACE);
+				boolean allowsPets = (boolean) listingJSON.get("pets");
 				boolean amenitiesWifi = (boolean) listingJSON.get(LISTING_AMENITIES_WIFI);
 				boolean amenitiesPool = (boolean) listingJSON.get(LISTING_AMENITIES_POOL);
 				/* JSONArray reviewsArray = (JSONArray) jsonobj.get(LISTING_REVIEWS);
@@ -44,9 +44,9 @@ public class DataReader extends DataConstants {
 					reviews.add(new Review(userId, review, rating));
 				}
 */
-				listings.add(new Listing(listingId, address, description, distanceFromRussell, price,
+				listings.add(new Listing(listingId, address, beds, distanceFromRussell, price,
 						available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
-						amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
+						amenitiesDishwasher, allowsPets, amenitiesWifi, amenitiesPool));
 			}
 
 			return listings;

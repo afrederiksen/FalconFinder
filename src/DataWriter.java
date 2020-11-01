@@ -34,7 +34,7 @@ public class DataWriter extends DataConstants {
 		JSONObject listingDetails = new JSONObject();
 		listingDetails.put(LISTING_ID, listing.getListingId());
 		listingDetails.put(LISTING_ADDRESS, listing.getAddress());
-		listingDetails.put(LISTING_DESCRIPTION, listing.getDescription());
+		listingDetails.put(LISTING_DESCRIPTION, listing.getBeds());
 		listingDetails.put(LISTING_DISTANCE_FROM_RUSSELL, listing.getDistanceFromRussellHouse());
 		listingDetails.put(LISTING_AVAILABLE, listing.isAvailable());
 		listingDetails.put(LISTING_LANDLORD_ID, listing.getLandlordId());
@@ -43,7 +43,7 @@ public class DataWriter extends DataConstants {
 		listingDetails.put(LISTING_AMENITIES_FURNITURE, listing.isAmenitiesFurniture());
 		listingDetails.put(LISTING_AMENITIES_PATIO, listing.isAmenitiesPatio());
 		listingDetails.put(LISTING_AMENITIES_DISHWASHER, listing.isAmenitiesDishwasher());
-		listingDetails.put(LISTING_AMENITIES_FIREPLACE, listing.isAmenitiesFireplace());
+		listingDetails.put(LISTING_AMENITIES_FIREPLACE, listing.doesAllowPets());
 		listingDetails.put(LISTING_AMENITIES_WIFI, listing.isAmenitiesWifi());
 		listingDetails.put(LISTING_AMENITIES_POOL, listing.isAmenitiesPool());
 

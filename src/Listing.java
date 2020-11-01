@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Listing {
 	private long listingId;
 	private String address;
-	private String description;
+	private long beds;
 	private double distanceFromRussellHouse;
 	private double price;
 	private boolean available;
@@ -13,19 +13,19 @@ public class Listing {
 	private boolean amenitiesFurniture;
 	private boolean amenitiesPatio;
 	private boolean amenitiesDishwasher;
-	private boolean amenitiesFireplace;
+	private boolean allowsPets;
 	private boolean amenitiesWifi;
 	private boolean amenitiesPool;
 	private ArrayList<String> ReviewList = new ArrayList<String>();
 	private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
-	public Listing(long listingId, String address, String description, double distanceFromRussellHouse,
+	public Listing(long listingId, String address, long beds, double distanceFromRussellHouse,
 			double price, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
-			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
+			boolean allowsPets, boolean amenitiesWifi, boolean amenitiesPool) {
 		this.listingId = listingId;
 		this.address = address;
-		this.description = description;
+		this.beds = beds;
 		this.distanceFromRussellHouse = distanceFromRussellHouse;
 		this.price = price;
 		this.available = available;
@@ -35,7 +35,7 @@ public class Listing {
 		this.amenitiesFurniture = amenitiesFurniture;
 		this.amenitiesPatio = amenitiesPatio;
 		this.amenitiesDishwasher = amenitiesDishwasher;
-		this.amenitiesFireplace = amenitiesFireplace;
+		this.allowsPets = allowsPets;
 		this.amenitiesWifi = amenitiesWifi;
 		this.amenitiesPool = amenitiesPool;
 	}
@@ -99,15 +99,15 @@ public class Listing {
 	 /**
 	  * @return the description
 	  */
-	 public String getDescription() {
-		 return description;
+	 public long getBeds() {
+		 return beds;
 	 }
 
 	 /**
 	  * @param description the description to set
 	  */
-	 public void setDescription(String description) {
-		 this.description = description;
+	 public void setBeds(long Beds) {
+		 this.beds = Beds;
 	 }
 
 	 /**
@@ -225,15 +225,15 @@ public class Listing {
 	 /**
 	  * @return the amenitiesFireplace
 	  */
-	 public boolean isAmenitiesFireplace() {
-		 return amenitiesFireplace;
+	 public boolean doesAllowPets() {
+		 return allowsPets;
 	 }
 
 	 /**
 	  * @param amenitiesFireplace the amenitiesFireplace to set
 	  */
-	 public void setAmenitiesFireplace(boolean amenitiesFireplace) {
-		 this.amenitiesFireplace = amenitiesFireplace;
+	 public void setAllowPets(boolean allowsPets) {
+		 this.allowsPets = allowsPets;
 	 }
 
 	 /**
@@ -288,12 +288,12 @@ public class Listing {
 	 public void printListing() {
 			System.out.println("Listing ID: " +getListingId());
 			System.out.println("Address: " +getAddress());
-			System.out.println("Description: " +getDescription());
+			System.out.println("Beds: " +getBeds());
 			System.out.println("Distance from Russell House: " +getDistanceFromRussellHouse() + " miles");
 			System.out.println("Price: $" +getPrice() + " per month");
 			System.out.println("Is Available: " +isAvailable());
-			System.out.println("Has Washer: " +isAmenitiesDishwasher());
-			System.out.println("Has Fireplace: " +isAmenitiesFireplace());
+			System.out.println("Has Washer and Dryer: " +isAmenitiesWasher());
+			System.out.println("Allows pets: " +doesAllowPets());
 			System.out.println("Has WiFi: " +isAmenitiesWifi());
 			System.out.println("Has Pool: " +isAmenitiesPool());
 			System.out.println();

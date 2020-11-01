@@ -1,8 +1,10 @@
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
-public class Platform {
+public class Platform extends DataConstants{
 	// Login user????
 	static User user;
 	static Leasee leasee;
@@ -30,7 +32,7 @@ public class Platform {
 			}
 		}
 		if (guest) {
-			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings");
+			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings\n" + "5. Sign a Lease");
 			switch (scan.nextInt()) {
 			case 1:
 				login();
@@ -43,6 +45,9 @@ public class Platform {
 				break;
 			case 4:
 				searchListings();
+				break;
+			case 5:
+				signLease();
 				break;
 			default:
 				System.out.println("Invalid entry please try again.");
@@ -205,82 +210,90 @@ public class Platform {
 		case 2:
 			// Search by amentities
 			// Need enum support
-			System.out.println("Please enter an amenitity you wish to search for");
-			ArrayList<Listing> refinedListings = listings.getListings();
-			System.out.println("Do you want a washer? (y/n)");
+			ArrayList<Listing> refinedListings = listingList;
+			System.out.println("How many beds do you want");
+			long beds = scan.nextLong();
+			for(int i = 0; i < listingList.size(); i++) {
+				if(!(beds == listingList.get(i).getBeds()))
+					refinedListings.remove(listingList.get(i));
+			}
+			System.out.println("Do you want a washer and dryer? (y/n)");
+			scan.nextLine();
 			String washerStr = scan.nextLine();
-			if(!(washerStr.equalsIgnoreCase("y") || washerStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesWasher()) {
-						refinedListings.remove(listing);
+			if(!(washerStr.equalsIgnoreCase("n") || washerStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesWasher()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			}
 			System.out.println("Do you want AC? (y/n)");
 			String ACStr = scan.nextLine();
-			if(!(ACStr.equalsIgnoreCase("y") || ACStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesAC()) {
-						refinedListings.remove(listing);
+			if(!(ACStr.equalsIgnoreCase("n") || ACStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesAC()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			}    	
 			System.out.println("Do you want furniture? (y/n)");
 			String furnitureStr = scan.nextLine();
-			if(!(furnitureStr.equalsIgnoreCase("y") || furnitureStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesFurniture()) {
-						refinedListings.remove(listing);
+			if(!(furnitureStr.equalsIgnoreCase("n") || furnitureStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesFurniture()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			}
 			System.out.println("Do you want a patio? (y/n)");
 			String patioStr = scan.nextLine();
-			if(!(patioStr.equalsIgnoreCase("y") || patioStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesPatio()) {
-						refinedListings.remove(listing);
+			if(!(patioStr.equalsIgnoreCase("n") || patioStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesPatio()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			}
 			System.out.println("Do you want a dishwasher? (y/n)");
 			String dishwasherStr = scan.nextLine();
-			if(!(dishwasherStr.equalsIgnoreCase("y") || dishwasherStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesDishwasher()) {
-						refinedListings.remove(listing);
+			if(!(dishwasherStr.equalsIgnoreCase("n") || dishwasherStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesDishwasher()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			} 
-			System.out.println("Do you want a fireplace? (y/n)");
-			String FirePlaceStr = scan.nextLine();
-			if(!(FirePlaceStr.equalsIgnoreCase("y") || FirePlaceStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesFireplace()) {
-						refinedListings.remove(listing);
+			System.out.println("Do you want a place that allows pets? (y/n)");
+			String AllowsPets = scan.nextLine();
+			if(!(AllowsPets.equalsIgnoreCase("n") || AllowsPets.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).doesAllowPets()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			} 
 			System.out.println("Do you want Wi-Fi? (y/n)");
 			String WiFiStr = scan.nextLine();
-			if(!(WiFiStr.equalsIgnoreCase("y") || WiFiStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesFurniture()) {
-						refinedListings.remove(listing);
+			if(!(WiFiStr.equalsIgnoreCase("n") || WiFiStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesWifi()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			} 
 			System.out.println("Do you want a pool? (y/n)");
 			String poolStr = scan.nextLine();
-			if(!(poolStr.equalsIgnoreCase("y") || poolStr.equalsIgnoreCase("yes"))) {
-				for(Listing listing : refinedListings) {
-					if(listing.isAmenitiesFurniture()) {
-						refinedListings.remove(listing);
+			if(!(poolStr.equalsIgnoreCase("n") || poolStr.equalsIgnoreCase("no"))) {
+				for(int i = 0; i < refinedListings.size(); i++) {
+					if(!refinedListings.get(i).isAmenitiesPool()) {
+						refinedListings.remove(listingList.get(i));
 					}
 				}
 			}
-			for(Listing listing : refinedListings) {
-				listing.printListing();
+			if(refinedListings.size() == 0)
+				System.out.println("No matching results");
+			for(int i = 0; i < refinedListings.size(); i++) {
+				refinedListings.get(i).printListing();
 			}
 			break;
 		case 3:
@@ -314,7 +327,7 @@ public class Platform {
 
 	public static void viewFavoriteList() {
 		for (Listing listing : leasee.getFavoriteListings()) {
-			System.out.println(listing.getLandlordId() + " | " + listing.getDescription());
+			System.out.println(listing.getLandlordId());
 		}
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter any key to return back to the main page");
@@ -325,10 +338,10 @@ public class Platform {
 	public static void viewListing(long listingId) {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
-				System.out.println("Description: " + listing.getDescription() + "\nAddress:" + listing.getAddress()
+				System.out.println("Beds: " + listing.getBeds() + "\nAddress:" + listing.getAddress()
 				+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
 				+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
-				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.isAmenitiesFireplace() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
+				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.doesAllowPets() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
 				for (String review : listing.getReviewList()) {
 					System.out.println(review);
 				}
@@ -478,8 +491,8 @@ public class Platform {
 		if(scan.nextLine().equalsIgnoreCase("y")) {
 			System.out.println("What is the address?");
 			String address = scan.nextLine();
-			System.out.println("What is the description?");
-			String description = scan.nextLine();
+			System.out.println("How many Beds?");
+			long beds = scan.nextLong();
 			System.out.println("What is the distance from Russell House?");
 			double distanceFromRussellHouse = scan.nextDouble();
 			System.out.println("What is the monthly price?");
@@ -488,10 +501,10 @@ public class Platform {
 			String availableStr = scan.nextLine();
 			scan.nextLine();
 			boolean available;
-			if(availableStr.equalsIgnoreCase("y") || availableStr.equalsIgnoreCase("yes"))
-				available=true;
-			else {
+			if(availableStr.equalsIgnoreCase("n") || availableStr.equalsIgnoreCase("no"))
 				available=false;
+			else {
+				available=true;
 			}
 			System.out.println("Does the unit have a washer? (y/n)");
 			String washerStr = scan.nextLine();
@@ -566,30 +579,37 @@ public class Platform {
 				amenitiesPool=false;
 			} 
 			//Listings.getInstance();
-			landlord.postListing(0,  address,  description,  distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
+			listingList.add(new Listing(listingList.size(),  address,  beds,  distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
-					amenitiesFireplace,  amenitiesWifi,  amenitiesPool);  
+					amenitiesFireplace,  amenitiesWifi,  amenitiesPool));  
 		}
 	}
 
 	public static void signLease() {
 		Scanner scan = new Scanner(System.in);
-		if(user.getType().equalsIgnoreCase("leasee")) {
-			System.out.println("Please enter the property ID that you are interested in");
-			long ID = scan.nextLong();
-			for(int i = 0; i < listingList.size(); i++) {
-				if(ID == listingList.get(i).getListingId()) {
-					System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
-					scan.nextLine();
-					String response = scan.nextLine();
-					if(response.equalsIgnoreCase("y")) {
-						Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
-						String lease = "On " + l1.getDate() + " " + landlord.getFirstName() + " " + landlord.getLastName() + " agreed to lease " 
-								+ l1.getAddress() + " to " + leasee.getFirstName() + " " + leasee.getLastName() + " for $" + listingList.get(i).getPrice() + " per month";
-						DataWriter.createFile(lease);
+		if(guest = false) {
+			if(user.getType().equalsIgnoreCase("leasee")) {
+				System.out.println("Please enter the property ID that you are interested in");
+				long ID = scan.nextLong();
+				for(int i = 0; i < listingList.size(); i++) {
+					if(ID == listingList.get(i).getListingId()) {
+						System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
+						scan.nextLine();
+						String response = scan.nextLine();
+						if(response.equalsIgnoreCase("y")) {
+							Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
+							String lease = "This lease Agreement is made and entered on " + l1.getDate() + " by and between " + listingList.get(i).getLandlordId() + " and " 
+									+ leasee.getFirstName() + " " + leasee.getLastName() + " " + LEASEPT1 + " " + listingList.get(i).getBeds() + " bedrooms and" + listingList.get(i).getBeds() + " bathrooms, located at " + listingList.get(i).getAddress() + " 29208.  "
+									+ LEASEPT2 + " 11/1/20" + " to " + "11/1/21. \r\n" + "\r\n4.  Rent. The Tenant will pay $" + listingList.get(i).getPrice() + " each month on the first of the month.\r\n \r\n5.  Payment should be sent to: " + landlord.getAddress() + "\r\n \r\n6.  Damages. Charges will be billed to the client for damaged property, up to $5000"
+									+ "\r\n \r\n7.  Signatures\n" + LEASESIGN + leasee.getFirstName() + " " + leasee.getLastName() + LEASESIGN + listingList.get(i).getLandlordId();
+							DataWriter.createFile(lease);
+						}
 					}
 				}
 			}
+		}
+		else {
+			System.out.println("You are not signed in!");
 		}
 	}
 	// Leases
