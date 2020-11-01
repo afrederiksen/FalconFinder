@@ -496,7 +496,7 @@ public class Platform extends DataConstants{
 			double distanceFromRussellHouse = scan.nextDouble();
 			System.out.println("What is the monthly price?");
 			double price = scan.nextDouble();
-			System.out.println("How many are available? (y/n)");
+			System.out.println("How many are available?");
 			long available = scan.nextLong();
 			scan.nextLine();
 			System.out.println("Does the unit have a washer/dryer? (y/n)");
@@ -544,7 +544,7 @@ public class Platform extends DataConstants{
 			else {
 				amenitiesDishwasher=false;
 			} 
-			System.out.println("Does the unit have a fireplace? (y/n)");
+			System.out.println("Is the unit pet friendly? (y/n)");
 			String FirePlaceStr = scan.nextLine();
 			boolean amenitiesFireplace;
 			if(FirePlaceStr.equalsIgnoreCase("y") || FirePlaceStr.equalsIgnoreCase("yes")) {
@@ -575,6 +575,7 @@ public class Platform extends DataConstants{
 			listingList.add(new Listing(listingList.size()+1,  address,  beds, bathrooms, distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
 					amenitiesFireplace,  amenitiesWifi,  amenitiesPool));  
+			System.out.println("Your listing has been added!");
 		}
 	}
 

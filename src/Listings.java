@@ -41,6 +41,7 @@ public class Listings {
 			System.out.println("Distance from Russell House: " +listingList.get(i).getDistanceFromRussellHouse() + " miles");
 			System.out.println("Price: $" +listingList.get(i).getPrice() + " per month");
 			System.out.println("Is Furnished: " +listingList.get(i).isAmenitiesFurniture());
+			System.out.println("Has a patio: " +listingList.get(i).isAmenitiesPatio());
 			System.out.println("Has a gym: " +listingList.get(i).isAmenitiesAC());
 			System.out.println("Has Washer and Dryer: " +listingList.get(i).isAmenitiesWasher());
 			System.out.println("Allows Pets: " +listingList.get(i).doesAllowPets());
