@@ -26,7 +26,7 @@ public class Platform {
  * Leasee: When a user has the type "Leasee" They can Search listings, View leases, View favorite listings, Review listings, Manage account, and logout.
  * Landlord: When a user has the type "Landlord" They can view listings, view leases, manage account, and logout 
  */
-	public static void mainStage() {
+	private static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
 			System.out.println("Guest view:\n" + "1. Login\n" + "2. Register\n" + "3. View listings\n" + "4. Search listings");
@@ -110,7 +110,7 @@ public class Platform {
  * Checks if the user is a guest (avoid repeat logins)
  * Takes username and password and checks the user list, determines their type ands then creates the respective object (leasee/landlord)
  */
-	public static void login() {
+	private static void login() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
 			System.out.println("Username:");
@@ -140,7 +140,7 @@ public class Platform {
 /**
  * Take user information, confirms password and creates a user on the user list.
  */
-	public static void register() {
+	private static void register() {
 		boolean notDone = true;
 		if (guest) {
 			Scanner scan = new Scanner(System.in);
@@ -181,7 +181,7 @@ public class Platform {
 /**
  * Sets guest to true and sets the user object to null
  */
-	public static void logout() {
+	private static void logout() {
 		if (!guest) {
 			user = null;
 			guest = true;
@@ -197,7 +197,7 @@ public class Platform {
 /**
  * Search listings has searching by address, ammentities, price, distance from russel house, and description search
  */
-	public static void searchListings() {
+	private static void searchListings() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Search Listings:\n1. Search by address\n2. Seach by ammenties\n3. Search by price\n4. Search by distance from Russel House\n5. Search by description \n9. Return to main menu\n");
 		String searchTerm;
@@ -333,7 +333,7 @@ public class Platform {
 /**
  * Calls user's favorite list and prints out information about them
  */
-	public static void viewFavoriteList() {
+	private static void viewFavoriteList() {
 		for (Listing listing : leasee.getFavoriteListings()) {
 			listing.printListing();
 		}
@@ -347,7 +347,7 @@ public class Platform {
  * View listing prints out information specific to the listingID call
  * @param listingId
  */
-	public static void viewListing(long listingId) {
+	private static void viewListing(long listingId) {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
 				System.out.println("Description: " + listing.getDescription() + "\nAddress:" + listing.getAddress()
@@ -371,7 +371,7 @@ public class Platform {
 /**
  * View all the listings
  */
-	public static void viewListings() {
+	private static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
 		if(guest) {
@@ -385,7 +385,7 @@ public class Platform {
 /**
  * Review the listings
  */
-	public static void reviewListings() {
+	private static void reviewListings() {
 		System.out.println("Which of the following properties do you wish to review?");
 		fetchLeases(0, leasee.getLeases().size());
 		// Implement user menu
@@ -393,7 +393,7 @@ public class Platform {
 /**
  * Manage account allows for email and password changes and account deletion
  */
-	public static void manageAccount() {
+	private static void manageAccount() {
 		{
 			Scanner scan = new Scanner(System.in);
 
@@ -510,7 +510,7 @@ public class Platform {
  */
 
 
-	public static void postListing() {
+	private static void postListing() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Create a listing!\n if you wish to continue press y");
 		if(scan.nextLine().equalsIgnoreCase("y")) {
@@ -613,7 +613,7 @@ public class Platform {
 	/**
 	 * View leases method, prints it in user friendly pagination
 	 */
-	public static void viewLeases() {
+	private static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
 			System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
