@@ -177,7 +177,7 @@ public class Platform {
 
 	public static void searchListings() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Search Listings:\n1. Search by address\n2. Seach by ammenties\n3. Search by price\n4. Search by distance from Russel House\n5. Search by description 9. Return to main menu\n");
+		System.out.println("Search Listings:\n1. Search by address\n2. Seach by ammenties\n3. Search by price\n4. Search by distance from Russel House\n5. Search by description \n9. Return to main menu\n");
 		String searchTerm;
 		Double searchVal;
 		switch (scan.nextInt()) {
@@ -192,8 +192,6 @@ public class Platform {
 			}
 			break;
 		case 2:
-			// Search by amentities
-			// Need enum support
 			System.out.println("Please enter an amenitity you wish to search for");
 			ArrayList<Listing> refinedListings = listings.getListings();
 			System.out.println("Do you want a washer? (y/n)");
@@ -396,7 +394,7 @@ public class Platform {
 							}
 						}
 					} else {
-						Platform.mainStage();
+						mainStage();
 					}
 					break;
 				case 3:
@@ -409,7 +407,7 @@ public class Platform {
 					}
 					break;
 				case 9:
-					Platform.mainStage();
+					mainStage();
 					break;
 				default:
 					System.out.println("Invalid entry please try again.");
@@ -462,7 +460,7 @@ public class Platform {
 					}
 					break;
 				case 9:
-					Platform.mainStage();
+					mainStage();
 					break;
 				default:
 					System.out.println("Invalid entry please try again.");
