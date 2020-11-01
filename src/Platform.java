@@ -335,6 +335,9 @@ public class Platform {
 	public static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
+		if(guest) {
+			System.out.println("Note: You must login to lease.");
+		}
 		System.out.println("Enter any key to return back to the main page");
 		if (!scan.nextLine().equalsIgnoreCase(null)) {
 			mainStage();
