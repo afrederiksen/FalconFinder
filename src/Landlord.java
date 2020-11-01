@@ -34,15 +34,6 @@ public class Landlord extends User {
 		return listings;
 	}
 
-	public void printListings() {
-		for(int i = 0; i <= getNumListings(); i++) {
-			if(listings.get(i) != null)
-				System.out.println(listings.get(i).toString());
-			else
-				System.out.println("You suck");
-		}
-	}
-
 	/**
 	 * @param listings the listings to set
 	 */

@@ -180,9 +180,8 @@ public class DataReader extends DataConstants {
 				String leaseeId = (String) leaseJSON.get(LEASE_LEASEE_ID);
 				String date = (String) leaseJSON.get(LEASE_DATE);
 				String address = (String) leaseJSON.get(LEASE_ADDRESS);
-				String duration = (String) leaseJSON.get(LEASE_DURATION);
 
-				leases.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
+				leases.add(new Lease(leaseId, landlordId, leaseeId, date, address));
 			}
 
 			return leases;

@@ -19,6 +19,16 @@ public class Platform {
 
 	public static void mainStage() {
 		Scanner scan = new Scanner(System.in);
+		//default values for Landlord and User
+		for(int i = 0; i < userList.size(); i++) {
+			if(userList.get(i).getType().equalsIgnoreCase("Leasee")) {
+				leasee = new Leasee(userList.get(i).getId(), userList.get(i).getFirstName(), userList.get(i).getLastName(), userList.get(i).getAddress(), userList.get(i).getEmail(), userList.get(i).getPassword(), userList.get(i).getType(), null);
+			}
+			else
+			{
+				landlord = new Landlord(userList.get(i).getId(), userList.get(i).getFirstName(), userList.get(i).getLastName(), userList.get(i).getAddress(), userList.get(i).getEmail(), userList.get(i).getPassword(), userList.get(i).getType());
+			}
+		}
 		if (guest) {
 			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings");
 			switch (scan.nextInt()) {
@@ -40,7 +50,7 @@ public class Platform {
 
 			}
 			if (user != null && user.getType().equalsIgnoreCase("Leasee")) {
-				System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. View leases\n"
+				System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. Sign a lease\n"
 						+ "3. View favorite listings\n" + "4. Review Listings\n"
 						+ "5. Manage Account\n"
 						+ "9. Logout\n");
@@ -49,7 +59,7 @@ public class Platform {
 					searchListings();
 					break;
 				case 2:
-					viewLeases();
+					signLease();
 					break;
 				case 3:
 					viewFavoriteList();
@@ -218,11 +228,11 @@ public class Platform {
 			System.out.println("Do you want furniture? (y/n)");
 			String furnitureStr = scan.nextLine();
 			if(!(furnitureStr.equalsIgnoreCase("y") || furnitureStr.equalsIgnoreCase("yes"))) {
-			for(Listing listing : refinedListings) {
-				if(listing.isAmenitiesFurniture()) {
-					refinedListings.remove(listing);
+				for(Listing listing : refinedListings) {
+					if(listing.isAmenitiesFurniture()) {
+						refinedListings.remove(listing);
+					}
 				}
-			}
 			}
 			System.out.println("Do you want a patio? (y/n)");
 			String patioStr = scan.nextLine();
@@ -316,8 +326,8 @@ public class Platform {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
 				System.out.println("Description: " + listing.getDescription() + "\nAddress:" + listing.getAddress()
-						+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
-						+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
+				+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
+				+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
 				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.isAmenitiesFireplace() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
 				for (String review : listing.getReviewList()) {
 					System.out.println(review);
@@ -562,6 +572,26 @@ public class Platform {
 		}
 	}
 
+	public static void signLease() {
+		Scanner scan = new Scanner(System.in);
+		if(user.getType().equalsIgnoreCase("leasee")) {
+			System.out.println("Please enter the property ID that you are interested in");
+			long ID = scan.nextLong();
+			for(int i = 0; i < listingList.size(); i++) {
+				if(ID == listingList.get(i).getListingId()) {
+					System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
+					scan.nextLine();
+					String response = scan.nextLine();
+					if(response.equalsIgnoreCase("y")) {
+						Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
+						String lease = "On " + l1.getDate() + " " + landlord.getFirstName() + " " + landlord.getLastName() + " agreed to lease " 
+								+ l1.getAddress() + " to " + leasee.getFirstName() + " " + leasee.getLastName() + " for $" + listingList.get(i).getPrice() + " per month";
+						DataWriter.createFile(lease);
+					}
+				}
+			}
+		}
+	}
 	// Leases
 	public static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
@@ -591,8 +621,6 @@ public class Platform {
 				if (userInput >= 1 && userInput <= 6) {
 					System.out.println(
 							"Property: " + leasee.getLeases().get(startingWindow + (userInput - 1)).getAddress());
-					System.out.println(
-							"Duration: " + leasee.getLeases().get(startingWindow + (userInput - 1)).getDuration());
 					System.out.println("Landlord ID: "
 							+ leasee.getLeases().get(startingWindow + (userInput - 1)).getLandlordId());
 					System.out.println(
@@ -643,8 +671,6 @@ public class Platform {
 				if (userInput >= 1 && userInput <= 6) {
 					System.out.println(
 							"Leasee ID: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getLeaseeId());
-					System.out.println(
-							"Duration: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getDuration());
 					System.out.println("Date Signed: " + landlord.getLeases().get(startingWindow + (userInput - 1)).getDate());
 				} else if (userInput == 7) {
 					if (startingWindow > 6) {
@@ -675,13 +701,13 @@ public class Platform {
 		if(leasee.getType().equalsIgnoreCase("leasee") ) {
 			for (int i = 0; i < howMany; i++) {
 				System.out.println((i + 1) + ". " + leasee.getLeases().get(windowStart + i).getAddress()
-						+ " | " + leasee.getLeases().get(windowStart + i).getDuration());
+						+ " | ");
 			}
 		}
 		else if(landlord.getType().equalsIgnoreCase("landlord") ) {
 			for (int i = 0; i < howMany; i++) {
 				System.out.println((i + 1) + ". " + landlord.getLeases().get(windowStart + i).getLeaseeId()
-						+ " | " + landlord.getLeases().get(windowStart + i).getDuration());
+						+ " | ");
 			}
 		}
 	}

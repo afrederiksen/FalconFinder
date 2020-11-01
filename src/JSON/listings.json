@@ -1,80 +1,84 @@
-{"listings":[
-  {
-    "listingId":1,
-    "address": "2804 Blossom Street, Columbia SC",
-    "description": "A 4 Bed, 3 Bath, 2 story, historic home along blossom street.",
-    "distance_from_russell": 2.5,
-    "type": "Lease",
-    "price": 2400.0,
-    "available": true,
-    "landlordId": "James8",
-    "reviews": [
+{
+    "listings": [
         {
-            "userId": 1,
-            "review": "Great house!",
-            "rating": 5
-        }
-    ],
+            "listingId": 1,
+            "address": "2804 Blossom Street, Columbia SC",
+            "description": "A 4 Bed, 3 Bath, 2 story, historic home along blossom street.",
+            "distance_from_russell": 2.5,
+            "type": "Lease",
+            "price": 2400.0,
+            "available": true,
+            "landlordId": "James8",
+            "reviews": [
+                {
+                    "userId": 1,
+                    "review": "Great house!",
+                    "rating": 5
+                }
+            ],
 
-    "washer": true,
-    "ac": true,
-    "furniture": true,
-    "patio": false,
-    "dishwasher": false,
-    "fireplace": false,
-    "wifi": true,
-    "pool": false
-  },{
-    "listingId":2,
-    "address": "211 Main Street, Columbia SC",
-    "description": "A collection of 2 bedroom apartments nested right next to the campus' engineering building.",
-    "distance_from_russell": 1.2,
-    "type": "Lease",
-    "price": 800.0,
-    "available": true,
-    "landlordId": "Ben38",
-    "reviews": [
-      {
-        "userId": 2,
-        "review": "Could be much better, still cozy.",
-        "rating": 3
-      }
-    ],
-    
-      "washer": true,
-      "ac": true,
-      "furniture": true,
-      "patio": true,
-      "dishwasher": true,
-      "fireplace": false,
-      "wifi": true,
-      "pool": true
-    
-  },{
-    "listingId":3,
-    "address": "270 Bull Street, Columbia SC.",
-    "description": "Quite residential 3 bed 3 bath.",
-    "distance_from_russell": 2.0,
-    "type": "lease",
-    "price": 1600.0,
-    "available": true,
-    "landlordId": "Sarah3",
-    "reviews": [
-      {
-        "userId": 3,
-        "review": "Great home, I've really enjoyed it.",
-        "rating": 4
-      }
-    ],
-    
-      "washer": true,
-      "ac": true,
-      "furniture": true,
-      "patio": true,
-      "dishwasher": true,
-      "fireplace": false,
-      "wifi": true,
-      "pool": false
-    
-  }
-]}
+            "washer": true,
+            "ac": true,
+            "furniture": true,
+            "patio": false,
+            "dishwasher": false,
+            "fireplace": false,
+            "wifi": true,
+            "pool": false
+        },
+        {
+            "listingId": 2,
+            "address": "211 Main Street, Columbia SC",
+            "description": "A collection of 2 bedroom apartments nested right next to the campus' engineering building.",
+            "distance_from_russell": 1.2,
+            "type": "Lease",
+            "price": 800.0,
+            "available": true,
+            "landlordId": "Ben38",
+            "reviews": [
+                {
+                    "userId": 2,
+                    "review": "Could be much better, still cozy.",
+                    "rating": 3
+                }
+            ],
+
+            "washer": true,
+            "ac": true,
+            "furniture": true,
+            "patio": true,
+            "dishwasher": true,
+            "fireplace": false,
+            "wifi": true,
+            "pool": true
+
+        },
+        {
+            "listingId": 3,
+            "address": "270 Bull Street, Columbia SC.",
+            "description": "Quite residential 3 bed 3 bath.",
+            "distance_from_russell": 2.0,
+            "type": "lease",
+            "price": 1600.0,
+            "available": true,
+            "landlordId": "Sarah3",
+            "reviews": [
+                {
+                    "userId": 3,
+                    "review": "Great home, I've really enjoyed it.",
+                    "rating": 4
+                }
+            ],
+
+            "washer": true,
+            "ac": true,
+            "furniture": true,
+            "patio": true,
+            "dishwasher": true,
+            "fireplace": false,
+            "wifi": true,
+            "pool": false
+
+        }
+    ]
+}

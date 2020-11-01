@@ -20,9 +20,8 @@ public class Leases {
     return leaseList;
   }
 
-  public void addLease(int leaseId, String landlordId, String leaseeId, String date, String address,
-      String duration) {
-    leaseList.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
+  public void addLease(int leaseId, String landlordId, String leaseeId, String date, String address) {
+    leaseList.add(new Lease(leaseId, landlordId, leaseeId, date, address));
     DataWriter.saveLeases();
   }
   
