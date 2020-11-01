@@ -6,6 +6,11 @@ import org.json.simple.parser.JSONParser;
 
 public class DataReader extends DataConstants {
 
+	/**
+	 *creates 2 new arrayLists of listings and reviews
+	 *adds reviews of listings to each array respectfully
+	 *returns arrayList of listings
+	*/
 	public static ArrayList<Listing> loadListings() {
 		ArrayList<Listing> listings = new ArrayList<Listing>();
 		ArrayList<Review> reviews = new ArrayList<Review>();
@@ -59,6 +64,12 @@ public class DataReader extends DataConstants {
 
 	}
 
+	
+	/**
+	 *creates an arrayList of users
+	 *fills arrayList with type User
+	 *returns new filled arrayList of users
+	*/
 	public static ArrayList<User> loadUsers() {
 		ArrayList<User> users = new ArrayList<User>();
 
@@ -92,6 +103,12 @@ public class DataReader extends DataConstants {
 
 	}
 
+	
+	/**
+	 *creates an arrayList of leasees
+	 *fills arrayList with type Leasee
+	 *returns new filled arrayList of leasees
+	*/
 	public static ArrayList<Leasee> loadLeasees() {
 		ArrayList<Leasee> leasees = new ArrayList<Leasee>();
 
@@ -129,6 +146,12 @@ public class DataReader extends DataConstants {
 
 	}
 
+	
+	/**
+	 *creates arrayList of landlords
+	 *Fills arrayList with type Landlord
+	 *returns new filled arrayList of landlords
+	*/
 	public static ArrayList<Landlord> loadLandlords() {
 		ArrayList<Landlord> landlords = new ArrayList<Landlord>();
 
@@ -163,6 +186,12 @@ public class DataReader extends DataConstants {
 
 	}
 
+	
+	/**
+	 *creates arrayList of leases
+	 *fills arrayList with type Lease
+	 *returns new filled arrayList
+	*/
 	public static ArrayList<Lease> loadLeases() {
 		ArrayList<Lease> leases = new ArrayList<Lease>();
 
