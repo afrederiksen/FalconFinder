@@ -4,9 +4,10 @@ public class Listing {
 	private long listingId;
 	private String address;
 	private long beds;
+	private long bathrooms;
 	private double distanceFromRussellHouse;
 	private double price;
-	private boolean available;
+	private long available;
 	private String landlordId;
 	private boolean amenitiesWasher;
 	private boolean amenitiesAC;
@@ -19,13 +20,14 @@ public class Listing {
 	private ArrayList<String> ReviewList = new ArrayList<String>();
 	private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
-	public Listing(long listingId, String address, long beds, double distanceFromRussellHouse,
-			double price, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
+	public Listing(long listingId, String address, long beds, long bathrooms, double distanceFromRussellHouse,
+			double price, long available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
 			boolean allowsPets, boolean amenitiesWifi, boolean amenitiesPool) {
 		this.listingId = listingId;
 		this.address = address;
 		this.beds = beds;
+		this.bathrooms = bathrooms;
 		this.distanceFromRussellHouse = distanceFromRussellHouse;
 		this.price = price;
 		this.available = available;
@@ -127,14 +129,14 @@ public class Listing {
 	 /**
 	  * @return the available
 	  */
-	 public boolean isAvailable() {
+	 public long isAvailable() {
 		 return available;
 	 }
 
 	 /**
 	  * @param available the available to set
 	  */
-	 public void setAvailable(boolean available) {
+	 public void setAvailable(long available) {
 		 this.available = available;
 	 }
 
@@ -285,13 +287,22 @@ public class Listing {
 		 Rating = rating;
 	 }
 	 
+	 public long getBathrooms() {
+		 return bathrooms;
+	 }
+	 
+	 public void setBathrooms(long Bathrooms) {
+		 bathrooms = Bathrooms;
+	 }
+	 
 	 public void printListing() {
 			System.out.println("Listing ID: " +getListingId());
 			System.out.println("Address: " +getAddress());
 			System.out.println("Beds: " +getBeds());
+			System.out.println("Bathrooms: " +getBathrooms());
 			System.out.println("Distance from Russell House: " +getDistanceFromRussellHouse() + " miles");
 			System.out.println("Price: $" +getPrice() + " per month");
-			System.out.println("Is Available: " +isAvailable());
+			System.out.println("Available: " +isAvailable());
 			System.out.println("Has Washer and Dryer: " +isAmenitiesWasher());
 			System.out.println("Allows pets: " +doesAllowPets());
 			System.out.println("Has WiFi: " +isAmenitiesWifi());

@@ -1,7 +1,4 @@
-
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Scanner;
 
 public class Platform extends DataConstants{
@@ -340,7 +337,7 @@ public class Platform extends DataConstants{
 			if (listing.getListingId() == listingId) {
 				System.out.println("Beds: " + listing.getBeds() + "\nAddress:" + listing.getAddress()
 				+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
-				+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
+				+ listing.getRating() + "Available:" + listing.isAvailable() +  "\nAmenities:");
 				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.doesAllowPets() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
 				for (String review : listing.getReviewList()) {
 					System.out.println(review);
@@ -489,24 +486,20 @@ public class Platform extends DataConstants{
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Create a listing!\n if you wish to continue press y");
 		if(scan.nextLine().equalsIgnoreCase("y")) {
-			System.out.println("What is the address?");
+			System.out.println("What is the address/title?");
 			String address = scan.nextLine();
 			System.out.println("How many Beds?");
 			long beds = scan.nextLong();
+			System.out.println("How many Bathrooms?");
+			long bathrooms = scan.nextLong();
 			System.out.println("What is the distance from Russell House?");
 			double distanceFromRussellHouse = scan.nextDouble();
 			System.out.println("What is the monthly price?");
 			double price = scan.nextDouble();
-			System.out.println("Is it available? (y/n)");
-			String availableStr = scan.nextLine();
+			System.out.println("How many are available? (y/n)");
+			long available = scan.nextLong();
 			scan.nextLine();
-			boolean available;
-			if(availableStr.equalsIgnoreCase("n") || availableStr.equalsIgnoreCase("no"))
-				available=false;
-			else {
-				available=true;
-			}
-			System.out.println("Does the unit have a washer? (y/n)");
+			System.out.println("Does the unit have a washer/dryer? (y/n)");
 			String washerStr = scan.nextLine();
 			boolean amenitiesWasher;
 			if(washerStr.equalsIgnoreCase("y") || washerStr.equalsIgnoreCase("yes")) {
@@ -515,7 +508,7 @@ public class Platform extends DataConstants{
 			else {
 				amenitiesWasher=false;
 			}
-			System.out.println("Does the unit have AC? (y/n)");
+			System.out.println("Does the unit have a gym? (y/n)");
 			String ACStr = scan.nextLine();
 			boolean amenitiesAC;
 			if(ACStr.equalsIgnoreCase("y") || ACStr.equalsIgnoreCase("yes")) {
@@ -579,7 +572,7 @@ public class Platform extends DataConstants{
 				amenitiesPool=false;
 			} 
 			//Listings.getInstance();
-			listingList.add(new Listing(listingList.size(),  address,  beds,  distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
+			listingList.add(new Listing(listingList.size()+1,  address,  beds, bathrooms, distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
 					amenitiesFireplace,  amenitiesWifi,  amenitiesPool));  
 		}

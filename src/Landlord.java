@@ -55,11 +55,11 @@ public class Landlord extends User {
 		this.numListings = numListings;
 	}
 
-	public void postListing(int id, String address, long beds, double DistanceFromRuss,
-			double price, boolean available, String landlordID, boolean amenitiesWasher, boolean amenitiesAC,
+	public void postListing(int id, String address, long beds, long bathrooms, double DistanceFromRuss,
+			double price, long available, String landlordID, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
 			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
-		Listing listing = new Listing(id, address, beds, DistanceFromRuss, price, available,
+		Listing listing = new Listing(id, address, beds, bathrooms, DistanceFromRuss, price, available,
 				landlordID, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
 				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool);
 		for (int i = 0; i <= getNumListings(); i++) {

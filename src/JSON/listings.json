@@ -4,10 +4,11 @@
             "listingId": 1,
             "address": "2804 Blossom Street, Columbia SC",
             "beds": 4,
+            "bathrooms": 3,
             "distance_from_russell": 2.5,
             "type": "Lease",
             "price": 2400.0,
-            "available": true,
+            "available": 1,
             "landlordId": "James Newman",
             "reviews": [
                 {
@@ -30,10 +31,11 @@
             "listingId": 2,
             "address": "211 Main Street, Columbia SC",
             "beds": 2,
+            "bathrooms": 2,
             "distance_from_russell": 1.2,
             "type": "Lease",
             "price": 800.0,
-            "available": true,
+            "available": 6,
             "landlordId": "Ben Fuller",
             "reviews": [
                 {
@@ -57,10 +59,11 @@
             "listingId": 3,
             "address": "270 Bull Street, Columbia SC.",
             "beds": 3,
+            "bathrooms": 3,
             "distance_from_russell": 2.0,
             "type": "lease",
             "price": 1600.0,
-            "available": true,
+            "available": 2,
             "landlordId": "Sarah Sullinger",
             "reviews": [
                 {
@@ -84,10 +87,11 @@
             "listingId": 4,
             "address": "2209 Blossom Street, Columbia SC",
             "beds": 1,
+            "bathrooms": 1,
             "distance_from_russell": 2.8,
             "type": "Lease",
             "price": 850.0,
-            "available": true,
+            "available": 4,
             "landlordId": "James Newman",
             "reviews": [
                 {
@@ -110,10 +114,11 @@
             "listingId": 5,
             "address": "304 Main Street, Columbia SC",
             "beds": 1,
+            "bathrooms": 1,
             "distance_from_russell": 1.1,
             "type": "Lease",
             "price": 700.0,
-            "available": true,
+            "available": 5,
             "landlord": "Ben Fuller",
             "reviews": [
                 {
@@ -136,10 +141,11 @@
             "listingId": 6,
             "address": "285 Bull Street, Columbia SC",
             "beds": 1,
+            "bathrooms" : 1,
             "distance_from_russell": 2.2,
             "type": "Lease",
             "price": 900.0,
-            "available": true,
+            "available": 2,
             "landlordId": "Sarah Sullinger",
             "reviews": [
                 {
