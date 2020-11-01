@@ -12,15 +12,24 @@ public class Platform {
 	static Users users = new Users();
 	static ArrayList<Listing> listingList = listings.getListings();
 	static ArrayList<User> userList = users.getUsers();
-
+/**
+ * Main runner (calls mainstage)
+ * @param args
+ */
 	public static void main(String[] args) {
 		mainStage();
 	}
-
+/**
+ * Mainstage uses three role based UI interactions.
+ * Each feature calls another method which also uses role based calls.
+ * Guest: When a user is not logged in. They can Login, Register, View Listings, and Search Listings
+ * Leasee: When a user has the type "Leasee" They can Search listings, View leases, View favorite listings, Review listings, Manage account, and logout.
+ * Landlord: When a user has the type "Landlord" They can view listings, view leases, manage account, and logout 
+ */
 	public static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
-			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings");
+			System.out.println("Guest view:\n" + "1. Login\n" + "2. Register\n" + "3. View listings\n" + "4. Search listings");
 			switch (scan.nextInt()) {
 			case 1:
 				login();
@@ -40,9 +49,9 @@ public class Platform {
 
 			}
 			if (user != null && user.getType().equalsIgnoreCase("Leasee")) {
-				System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. View leases\n"
-						+ "3. View favorite listings\n" + "4. Review Listings\n"
-						+ "5. Manage Account\n"
+				System.out.println("Leasee view:\n" + "1. Search listings\n" + "2. View leases\n"
+						+ "3. View favorite listings\n" + "4. Review listings\n"
+						+ "5. Manage account\n"
 						+ "9. Logout\n");
 				switch (scan.nextInt()) {
 				case 1:
@@ -68,8 +77,8 @@ public class Platform {
 					mainStage();
 				}
 			} else if (user != null && user.getType().equalsIgnoreCase("Landlord")) {
-				System.out.println("Landlord View:\n" + "1. View listings\n" + "2. Post listings\n"
-						+ "3. Manage Account\n" + "9. Logout\n");
+				System.out.println("Landlord view:\n" + "1. View listings\n" + "2. Post listings\n"
+						+ "3. View leases\n" +  "+4. Manage account\n9. Logout\n");
 				switch (scan.nextInt()) {
 				case 1:
 					viewListings();
@@ -78,6 +87,9 @@ public class Platform {
 					postListing();
 					break;
 				case 3:
+					viewLeases();
+					break;
+				case 4:
 					manageAccount();
 					break;
 				case 9:
@@ -93,7 +105,11 @@ public class Platform {
 			}
 		}
 	}
-
+/**
+ * Login method:
+ * Checks if the user is a guest (avoid repeat logins)
+ * Takes username and password and checks the user list, determines their type ands then creates the respective object (leasee/landlord)
+ */
 	public static void login() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
@@ -121,7 +137,9 @@ public class Platform {
 		}
 		guest = false;
 	}
-
+/**
+ * Take user information, confirms password and creates a user on the user list.
+ */
 	public static void register() {
 		boolean notDone = true;
 		if (guest) {
@@ -160,7 +178,9 @@ public class Platform {
 			System.out.println("You are already logged in!");
 		}
 	}
-
+/**
+ * Sets guest to true and sets the user object to null
+ */
 	public static void logout() {
 		if (!guest) {
 			user = null;
@@ -174,7 +194,9 @@ public class Platform {
 		// Return to main stage
 		mainStage();
 	}
-
+/**
+ * Search listings has searching by address, ammentities, price, distance from russel house, and description search
+ */
 	public static void searchListings() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Search Listings:\n1. Search by address\n2. Seach by ammenties\n3. Search by price\n4. Search by distance from Russel House\n5. Search by description \n9. Return to main menu\n");
@@ -308,10 +330,12 @@ public class Platform {
 			searchListings();
 		}
 	}
-
+/**
+ * Calls user's favorite list and prints out information about them
+ */
 	public static void viewFavoriteList() {
 		for (Listing listing : leasee.getFavoriteListings()) {
-			System.out.println(listing.getLandlordId() + " | " + listing.getDescription());
+			listing.printListing();
 		}
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter any key to return back to the main page");
@@ -319,6 +343,10 @@ public class Platform {
 			mainStage();
 		}
 	}
+/**
+ * View listing prints out information specific to the listingID call
+ * @param listingId
+ */
 	public static void viewListing(long listingId) {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
@@ -333,12 +361,16 @@ public class Platform {
 				System.out.println(
 						"Type \"Lease\" if you wish to lease this property or enter any key to return back to the main page");
 				if (!scan.nextLine().equalsIgnoreCase("Lease")) {
+				//This is where we should execute the lease call...
 					mainStage();
 				}
 			}
 		}
 
 	}
+/**
+ * View all the listings
+ */
 	public static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
@@ -350,13 +382,17 @@ public class Platform {
 			mainStage();
 		}
 	}
-
+/**
+ * Review the listings
+ */
 	public static void reviewListings() {
 		System.out.println("Which of the following properties do you wish to review?");
 		fetchLeases(0, leasee.getLeases().size());
 		// Implement user menu
 	}
-
+/**
+ * Manage account allows for email and password changes and account deletion
+ */
 	public static void manageAccount() {
 		{
 			Scanner scan = new Scanner(System.in);
@@ -469,7 +505,9 @@ public class Platform {
 			}    	  
 		}
 	}
-
+/**
+ * Post a listing using address, description, distance from Russell house, monthly rent price, availability, and all of the amenities
+ */
 
 
 	public static void postListing() {
@@ -572,7 +610,9 @@ public class Platform {
 		}
 	}
 
-	// Leases
+	/**
+	 * View leases method, prints it in user friendly pagination
+	 */
 	public static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
@@ -680,7 +720,13 @@ public class Platform {
 			}
 		}
 	}
-
+/**
+ * Fetches the leases
+ * For leasees, prints address and duration
+ * For landlords, prints out leaseID and duration
+ * @param windowStart
+ * @param howMany
+ */
 	private static void fetchLeases(int windowStart, int howMany) {
 		if(leasee.getType().equalsIgnoreCase("leasee") ) {
 			for (int i = 0; i < howMany; i++) {
