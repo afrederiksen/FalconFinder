@@ -178,7 +178,7 @@ public class Platform {
 	public static void searchListings() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Search Listings:\n" + "1. Search by address\n" + "2. Seach by ammenties\n"
-				+ "3. Search by price\n" + "4. Search by distance from Russ\n" + "9. Return to main menu\n");
+				+ "3. Search by price\n" + "4. Search by distance from Russel House\n" + "9. Return to main menu\n");
 		String searchTerm;
 		Double searchPrice;
 		switch (scan.nextInt()) {
