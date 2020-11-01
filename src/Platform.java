@@ -177,10 +177,9 @@ public class Platform {
 
 	public static void searchListings() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Search Listings:\n" + "1. Search by address\n" + "2. Seach by ammenties\n"
-				+ "3. Search by price\n" + "4. Search by distance from Russel House\n" + "9. Return to main menu\n");
+		System.out.println("Search Listings:\n1. Search by address\n2. Seach by ammenties\n3. Search by price\n4. Search by distance from Russel House\n5. Search by description 9. Return to main menu\n");
 		String searchTerm;
-		Double searchPrice;
+		Double searchVal;
 		switch (scan.nextInt()) {
 		case 1:
 			// Search by title
@@ -277,9 +276,9 @@ public class Platform {
 			// Search by price;
 			System.out.println("Please enter the max price you wish to search by");
 			scan.nextLine();
-			searchPrice = scan.nextDouble();
+			searchVal = scan.nextDouble();
 			for(int i = 0; i < listingList.size(); i++) {
-				if(searchPrice >= listingList.get(i).getPrice())
+				if(searchVal >= listingList.get(i).getPrice())
 					listingList.get(i).printListing();
 			}
 			break;
@@ -287,10 +286,20 @@ public class Platform {
 			// Search by distance
 			System.out.println("Please enter the max miles from Russ you wish to search by");
 			scan.nextLine();
-			searchPrice = scan.nextDouble();
+			searchVal = scan.nextDouble();
 			for(int i = 0; i < listingList.size(); i++) {
-				if(searchPrice >= listingList.get(i).getDistanceFromRussellHouse())
+				if(searchVal >= listingList.get(i).getDistanceFromRussellHouse())
 					listingList.get(i).printListing();
+			}
+			break;
+		case 5:
+			System.out.println("Enter search terms:");
+			scan.nextLine();
+			String searchDesc = scan.nextLine();
+			for(Listing listing : listingList) {
+				if(listing.getDescription().contains(searchDesc)) {
+					listing.printListing();
+				}
 			}
 			break;
 		case 9:
