@@ -67,10 +67,10 @@ public class Landlord extends User {
 	public void postListing(int id, String address, String description, double DistanceFromRuss,
 			double price, boolean available, String landlordID, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
-			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
+			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool, ArrayList<Review> reviews) {
 		Listing listing = new Listing(id, address, description, DistanceFromRuss, price, available,
 				landlordID, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
-				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool);
+				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool, reviews);
 		for (int i = 0; i <= getNumListings(); i++) {
 			if (getNumListings() == 0) {
 				listings.add(listing);

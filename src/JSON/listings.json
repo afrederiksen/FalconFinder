@@ -10,7 +10,7 @@
     "landlordId": "James8",
     "reviews": [
         {
-            "userId": 1,
+            "leaseeId": "robbie_white",
             "review": "Great house!",
             "rating": 5
         }
@@ -35,7 +35,7 @@
     "landlordId": "Ben38",
     "reviews": [
       {
-        "userId": 2,
+        "leaseeId": "robbie_white",
         "review": "Could be much better, still cozy.",
         "rating": 3
       }
@@ -61,9 +61,14 @@
     "landlordId": "Sarah3",
     "reviews": [
       {
-        "userId": 3,
+        "leaseeId": "robbie_white",
         "review": "Great home, I've really enjoyed it.",
         "rating": 4
+      },
+      {
+        "leaseeId": "amy_smith",
+        "review": "Great place.",
+        "rating": 5
       }
     ],
     

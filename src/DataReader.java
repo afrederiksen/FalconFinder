@@ -8,7 +8,6 @@ public class DataReader extends DataConstants {
 
 	public static ArrayList<Listing> loadListings() {
 		ArrayList<Listing> listings = new ArrayList<Listing>();
-		ArrayList<Review> reviews = new ArrayList<Review>();
 
 		try {
 			JSONParser parser = new JSONParser();
@@ -23,7 +22,6 @@ public class DataReader extends DataConstants {
 				String address = (String) listingJSON.get(LISTING_ADDRESS);
 				String description = (String) listingJSON.get(LISTING_DESCRIPTION);
 				double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
-				// String type = (String) listingJSON.get(LISTING_TYPE);
 				double price = (double) listingJSON.get("price");
 				boolean available = (boolean) listingJSON.get(LISTING_AVAILABLE);
 				String landlordId = (String) listingJSON.get(LISTING_LANDLORD_ID);
@@ -35,18 +33,21 @@ public class DataReader extends DataConstants {
 				boolean amenitiesFireplace = (boolean) listingJSON.get(LISTING_AMENITIES_FIREPLACE);
 				boolean amenitiesWifi = (boolean) listingJSON.get(LISTING_AMENITIES_WIFI);
 				boolean amenitiesPool = (boolean) listingJSON.get(LISTING_AMENITIES_POOL);
-				/* JSONArray reviewsArray = (JSONArray) jsonobj.get(LISTING_REVIEWS);
-				for (int j = 0; j < reviewsArray.size(); j++) {
-					JSONObject reviewJSON = (JSONObject) reviewsArray.get(i);
-					long userId = (long) reviewJSON.get(LISTING_REVIEWS_USER_ID);
-					String review = (String) reviewJSON.get(LISTING_REVIEWS_REVIEW);
-					long rating = (long) reviewJSON.get(LISTING_REVIEWS_RATING);
-					reviews.add(new Review(userId, review, rating));
+				JSONArray reviewsList = (JSONArray) listingJSON.get(LISTING_REVIEWS);
+				ArrayList<Review> reviews = new ArrayList<Review>();
+				if (reviewsList != null) {
+					for (int j = 0; j < reviewsList.size(); j++) {
+						JSONObject reviewList = (JSONObject) reviewsList.get(j);
+						String leaseeId = (String) reviewList.get(LISTING_REVIEWS_LEASEE_ID);
+						String review = (String) reviewList.get(LISTING_REVIEWS_REVIEW);
+						long rating = (long) reviewList.get(LISTING_REVIEWS_RATING);
+						reviews.add(new Review(leaseeId, review, rating));
+					}
 				}
-*/
+				
 				listings.add(new Listing(listingId, address, description, distanceFromRussell, price,
 						available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
-						amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
+						amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool, reviews));
 			}
 
 			return listings;
@@ -100,7 +101,7 @@ public class DataReader extends DataConstants {
 			FileReader reader = new FileReader(LEASEES_FILE_NAME);
 			Object obj = parser.parse(reader);
 			JSONObject jsonobj = (JSONObject) obj;
-			JSONArray leaseesJSON = (JSONArray) jsonobj.get("listings");
+			JSONArray leaseesJSON = (JSONArray) jsonobj.get("leasees");
 
 			for (int i = 0; i < leaseesJSON.size(); i++) {
 				JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
@@ -112,8 +113,7 @@ public class DataReader extends DataConstants {
 				String password = (String) leaseeJSON.get(LEASEE_PASSWORD);
 				String studentId = (String) leaseeJSON.get(LEASEE_STUDENT_ID);
 				String type = (String) leaseeJSON.get(LEASEE_TYPE);
-				ArrayList<Listing> favoriteListings =
-						(ArrayList<Listing>) leaseeJSON.get(LEASEE_FAVORITE_LISTINGS);
+				ArrayList<Listing> favoriteListings = new ArrayList<Listing>();
 
 				leasees.add(new Leasee(leaseeId, firstName, lastName, address, email, password, type,
 						favoriteListings));
@@ -137,7 +137,7 @@ public class DataReader extends DataConstants {
 			FileReader reader = new FileReader(LANDLORDS_FILE_NAME);
 			Object obj = parser.parse(reader);
 			JSONObject jsonobj = (JSONObject) obj;
-			JSONArray landlordsJSON = (JSONArray) jsonobj.get("listings");
+			JSONArray landlordsJSON = (JSONArray) jsonobj.get("landlords");
 
 			for (int i = 0; i < landlordsJSON.size(); i++) {
 				JSONObject landlordJSON = (JSONObject) landlordsJSON.get(i);

@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
 
-
   public static void saveListings() {
     Listings listingsList = Listings.getInstance();
     ArrayList<Listing> listings = listingsList.getListings();

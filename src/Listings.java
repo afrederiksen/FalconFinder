@@ -24,10 +24,10 @@ public class Listings {
 			double distanceFromRussellHouse, double price, boolean available, String landlordId,
 			boolean amenitiesWasher, boolean amenitiesAC, boolean amenitiesFurniture,
 			boolean amenitiesPatio, boolean amenitiesDishwasher, boolean amenitiesFireplace,
-			boolean amenitiesWifi, boolean amenitiesPool) {
+			boolean amenitiesWifi, boolean amenitiesPool, ArrayList<Review> reviews) {
 		listingList.add(new Listing(listingId, address, description, distanceFromRussellHouse, price,
 				available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
-				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
+				amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool, reviews));
 		DataWriter.saveListings();
 	}
 

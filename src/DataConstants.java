@@ -16,7 +16,7 @@ public abstract class DataConstants {
   protected static final String LISTING_AMENITIES_FIREPLACE = "fireplace";
   protected static final String LISTING_AMENITIES_WIFI = "wifi";
   protected static final String LISTING_AMENITIES_POOL = "pool";
-  protected static final String LISTING_REVIEWS_USER_ID = "userId";
+  protected static final String LISTING_REVIEWS_LEASEE_ID = "leaseeId";
   protected static final String LISTING_REVIEWS_REVIEW = "review";
   protected static final String LISTING_REVIEWS_RATING = "rating";
 

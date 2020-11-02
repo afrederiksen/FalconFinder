@@ -8,7 +8,11 @@
     "password": "Password123",
     "type":"Registered",
     "studentId": "Q420321",
-    "favorite_listings": []
+    "favorite_listings": [
+		1,
+		2,
+		3
+	]
   },{
   	"leaseeId": "amy_smith",
   	"firstName":"Amy",
@@ -18,6 +22,9 @@
     "password": "Password123",
     "type":"Registered",
     "studentId": "Q333201",
-    "favorite_listings": []
+    "favorite_listings": [
+		1,
+		3
+	]
   }
 ]}

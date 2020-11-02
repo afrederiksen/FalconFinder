@@ -1,10 +1,10 @@
 public class Review {
-  private long userId;
+  private String leaseeId;
   private String review;
   private long rating;
 
-  public Review(long userId, String review, long rating) {
-    this.userId = userId;
+  public Review(String leaseeId, String review, long rating) {
+	this.leaseeId = leaseeId;
     this.review = review;
     this.rating = rating;
   }
@@ -12,15 +12,15 @@ public class Review {
   /**
    * @return the userId
    */
-  public long getUserId() {
-    return userId;
+  public String getLeaseeId() {
+    return leaseeId;
   }
 
   /**
    * @param userId the userId to set
    */
-  public void setUserId(int userId) {
-    this.userId = userId;
+  public void setLeaseeId(String leaseeId) {
+    this.leaseeId = leaseeId;
   }
 
   /**
@@ -47,7 +47,7 @@ public class Review {
   /**
    * @param rating the rating to set
    */
-  public void setRating(int rating) {
+  public void setRating(long rating) {
     this.rating = rating;
   }
 

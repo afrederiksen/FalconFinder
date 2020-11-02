@@ -351,11 +351,11 @@ public class Platform {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
 				System.out.println("Description: " + listing.getDescription() + "\nAddress:" + listing.getAddress()
-						+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "\nRating: "
-						+ listing.getRating() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
-				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.isAmenitiesFireplace() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No"));
-				for (String review : listing.getReviewList()) {
-					System.out.println(review);
+						+ "\nDistance from Russel House" + listing.getDistanceFromRussellHouse() + "Available:" + (listing.isAvailable() ? "Yes" : "No") +  "\nAmenities:");
+				System.out.println("\nWasher: "+(listing.isAmenitiesWasher() ? "Yes" : "No") + "\nAir Conditioning: "+(listing.isAmenitiesAC() ? "Yes" : "No") + "\nFurniture: "+(listing.isAmenitiesFurniture() ? "Yes" : "No") + "\nPatio: "+(listing.isAmenitiesPatio() ? "Yes" : "No") + "\nDishwasher: "+(listing.isAmenitiesDishwasher() ? "Yes" : "No") + "\nFireplace: "+(listing.isAmenitiesFireplace() ? "Yes" : "No") + "\nWi-Fi: "+(listing.isAmenitiesWifi() ? "Yes" : "No") + "\nPool: "+(listing.isAmenitiesPool() ? "Yes" : "No") + "\nReviews: ");
+				ArrayList<Review> reviews = listing.getReviews();
+				for (int i = 0; i < reviews.size(); i++) {
+					System.out.println("    Leasee: " + reviews.get(i).getLeaseeId() +"\n    Review: " + reviews.get(i).getReview() + "\n    Rating (Out of 5): " + reviews.get(i).getRating());
 				}
 				Scanner scan = new Scanner(System.in);
 				System.out.println(
@@ -603,10 +603,11 @@ public class Platform {
 			else {
 				amenitiesPool=false;
 			} 
+			ArrayList<Review> reviews = new ArrayList<Review>();
 			//Listings.getInstance();
 			landlord.postListing(0,  address,  description,  distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
-					amenitiesFireplace,  amenitiesWifi,  amenitiesPool);  
+					amenitiesFireplace,  amenitiesWifi,  amenitiesPool, reviews);  
 		}
 	}
 

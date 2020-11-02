@@ -16,13 +16,12 @@ public class Listing {
 	private boolean amenitiesFireplace;
 	private boolean amenitiesWifi;
 	private boolean amenitiesPool;
-	private ArrayList<String> ReviewList = new ArrayList<String>();
-	private ArrayList<Integer> Rating = new ArrayList<Integer>();
+	ArrayList<Review> reviews = new ArrayList<Review>();
 
 	public Listing(long listingId, String address, String description, double distanceFromRussellHouse,
 			double price, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
-			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
+			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool, ArrayList<Review> reviews) {
 		this.listingId = listingId;
 		this.address = address;
 		this.description = description;
@@ -38,30 +37,7 @@ public class Listing {
 		this.amenitiesFireplace = amenitiesFireplace;
 		this.amenitiesWifi = amenitiesWifi;
 		this.amenitiesPool = amenitiesPool;
-	}
-
-	public void addReview(String review) {
-		for (int i = 0; i < ReviewList.size(); i++) {
-			if (ReviewList.get(i) == null)
-				ReviewList.add(review);
-		}
-	}
-
-	public void addRating(int rating) {
-		for (int i = 0; i < Rating.size(); i++) {
-			if (Rating.get(i) == null)
-				Rating.add(rating);
-		}
-	}
-
-	public double getRating() {
-		double total = 0;
-		for (int i = 0; i < Rating.size(); i++) {
-			if (Rating.get(i) != null)
-				total += Rating.get(i);
-		}
-		total = total / (Rating.size() + 1);
-		return total;
+		this.reviews = reviews;
 	}
 
 	/**
@@ -263,28 +239,22 @@ public class Listing {
 	 public void setAmenitiesPool(boolean amenitiesPool) {
 		 this.amenitiesPool = amenitiesPool;
 	 }
-
-	 /**
-	  * @return the reviewList
-	  */
-	 public ArrayList<String> getReviewList() {
-		 return ReviewList;
-	 }
-
-	 /**
-	  * @param reviewList the reviewList to set
-	  */
-	 public void setReviewList(ArrayList<String> reviewList) {
-		 ReviewList = reviewList;
-	 }
-
-	 /**
-	  * @param rating the rating to set
-	  */
-	 public void setRating(ArrayList<Integer> rating) {
-		 Rating = rating;
-	 }
 	 
+	 /**
+	  * @return the amenitiesPool
+	  */
+	 public ArrayList<Review> getReviews() {
+		 return reviews;
+	 }
+
+	 /**
+	  * @param amenitiesPool the amenitiesPool to set
+	  */
+	 public void setReviews(ArrayList<Review> reviews) {
+		 this.reviews = reviews;
+	 }
+
+
 	 public void printListing() {
 			System.out.println("Listing ID: " +getListingId());
 			System.out.println("Address: " +getAddress());
