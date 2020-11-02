@@ -14,10 +14,20 @@ public class Platform extends DataConstants{
 	static ArrayList<User> userList = users.getUsers();
 	static ArrayList<Leasee> leaseeList = leasees.getLeasees();
 
+	/**
+	 * Main runner (calls mainstage)
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		mainStage();
 	}
-
+	/**
+	 * Mainstage uses three role based UI interactions.
+	 * Each feature calls another method which also uses role based calls.
+	 * Guest: When a user is not logged in. They can Login, Register, View Listings, and Search Listings
+	 * Leasee: When a user has the type "Leasee" They can Search listings, View leases, View favorite listings, Review listings, Manage account, and logout.
+	 * Landlord: When a user has the type "Landlord" They can view listings, view leases, manage account, and logout 
+	 */
 	private static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		//default values for Landlord and User
@@ -107,7 +117,11 @@ public class Platform extends DataConstants{
 			//	}
 		}
 	}
-
+	/**
+	 * Login method:
+	 * Checks if the user is a guest (avoid repeat logins)
+	 * Takes username and password and checks the user list, determines their type ands then creates the respective object (leasee/landlord)
+	 */
 	private static void login() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
@@ -135,7 +149,9 @@ public class Platform extends DataConstants{
 		}
 		guest = false;
 	}
-
+	/**
+	 * Take user information, confirms password and creates a user on the user list.
+	 */
 	private static void register() {
 		boolean notDone = true;
 		if (guest) {
@@ -174,7 +190,9 @@ public class Platform extends DataConstants{
 			System.out.println("You are already logged in!");
 		}
 	}
-
+	/**
+	 * Sets guest to true and sets the user object to null
+	 */
 	private static void logout() {
 		if (!guest) {
 			user = null;
@@ -188,7 +206,9 @@ public class Platform extends DataConstants{
 		// Return to main stage
 		mainStage();
 	}
-
+	/**
+	 * Search listings has searching by address, ammentities, price, distance from russel house, and description search
+	 */
 	private static void searchListings() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Search Listings:\n" + "1. Search by address\n" + "2. Seach by ammenties\n"
@@ -325,7 +345,9 @@ public class Platform extends DataConstants{
 			searchListings();
 		}
 	}
-
+	/**
+	 * Calls user's favorite list and prints out information about them
+	 */
 	private static void viewFavoriteList() {
 		for (Listing listing : leasee.getFavoriteListings()) {
 			System.out.println(listing.getLandlordId());
@@ -336,6 +358,10 @@ public class Platform extends DataConstants{
 			mainStage();
 		}
 	}
+	/**
+	 * View listing prints out information specific to the listingID call
+	 * @param listingId
+	 */
 	private static void viewListing(long listingId) {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
@@ -356,6 +382,9 @@ public class Platform extends DataConstants{
 		}
 
 	}
+	/**
+	 * View all the listings
+	 */
 	private static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
@@ -364,13 +393,17 @@ public class Platform extends DataConstants{
 			mainStage();
 		}
 	}
-
+	/**
+	 * Review the listings
+	 */
 	private static void reviewListings() {
 		System.out.println("Which of the following properties do you wish to review?");
 		fetchLeases(0, leasee.getLeases().size());
 		// Implement user menu
 	}
-
+	/**
+	 * Manage account allows for email and password changes and account deletion
+	 */
 	private static void manageAccount() {
 		{
 			Scanner scan = new Scanner(System.in);
@@ -485,7 +518,9 @@ public class Platform extends DataConstants{
 	}
 
 
-
+	/**
+	 * Post a listing using address, description, distance from Russell house, monthly rent price, availability, and all of the amenities
+	 */
 	private static void postListing() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Create a listing!\n if you wish to continue press y");
@@ -582,7 +617,9 @@ public class Platform extends DataConstants{
 			System.out.println("Your listing has been added!");
 		}
 	}
-
+/**
+ * Sign leases and creates the lease file with datawriter
+ */
 	private static void signLease() {
 		Scanner scan = new Scanner(System.in);
 		if(guest = false || user != null) {
@@ -636,6 +673,9 @@ public class Platform extends DataConstants{
 		}
 	}
 	// Leases
+	/**
+	 * View leases method, prints it in user friendly pagination
+	 */
 	private static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
@@ -739,7 +779,13 @@ public class Platform extends DataConstants{
 			}
 		}
 	}
-
+	/**
+	 * Fetches the leases
+	 * For leasees, prints address and duration
+	 * For landlords, prints out leaseID and duration
+	 * @param windowStart
+	 * @param howMany
+	 */
 	private static void fetchLeases(int windowStart, int howMany) {
 		if(leasee.getType().equalsIgnoreCase("leasee") ) {
 			for (int i = 0; i < howMany; i++) {
