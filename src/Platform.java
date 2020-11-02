@@ -215,13 +215,10 @@ public class Platform extends DataConstants{
 			for(int i = 0; i < listingList.size(); i++) {
 				if((beds != listingList.get(i).getBeds())) {
 					refinedListings.set(i, null);
-				}
-			}
-			int refined = refinedListings.size();
-			for(int i = 0; i < refinedListings.size(); i++) {
-				if(refinedListings.get(i) == null) {
-					refinedListings.remove(i);
-					
+					/*if(refinedListings.get(i) == null) {
+						refinedListings.remove(i);
+					}
+					*/
 				}
 			}
 			System.out.println("Do you want a washer and dryer? (y/n)");
@@ -229,7 +226,7 @@ public class Platform extends DataConstants{
 			String washerStr = scan.nextLine();
 			if(!(washerStr.equalsIgnoreCase("n") || washerStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesWasher()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesWasher()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -238,7 +235,7 @@ public class Platform extends DataConstants{
 			String ACStr = scan.nextLine();
 			if(!(ACStr.equalsIgnoreCase("n") || ACStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesAC()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesAC()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -247,7 +244,7 @@ public class Platform extends DataConstants{
 			String furnitureStr = scan.nextLine();
 			if(!(furnitureStr.equalsIgnoreCase("n") || furnitureStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesFurniture()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesFurniture()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -256,7 +253,7 @@ public class Platform extends DataConstants{
 			String patioStr = scan.nextLine();
 			if(!(patioStr.equalsIgnoreCase("n") || patioStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesPatio()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesPatio()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -265,7 +262,7 @@ public class Platform extends DataConstants{
 			String dishwasherStr = scan.nextLine();
 			if(!(dishwasherStr.equalsIgnoreCase("n") || dishwasherStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesDishwasher()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesDishwasher()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -274,7 +271,7 @@ public class Platform extends DataConstants{
 			String AllowsPets = scan.nextLine();
 			if(!(AllowsPets.equalsIgnoreCase("n") || AllowsPets.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).doesAllowPets()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).doesAllowPets()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -283,7 +280,7 @@ public class Platform extends DataConstants{
 			String WiFiStr = scan.nextLine();
 			if(!(WiFiStr.equalsIgnoreCase("n") || WiFiStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesWifi()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesWifi()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -292,7 +289,7 @@ public class Platform extends DataConstants{
 			String poolStr = scan.nextLine();
 			if(!(poolStr.equalsIgnoreCase("n") || poolStr.equalsIgnoreCase("no"))) {
 				for(int i = 0; i < refinedListings.size(); i++) {
-					if(!refinedListings.get(i).isAmenitiesPool()) {
+					if(refinedListings.get(i) != null && !refinedListings.get(i).isAmenitiesPool()) {
 						refinedListings.remove(listingList.get(i));
 					}
 				}
@@ -583,7 +580,7 @@ public class Platform extends DataConstants{
 				amenitiesPool=false;
 			} 
 			//Listings.getInstance();
-			listingList.add(new Listing(listingList.size()+1,  address,  beds, bathrooms, distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
+			listingList.add(new Listing((listingList.size()+1),  address,  beds, bathrooms, distanceFromRussellHouse, price, available,  landlord.getId(),  amenitiesWasher,  amenitiesAC,
 					amenitiesFurniture,  amenitiesPatio,  amenitiesDishwasher,
 					amenitiesFireplace,  amenitiesWifi,  amenitiesPool));  
 			System.out.println("Your listing has been added!");
