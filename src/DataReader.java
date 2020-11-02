@@ -26,18 +26,19 @@ public class DataReader extends DataConstants {
 				JSONObject listingJSON = (JSONObject) listingsJSON.get(i);
 				long listingId = (long) listingJSON.get(LISTING_ID);
 				String address = (String) listingJSON.get(LISTING_ADDRESS);
-				String description = (String) listingJSON.get(LISTING_DESCRIPTION);
+				long beds = (long) listingJSON.get("beds");
+				long bathrooms = (long) listingJSON.get("bathrooms");
 				double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
 				// String type = (String) listingJSON.get(LISTING_TYPE);
 				double price = (double) listingJSON.get("price");
-				boolean available = (boolean) listingJSON.get(LISTING_AVAILABLE);
+				long available = (long) listingJSON.get(LISTING_AVAILABLE);
 				String landlordId = (String) listingJSON.get(LISTING_LANDLORD_ID);
-				boolean amenitiesWasher = (boolean) listingJSON.get(LISTING_AMENITIES_WASHER);
+				boolean amenitiesWasher = (boolean) listingJSON.get("washer/dryer");
 				boolean amenitiesAC = (boolean) listingJSON.get(LISTING_AMENITIES_AC);
 				boolean amenitiesFurniture = (boolean) listingJSON.get(LISTING_AMENITIES_FURNITURE);
 				boolean amenitiesPatio = (boolean) listingJSON.get(LISTING_AMENITIES_PATIO);
 				boolean amenitiesDishwasher = (boolean) listingJSON.get(LISTING_AMENITIES_DISHWASHER);
-				boolean amenitiesFireplace = (boolean) listingJSON.get(LISTING_AMENITIES_FIREPLACE);
+				boolean allowsPets = (boolean) listingJSON.get("pets");
 				boolean amenitiesWifi = (boolean) listingJSON.get(LISTING_AMENITIES_WIFI);
 				boolean amenitiesPool = (boolean) listingJSON.get(LISTING_AMENITIES_POOL);
 				/* JSONArray reviewsArray = (JSONArray) jsonobj.get(LISTING_REVIEWS);
@@ -49,9 +50,9 @@ public class DataReader extends DataConstants {
 					reviews.add(new Review(userId, review, rating));
 				}
 */
-				listings.add(new Listing(listingId, address, description, distanceFromRussell, price,
+				listings.add(new Listing(listingId, address, beds, bathrooms, distanceFromRussell, price,
 						available, landlordId, amenitiesWasher, amenitiesAC, amenitiesFurniture, amenitiesPatio,
-						amenitiesDishwasher, amenitiesFireplace, amenitiesWifi, amenitiesPool));
+						amenitiesDishwasher, allowsPets, amenitiesWifi, amenitiesPool));
 			}
 
 			return listings;
@@ -117,7 +118,7 @@ public class DataReader extends DataConstants {
 			FileReader reader = new FileReader(LEASEES_FILE_NAME);
 			Object obj = parser.parse(reader);
 			JSONObject jsonobj = (JSONObject) obj;
-			JSONArray leaseesJSON = (JSONArray) jsonobj.get("listings");
+			JSONArray leaseesJSON = (JSONArray) jsonobj.get("leasees");
 
 			for (int i = 0; i < leaseesJSON.size(); i++) {
 				JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
@@ -209,9 +210,8 @@ public class DataReader extends DataConstants {
 				String leaseeId = (String) leaseJSON.get(LEASE_LEASEE_ID);
 				String date = (String) leaseJSON.get(LEASE_DATE);
 				String address = (String) leaseJSON.get(LEASE_ADDRESS);
-				String duration = (String) leaseJSON.get(LEASE_DURATION);
 
-				leases.add(new Lease(leaseId, landlordId, leaseeId, date, address, duration));
+				leases.add(new Lease(leaseId, landlordId, leaseeId, date, address));
 			}
 
 			return leases;

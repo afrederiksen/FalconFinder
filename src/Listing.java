@@ -3,29 +3,31 @@ import java.util.ArrayList;
 public class Listing {
 	private long listingId;
 	private String address;
-	private String description;
+	private long beds;
+	private long bathrooms;
 	private double distanceFromRussellHouse;
 	private double price;
-	private boolean available;
+	private long available;
 	private String landlordId;
 	private boolean amenitiesWasher;
 	private boolean amenitiesAC;
 	private boolean amenitiesFurniture;
 	private boolean amenitiesPatio;
 	private boolean amenitiesDishwasher;
-	private boolean amenitiesFireplace;
+	private boolean allowsPets;
 	private boolean amenitiesWifi;
 	private boolean amenitiesPool;
 	private ArrayList<String> ReviewList = new ArrayList<String>();
 	private ArrayList<Integer> Rating = new ArrayList<Integer>();
 
-	public Listing(long listingId, String address, String description, double distanceFromRussellHouse,
-			double price, boolean available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
+	public Listing(long listingId, String address, long beds, long bathrooms, double distanceFromRussellHouse,
+			double price, long available, String landlordId, boolean amenitiesWasher, boolean amenitiesAC,
 			boolean amenitiesFurniture, boolean amenitiesPatio, boolean amenitiesDishwasher,
-			boolean amenitiesFireplace, boolean amenitiesWifi, boolean amenitiesPool) {
+			boolean allowsPets, boolean amenitiesWifi, boolean amenitiesPool) {
 		this.listingId = listingId;
 		this.address = address;
-		this.description = description;
+		this.beds = beds;
+		this.bathrooms = bathrooms;
 		this.distanceFromRussellHouse = distanceFromRussellHouse;
 		this.price = price;
 		this.available = available;
@@ -35,14 +37,11 @@ public class Listing {
 		this.amenitiesFurniture = amenitiesFurniture;
 		this.amenitiesPatio = amenitiesPatio;
 		this.amenitiesDishwasher = amenitiesDishwasher;
-		this.amenitiesFireplace = amenitiesFireplace;
+		this.allowsPets = allowsPets;
 		this.amenitiesWifi = amenitiesWifi;
 		this.amenitiesPool = amenitiesPool;
 	}
 
-	/**
-	 *add new review to arrayList of reviews
-	*/
 	public void addReview(String review) {
 		for (int i = 0; i < ReviewList.size(); i++) {
 			if (ReviewList.get(i) == null)
@@ -50,9 +49,6 @@ public class Listing {
 		}
 	}
 
-	/**
-	 *add new rating to arrayList of ratings
-	*/
 	public void addRating(int rating) {
 		for (int i = 0; i < Rating.size(); i++) {
 			if (Rating.get(i) == null)
@@ -60,9 +56,6 @@ public class Listing {
 		}
 	}
 
-	/**
-	 *return the rating
-	*/
 	public double getRating() {
 		double total = 0;
 		for (int i = 0; i < Rating.size(); i++) {
@@ -108,15 +101,15 @@ public class Listing {
 	 /**
 	  * @return the description
 	  */
-	 public String getDescription() {
-		 return description;
+	 public long getBeds() {
+		 return beds;
 	 }
 
 	 /**
 	  * @param description the description to set
 	  */
-	 public void setDescription(String description) {
-		 this.description = description;
+	 public void setBeds(long Beds) {
+		 this.beds = Beds;
 	 }
 
 	 /**
@@ -136,14 +129,14 @@ public class Listing {
 	 /**
 	  * @return the available
 	  */
-	 public boolean isAvailable() {
+	 public long isAvailable() {
 		 return available;
 	 }
 
 	 /**
 	  * @param available the available to set
 	  */
-	 public void setAvailable(boolean available) {
+	 public void setAvailable(long available) {
 		 this.available = available;
 	 }
 
@@ -234,15 +227,15 @@ public class Listing {
 	 /**
 	  * @return the amenitiesFireplace
 	  */
-	 public boolean isAmenitiesFireplace() {
-		 return amenitiesFireplace;
+	 public boolean doesAllowPets() {
+		 return allowsPets;
 	 }
 
 	 /**
 	  * @param amenitiesFireplace the amenitiesFireplace to set
 	  */
-	 public void setAmenitiesFireplace(boolean amenitiesFireplace) {
-		 this.amenitiesFireplace = amenitiesFireplace;
+	 public void setAllowPets(boolean allowsPets) {
+		 this.allowsPets = allowsPets;
 	 }
 
 	 /**
@@ -294,18 +287,24 @@ public class Listing {
 		 Rating = rating;
 	 }
 	 
-	/**
-	 *prints amenities and description of the Listing
-	*/
+	 public long getBathrooms() {
+		 return bathrooms;
+	 }
+	 
+	 public void setBathrooms(long Bathrooms) {
+		 bathrooms = Bathrooms;
+	 }
+	 
 	 public void printListing() {
 			System.out.println("Listing ID: " +getListingId());
 			System.out.println("Address: " +getAddress());
-			System.out.println("Description: " +getDescription());
+			System.out.println("Beds: " +getBeds());
+			System.out.println("Bathrooms: " +getBathrooms());
 			System.out.println("Distance from Russell House: " +getDistanceFromRussellHouse() + " miles");
 			System.out.println("Price: $" +getPrice() + " per month");
-			System.out.println("Is Available: " +isAvailable());
-			System.out.println("Has Washer: " +isAmenitiesDishwasher());
-			System.out.println("Has Fireplace: " +isAmenitiesFireplace());
+			System.out.println("Available: " +isAvailable());
+			System.out.println("Has Washer and Dryer: " +isAmenitiesWasher());
+			System.out.println("Allows pets: " +doesAllowPets());
 			System.out.println("Has WiFi: " +isAmenitiesWifi());
 			System.out.println("Has Pool: " +isAmenitiesPool());
 			System.out.println();
