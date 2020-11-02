@@ -3,8 +3,8 @@
         {
             "listingId": 1,
             "address": "2804 Blossom Street, Columbia SC",
-            "beds": 4,
-            "bathrooms": 3,
+            "beds": 2,
+            "bathrooms": 2,
             "distance_from_russell": 2.5,
             "type": "Lease",
             "price": 2400.0,
@@ -58,8 +58,8 @@
         {
             "listingId": 3,
             "address": "270 Bull Street, Columbia SC.",
-            "beds": 3,
-            "bathrooms": 3,
+            "beds": 2,
+            "bathrooms": 2,
             "distance_from_russell": 2.0,
             "type": "lease",
             "price": 1600.0,

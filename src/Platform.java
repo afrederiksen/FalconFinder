@@ -213,8 +213,16 @@ public class Platform extends DataConstants{
 			System.out.println("How many beds do you want");
 			long beds = scan.nextLong();
 			for(int i = 0; i < listingList.size(); i++) {
-				if(!(beds == listingList.get(i).getBeds()))
-					refinedListings.remove(listingList.get(i));
+				if((beds != listingList.get(i).getBeds())) {
+					refinedListings.set(i, null);
+				}
+			}
+			int refined = refinedListings.size();
+			for(int i = 0; i < refinedListings.size(); i++) {
+				if(refinedListings.get(i) == null) {
+					refinedListings.remove(i);
+					
+				}
 			}
 			System.out.println("Do you want a washer and dryer? (y/n)");
 			scan.nextLine();
@@ -292,7 +300,8 @@ public class Platform extends DataConstants{
 			if(refinedListings.size() == 0)
 				System.out.println("No matching results");
 			for(int i = 0; i < refinedListings.size(); i++) {
-				refinedListings.get(i).printListing();
+				if(refinedListings.get(i) != null)
+					refinedListings.get(i).printListing();
 			}
 			break;
 		case 3:
