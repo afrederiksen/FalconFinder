@@ -40,6 +40,9 @@ public class Listing {
 		this.amenitiesPool = amenitiesPool;
 	}
 
+	/**
+	 *add new review to arrayList of reviews
+	*/
 	public void addReview(String review) {
 		for (int i = 0; i < ReviewList.size(); i++) {
 			if (ReviewList.get(i) == null)
@@ -47,6 +50,9 @@ public class Listing {
 		}
 	}
 
+	/**
+	 *add new rating to arrayList of ratings
+	*/
 	public void addRating(int rating) {
 		for (int i = 0; i < Rating.size(); i++) {
 			if (Rating.get(i) == null)
@@ -54,6 +60,9 @@ public class Listing {
 		}
 	}
 
+	/**
+	 *return the rating
+	*/
 	public double getRating() {
 		double total = 0;
 		for (int i = 0; i < Rating.size(); i++) {
@@ -285,6 +294,9 @@ public class Listing {
 		 Rating = rating;
 	 }
 	 
+	/**
+	 *prints amenities and description of the Listing
+	*/
 	 public void printListing() {
 			System.out.println("Listing ID: " +getListingId());
 			System.out.println("Address: " +getAddress());
