@@ -4,16 +4,13 @@ public class Lease {
   private String leaseeId;
   private String date;
   private String address;
-  private String duration;
 
-  public Lease(long leaseId, String landlordId, String leaseeId, String date, String address,
-      String duration) {
+  public Lease(long leaseId, String landlordId, String leaseeId, String date, String address) {
     this.leaseId = leaseId;
     this.landlordId = landlordId;
     this.leaseeId = leaseeId;
     this.date = date;
     this.address = address;
-    this.duration = duration;
   }
 
   /**
@@ -85,18 +82,5 @@ public class Lease {
   public void setAddress(String address) {
     this.address = address;
   }
-
-  /**
-   * @return the duration
-   */
-  public String getDuration() {
-    return duration;
-  }
-
-  /**
-   * @param duration the duration to set
-   */
-  public void setDuration(String duration) {
-    this.duration = duration;
-  }
+  
 }
