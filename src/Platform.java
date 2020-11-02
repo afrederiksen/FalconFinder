@@ -9,8 +9,10 @@ public class Platform extends DataConstants{
 	static boolean guest = true;
 	static Listings listings = new Listings();
 	static Users users = new Users();
+	static Leasees leasees = new Leasees();
 	static ArrayList<Listing> listingList = listings.getListings();
 	static ArrayList<User> userList = users.getUsers();
+	static ArrayList<Leasee> leaseeList = leasees.getLeasees();
 
 	public static void main(String[] args) {
 		mainStage();
@@ -28,7 +30,7 @@ public class Platform extends DataConstants{
 				landlord = new Landlord(userList.get(i).getId(), userList.get(i).getFirstName(), userList.get(i).getLastName(), userList.get(i).getAddress(), userList.get(i).getEmail(), userList.get(i).getPassword(), userList.get(i).getType());
 			}
 		}
-		if (guest) {
+		while (guest) {
 			System.out.println("Guest View:\n" + "1. Login\n" + "2. Register\n" + "3. View Listings\n" + "4. Search Listings\n" + "5. Sign a Lease");
 			switch (scan.nextInt()) {
 			case 1:
@@ -51,7 +53,7 @@ public class Platform extends DataConstants{
 				mainStage();
 
 			}
-			if (user != null && user.getType().equalsIgnoreCase("Leasee")) {
+			while (user != null && user.getType().equalsIgnoreCase("Leasee")) {
 				System.out.println("Leasee View:\n" + "1. Search Listings\n" + "2. Sign a lease\n"
 						+ "3. View favorite listings\n" + "4. Review Listings\n"
 						+ "5. Manage Account\n"
@@ -79,7 +81,7 @@ public class Platform extends DataConstants{
 					System.out.println("Invalid entry please try again.");
 					mainStage();
 				}
-			} else if (user != null && user.getType().equalsIgnoreCase("Landlord")) {
+			} while (user != null && user.getType().equalsIgnoreCase("Landlord")) {
 				System.out.println("Landlord View:\n" + "1. View listings\n" + "2. Post listings\n"
 						+ "3. Manage Account\n" + "9. Logout\n");
 				switch (scan.nextInt()) {
@@ -100,9 +102,9 @@ public class Platform extends DataConstants{
 					mainStage();
 				}
 			}
-			else {
-				mainStage();
-			}
+			//else {
+			//	mainStage();
+			//	}
 		}
 	}
 
@@ -122,8 +124,8 @@ public class Platform extends DataConstants{
 						leasee = new Leasee(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getEmail(), user.getPassword(), user.getType(), null);
 					else if(user.getType().equalsIgnoreCase("Landlord"))
 						landlord = new Landlord(user.getId(), user.getFirstName(), user.getLastName(), user.getAddress(), user.getEmail(), user.getPassword(), user.getType());
-					guest = false;
 				}
+				guest = false;
 			}
 			if(guest) {
 				System.out.println("Incorrect username or password");
@@ -581,22 +583,47 @@ public class Platform extends DataConstants{
 
 	public static void signLease() {
 		Scanner scan = new Scanner(System.in);
-		if(guest = false) {
+		if(guest = false || user != null) {
 			if(user.getType().equalsIgnoreCase("leasee")) {
 				System.out.println("Please enter the property ID that you are interested in");
 				long ID = scan.nextLong();
 				for(int i = 0; i < listingList.size(); i++) {
 					if(ID == listingList.get(i).getListingId()) {
-						System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
+						System.out.println("Are you signing the Lease alone? If not enter the other leasee's ID");
 						scan.nextLine();
-						String response = scan.nextLine();
-						if(response.equalsIgnoreCase("y")) {
-							Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
-							String lease = "This lease Agreement is made and entered on " + l1.getDate() + " by and between " + listingList.get(i).getLandlordId() + " and " 
-									+ leasee.getFirstName() + " " + leasee.getLastName() + " " + LEASEPT1 + " " + listingList.get(i).getBeds() + " bedrooms and" + listingList.get(i).getBeds() + " bathrooms, located at " + listingList.get(i).getAddress() + " 29208.  "
-									+ LEASEPT2 + " 11/1/20" + " to " + "11/1/21. \r\n" + "\r\n4.  Rent. The Tenant will pay $" + listingList.get(i).getPrice() + " each month on the first of the month.\r\n \r\n5.  Payment should be sent to: " + landlord.getAddress() + "\r\n \r\n6.  Damages. Charges will be billed to the client for damaged property, up to $5000"
-									+ "\r\n \r\n7.  Signatures\n" + LEASESIGN + leasee.getFirstName() + " " + leasee.getLastName() + LEASESIGN + listingList.get(i).getLandlordId();
-							DataWriter.createFile(lease);
+						String answer = scan.nextLine();
+						for(int k = 0; k < leaseeList.size(); k++)
+						{
+							if(answer.equalsIgnoreCase(leaseeList.get(k).getId()))
+							{
+								String leasee2Name = leaseeList.get(k).getFirstName() + " " + leaseeList.get(k).getLastName();
+								System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
+								String response = scan.nextLine();
+								if(response.equalsIgnoreCase("y")) {
+									Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
+									String lease = "This lease Agreement is made and entered on " + l1.getDate() + " by and between " + listingList.get(i).getLandlordId() + " and " 
+											+ leasee.getFirstName() + " " + leasee.getLastName() + " " + LEASEPT1 + " " + listingList.get(i).getBeds() + " bedrooms and" + listingList.get(i).getBeds() + " bathrooms, located at " + listingList.get(i).getAddress() + " 29208.  "
+											+ LEASEPT2 + " 11/1/20" + " to " + "11/1/21. \r\n" + "\r\n4.  Rent. The Tenant will pay $" + listingList.get(i).getPrice() + " each month on the first of the month.\r\n \r\n5.  Payment should be sent to: " + landlord.getAddress() + "\r\n \r\n6.  Damages. Charges will be billed to the client for damaged property, up to $5000"
+											+ "\r\n \r\n7.  Signatures\n" + LEASESIGN + leasee.getFirstName() + " " + leasee.getLastName() + LEASESIGN + leasee2Name + LEASESIGN + listingList.get(i).getLandlordId();
+									DataWriter.createFile(lease);
+									System.out.println("Lease file created, Congrats!");
+								}
+							}
+						}
+						if(answer.equalsIgnoreCase("no"))
+						{
+							System.out.println("You are about to sign a lease for " + listingList.get(i).getAddress() + " type y to continue");
+							scan.nextLine();
+							String response = scan.nextLine();
+							if(response.equalsIgnoreCase("y")) {
+								Lease l1 = new Lease(ID, listingList.get(i).getLandlordId(), user.getId(), "10/31/20", listingList.get(i).getAddress());
+								String lease = "This lease Agreement is made and entered on " + l1.getDate() + " by and between " + listingList.get(i).getLandlordId() + " and " 
+										+ leasee.getFirstName() + " " + leasee.getLastName() + " " + LEASEPT1 + " " + listingList.get(i).getBeds() + " bedrooms and" + listingList.get(i).getBeds() + " bathrooms, located at " + listingList.get(i).getAddress() + " 29208.  "
+										+ LEASEPT2 + " 11/1/20" + " to " + "11/1/21. \r\n" + "\r\n4.  Rent. The Tenant will pay $" + listingList.get(i).getPrice() + " each month on the first of the month.\r\n \r\n5.  Payment should be sent to: " + landlord.getAddress() + "\r\n \r\n6.  Damages. Charges will be billed to the client for damaged property, up to $5000"
+										+ "\r\n \r\n7.  Signatures\n" + LEASESIGN + leasee.getFirstName() + " " + leasee.getLastName() + LEASESIGN + listingList.get(i).getLandlordId();
+								DataWriter.createFile(lease);
+								System.out.println("Lease file created, Congrats!");
+							}
 						}
 					}
 				}

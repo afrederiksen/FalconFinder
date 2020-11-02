@@ -10,11 +10,11 @@
     "studentId": "Q420321",
     "favorite_listings": []
   },{
-  	"leaseeId": "amy_smith",
-  	"firstName":"Amy",
-  	"lastName":"Smith",
+  	"leaseeId": "realninja",
+  	"firstName":"Tyler",
+  	"lastName":"Blevins",
     "address": "765 Jefferson Rd.",
-    "email":"asmith@gmail.com",
+    "email":"ninja@gmail.com",
     "password": "Password123",
     "type":"Registered",
     "studentId": "Q333201",

@@ -4,7 +4,7 @@ public class Leasees {
   private static Leasees leasees = null;
   private static ArrayList<Leasee> leaseeList = new ArrayList<Leasee>();
 
-  private Leasees() {
+  public Leasees() {
     leaseeList = DataReader.loadLeasees();
   }
 
@@ -27,4 +27,5 @@ public class Leasees {
         favoriteListings));
     DataWriter.saveLeasees();
   }
+  
 }

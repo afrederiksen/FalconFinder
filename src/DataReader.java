@@ -101,7 +101,7 @@ public class DataReader extends DataConstants {
 			FileReader reader = new FileReader(LEASEES_FILE_NAME);
 			Object obj = parser.parse(reader);
 			JSONObject jsonobj = (JSONObject) obj;
-			JSONArray leaseesJSON = (JSONArray) jsonobj.get("listings");
+			JSONArray leaseesJSON = (JSONArray) jsonobj.get("leasees");
 
 			for (int i = 0; i < leaseesJSON.size(); i++) {
 				JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
