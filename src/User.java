@@ -18,6 +18,9 @@ public class User {
     this.type = type;
   }
 
+  /**
+   *Allows User to change password
+  */
   public void resetPassword(String oldPassword, String newPassword) {
     if (oldPassword.equals(this.password)) {
       this.password = newPassword;
@@ -27,6 +30,9 @@ public class User {
     }
   }
 
+  /**
+   *allows User to change email account
+  */
   public void changeEmail(String newEmail) {
     if (newEmail.contains("@")) {
       this.setEmail(newEmail);
@@ -35,6 +41,9 @@ public class User {
     }
   }
 
+  /**
+   *sets type to input
+  */
   public void setUserType(String type) {
     if (type.equalsIgnoreCase("leasee")) {
       this.type = "Leasee";
@@ -50,6 +59,9 @@ public class User {
   }
 
 
+  /**
+   *sets all User variables to null
+  */
   public void deleteAccount(String terminateConfirmation) {
     if (terminateConfirmation.equals("TERMINATE")) {
       id = null;
