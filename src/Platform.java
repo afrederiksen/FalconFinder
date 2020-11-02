@@ -18,7 +18,7 @@ public class Platform extends DataConstants{
 		mainStage();
 	}
 
-	public static void mainStage() {
+	private static void mainStage() {
 		Scanner scan = new Scanner(System.in);
 		//default values for Landlord and User
 		for(int i = 0; i < userList.size(); i++) {
@@ -108,7 +108,7 @@ public class Platform extends DataConstants{
 		}
 	}
 
-	public static void login() {
+	private static void login() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
 			System.out.println("Username:");
@@ -136,7 +136,7 @@ public class Platform extends DataConstants{
 		guest = false;
 	}
 
-	public static void register() {
+	private static void register() {
 		boolean notDone = true;
 		if (guest) {
 			Scanner scan = new Scanner(System.in);
@@ -175,7 +175,7 @@ public class Platform extends DataConstants{
 		}
 	}
 
-	public static void logout() {
+	private static void logout() {
 		if (!guest) {
 			user = null;
 			guest = true;
@@ -189,7 +189,7 @@ public class Platform extends DataConstants{
 		mainStage();
 	}
 
-	public static void searchListings() {
+	private static void searchListings() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Search Listings:\n" + "1. Search by address\n" + "2. Seach by ammenties\n"
 				+ "3. Search by price\n" + "4. Search by distance from Russ\n" + "9. Return to main menu\n");
@@ -326,7 +326,7 @@ public class Platform extends DataConstants{
 		}
 	}
 
-	public static void viewFavoriteList() {
+	private static void viewFavoriteList() {
 		for (Listing listing : leasee.getFavoriteListings()) {
 			System.out.println(listing.getLandlordId());
 		}
@@ -336,7 +336,7 @@ public class Platform extends DataConstants{
 			mainStage();
 		}
 	}
-	public static void viewListing(long listingId) {
+	private static void viewListing(long listingId) {
 		for (Listing listing : listings.getListings()) {
 			if (listing.getListingId() == listingId) {
 				System.out.println("Beds: " + listing.getBeds() + "\nAddress:" + listing.getAddress()
@@ -356,7 +356,7 @@ public class Platform extends DataConstants{
 		}
 
 	}
-	public static void viewListings() {
+	private static void viewListings() {
 		listings.printListings();
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter any key to return back to the main page");
@@ -365,13 +365,13 @@ public class Platform extends DataConstants{
 		}
 	}
 
-	public static void reviewListings() {
+	private static void reviewListings() {
 		System.out.println("Which of the following properties do you wish to review?");
 		fetchLeases(0, leasee.getLeases().size());
 		// Implement user menu
 	}
 
-	public static void manageAccount() {
+	private static void manageAccount() {
 		{
 			Scanner scan = new Scanner(System.in);
 
@@ -486,7 +486,7 @@ public class Platform extends DataConstants{
 
 
 
-	public static void postListing() {
+	private static void postListing() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Create a listing!\n if you wish to continue press y");
 		if(scan.nextLine().equalsIgnoreCase("y")) {
@@ -583,7 +583,7 @@ public class Platform extends DataConstants{
 		}
 	}
 
-	public static void signLease() {
+	private static void signLease() {
 		Scanner scan = new Scanner(System.in);
 		if(guest = false || user != null) {
 			if(user.getType().equalsIgnoreCase("leasee")) {
@@ -636,7 +636,7 @@ public class Platform extends DataConstants{
 		}
 	}
 	// Leases
-	public static void viewLeases() {
+	private static void viewLeases() {
 		Scanner scan = new Scanner(System.in);
 		if (guest) {
 			System.out.println("Error: You don't have permission to do this. Maybe try logging in again?");
