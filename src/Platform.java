@@ -209,16 +209,12 @@ public class Platform extends DataConstants{
 		case 2:
 			// Search by amentities
 			// Need enum support
-			ArrayList<Listing> refinedListings = listingList;
+			ArrayList<Listing> refinedListings = (ArrayList) listingList.clone();
 			System.out.println("How many beds do you want");
-			long beds = scan.nextLong();
-			for(int i = 0; i < listingList.size(); i++) {
-				if((beds != listingList.get(i).getBeds())) {
-					refinedListings.set(i, null);
-					/*if(refinedListings.get(i) == null) {
-						refinedListings.remove(i);
-					}
-					*/
+			int beds = scan.nextInt();
+			for(Listing listing : listingList) {
+				if(listing.getBeds() != beds) {
+					refinedListings.remove(listing);
 				}
 			}
 			System.out.println("Do you want a washer and dryer? (y/n)");
