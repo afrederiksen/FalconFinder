@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ class ListingTest {
 	
 	@Test
 	public void noAmenititesAddReview() {
-		listings.getListings().get(0).addReview("0/10, there's nothing here! Just a cardboard box");
-		assertEquals(1, listings.getListings().get(0).getReviewList().size());
+		listings.getListings().get(5).addReview("0/10, there's nothing here! Just a cardboard box");
+		assertEquals(1, listings.getListings().get(5).getReviewList().size());
 	}
 	@Test
 	public void zeroOrNegativePrice() {
@@ -77,8 +78,10 @@ class ListingTest {
 
 	@Test
 	void testAddReview() {
+		int expectedReviewSize = listings.getListings().get(1).getReviewList().size() + 1;
 		listings.getListings().get(1).addReview("Test");
-		assertTrue(listings.getListings().get(1).getReviewList().get(listings.getListings().get(1).getReviewList().size()).contentEquals("Test"));
+		assertEquals(listings.getListings().get(1).getReviewList().size(), expectedReviewSize);
+
 	}
 
 	@Test
@@ -87,11 +90,12 @@ class ListingTest {
 		double orginRating = listings.getListings().get(1).getRating();
 		listings.getListings().get(1).addRating(1);
 		listings.getListings().get(1).addRating(1);
-		assertFalse(listings.getListings().get(1).getRating() == orginRating);
+		assertNotEquals(listings.getListings().get(1).getRating(),orginRating);
 	}
 	@Test
 	void TestMassRating() {
 		listings.getListings().get(2).addRating(1000000);
+		System.out.println(listings.getListings().get(2).getRating());
 		assertFalse(listings.getListings().get(2).getRating()>5);
 	}
 	
