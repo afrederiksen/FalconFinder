@@ -42,12 +42,12 @@ public class Listing {
 		this.amenitiesPool = amenitiesPool;
 	}
 
-	public void addReview(String review) {
-		for (int i = 0; i < ReviewList.size(); i++) {
-			if (ReviewList.get(i) == null)
-				ReviewList.add(review);
-		}
-	}
+//	public void addReview(String review) {
+//		for (int i = 0; i < ReviewList.size(); i++) {
+//			if (ReviewList.get(i) == null)
+//				ReviewList.add(review);
+//		}
+//	}
 
 	public void addRating(int rating) {
 		for (int i = 0; i < Rating.size(); i++) {

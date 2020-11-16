@@ -1,1 +1,19 @@
-[]
+{"users":[
+  {
+  	"id": "Robbie22",
+  	"firstName":"Robbie",
+  	"lastName":"White",
+    "address": "123 Park Avenue",
+    "email":"rwhite@gmail.com",
+    "password": "Password123",
+    "type":"Leasee"
+  },{
+  	"id": "ASmith",
+  	"firstName":"Amy",
+  	"lastName":"Smith",
+    "address": "765 Jefferson Rd.",
+    "email":"asmith@gmail.com",
+    "password": "Password123",
+    "type":"Landlord"
+  }
+]}

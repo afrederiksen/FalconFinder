@@ -31,7 +31,7 @@ public class Landlords {
    *adds type Landlord to landlordList
   */
   public static void addLandlord(String id, String firstName, String lastName, String address,
-      String email, String password, String type, ArrayList<Listing> listings) {
+      String email, String password, String type) {
     landlordList
         .add(new Landlord(id, firstName, lastName, address, email, password, type));
     DataWriter.saveLandlords();
