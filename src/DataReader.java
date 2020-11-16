@@ -14,17 +14,15 @@ public class DataReader extends DataConstants {
     ArrayList<Listing> listings = new ArrayList<Listing>();
 
     try {
-      JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(LISTINGS_FILE_NAME);
-      Object obj = parser.parse(reader);
-      JSONArray listingsJSON = (JSONArray) obj;
+      JSONArray listingsJSON = (JSONArray) new JSONParser().parse(reader);
 
       for (int i = 0; i < listingsJSON.size(); i++) {
         JSONObject listingJSON = (JSONObject) listingsJSON.get(i);
         long listingId = (long) listingJSON.get(LISTING_ID);
         String address = (String) listingJSON.get(LISTING_ADDRESS);
-        long beds = (long) listingJSON.get("beds");
-        long bathrooms = (long) listingJSON.get("bathrooms");
+        long beds = (long) listingJSON.get(LISTING_BEDS);
+        long bathrooms = (long) listingJSON.get(LISTING_BATHROOMS);
         double distanceFromRussell = (double) listingJSON.get(LISTING_DISTANCE_FROM_RUSSELL);
         // String type = (String) listingJSON.get(LISTING_TYPE);
         double price = (double) listingJSON.get("price");
@@ -63,10 +61,8 @@ public class DataReader extends DataConstants {
     ArrayList<User> users = new ArrayList<User>();
 
     try {
-      JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(USERS_FILE_NAME);
-      Object obj = parser.parse(reader);
-      JSONArray usersJSON = (JSONArray) obj;
+      JSONArray usersJSON = (JSONArray) new JSONParser().parse(reader);
 
       for (int i = 0; i < usersJSON.size(); i++) {
         JSONObject userJSON = (JSONObject) usersJSON.get(i);
@@ -100,11 +96,9 @@ public class DataReader extends DataConstants {
     ArrayList<Leasee> leasees = new ArrayList<Leasee>();
 
     try {
-      JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(LEASEES_FILE_NAME);
-      Object obj = parser.parse(reader);
-      JSONObject jsonobj = (JSONObject) obj;
-      JSONArray leaseesJSON = (JSONArray) jsonobj.get("leasees");
+      JSONArray leaseesJSON = (JSONArray) new JSONParser().parse(reader);
+
 
       for (int i = 0; i < leaseesJSON.size(); i++) {
         JSONObject leaseeJSON = (JSONObject) leaseesJSON.get(i);
@@ -114,7 +108,6 @@ public class DataReader extends DataConstants {
         String address = (String) leaseeJSON.get(LEASEE_ADDRESS);
         String email = (String) leaseeJSON.get(LEASEE_EMAIL);
         String password = (String) leaseeJSON.get(LEASEE_PASSWORD);
-        String studentId = (String) leaseeJSON.get(LEASEE_STUDENT_ID);
         String type = (String) leaseeJSON.get(LEASEE_TYPE);
         ArrayList<Listing> favoriteListings =
             (ArrayList<Listing>) leaseeJSON.get(LEASEE_FAVORITE_LISTINGS);
@@ -142,11 +135,9 @@ public class DataReader extends DataConstants {
     ArrayList<Landlord> landlords = new ArrayList<Landlord>();
 
     try {
-      JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(LANDLORDS_FILE_NAME);
-      Object obj = parser.parse(reader);
-      JSONObject jsonobj = (JSONObject) obj;
-      JSONArray landlordsJSON = (JSONArray) jsonobj.get("listings");
+      JSONArray landlordsJSON = (JSONArray) new JSONParser().parse(reader);
+
 
       for (int i = 0; i < landlordsJSON.size(); i++) {
         JSONObject landlordJSON = (JSONObject) landlordsJSON.get(i);

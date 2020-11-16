@@ -9,6 +9,10 @@ class DataWriterTest {
   private ArrayList<Listing> listingList = listings.getListings();
   private Users users = Users.getInstance();
   private ArrayList<User> userList = users.getUsers();
+  private Leasees leasees = Leasees.getInstance();
+  private ArrayList<Leasee> leaseeList = leasees.getLeasees();
+  private Landlords landlords = Landlords.getInstance();
+  private ArrayList<Landlord> landlordList = landlords.getLandlords();
 
   @BeforeEach
   public void setup() {
@@ -16,6 +20,10 @@ class DataWriterTest {
     DataWriter.saveUsers();
     Listings.getInstance().getListings().clear();
     DataWriter.saveListings();
+    Leasees.getInstance().getLeasees().clear();
+    DataWriter.saveLeasees();
+    Landlords.getInstance().getLandlords().clear();
+    DataWriter.saveLandlords();
   }
 
   @AfterEach
@@ -24,6 +32,10 @@ class DataWriterTest {
     DataWriter.saveUsers();
     Listings.getInstance().getListings().clear();
     DataWriter.saveListings();
+    Leasees.getInstance().getLeasees().clear();
+    DataWriter.saveLeasees();
+    Landlords.getInstance().getLandlords().clear();
+    DataWriter.saveLandlords();
   }
 
 
@@ -115,6 +127,94 @@ class DataWriterTest {
     userList.add(new User(null, "", "", "", "", "", ""));
     DataWriter.saveUsers();
     assertEquals(null, DataReader.loadUsers().get(0).getId());
+  }
+
+  @Test
+  void testWritingZeroLeasees() {
+    leaseeList = DataReader.loadLeasees();
+    assertEquals(0, leaseeList.size());
+  }
+
+  @Test
+  void testWritingOneLeasee() {
+    leaseeList.add(new Leasee("asmith1", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    DataWriter.saveLeasees();
+    assertEquals("asmith1", DataReader.loadLeasees().get(0).getId());
+  }
+
+  @Test
+  void testWritingFiveLeasees() {
+    leaseeList.add(new Leasee("asmith1", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    leaseeList.add(new Leasee("asmith2", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    leaseeList.add(new Leasee("asmith3", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    leaseeList.add(new Leasee("asmith4", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    leaseeList.add(new Leasee("asmith5", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee", null));
+    DataWriter.saveLeasees();
+    assertEquals("asmith5", DataReader.loadLeasees().get(4).getId());
+  }
+
+  @Test
+  void testWritingEmptyLeasee() {
+    leaseeList.add(new Leasee("", "", "", "", "", "", "", null));
+    DataWriter.saveLeasees();
+    assertEquals("", DataReader.loadLeasees().get(0).getId());
+  }
+
+  @Test
+  void testWritingNullLeasee() {
+    leaseeList.add(new Leasee(null, "", "", "", "", "", "", null));
+    DataWriter.saveLeasees();
+    assertEquals(null, DataReader.loadLeasees().get(0).getId());
+  }
+
+  @Test
+  void testWritingZeroLandlords() {
+    landlordList = DataReader.loadLandlords();
+    assertEquals(0, landlordList.size());
+  }
+
+  @Test
+  void testWritingOneLandlord() {
+    landlordList.add(new Landlord("asmith", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee"));
+    DataWriter.saveLandlords();
+    assertEquals("asmith", DataReader.loadLandlords().get(0).getId());
+  }
+
+  @Test
+  void testWritingFiveLandlords() {
+    landlordList.add(new Landlord("asmith", "Amy", "Smith", "111 Street st", "asmith@gmail.com",
+        "password123", "leasee"));
+    landlordList.add(new Landlord("jsmith", "Jordan", "Smith", "111 Street st", "jsmith@gmail.com",
+        "password123", "leasee"));
+    landlordList.add(new Landlord("rsmith", "Ryan", "Smith", "111 Street st", "rsmith@gmail.com",
+        "password123", "leasee"));
+    landlordList.add(new Landlord("hsmith", "Heather", "Smith", "111 Street st", "hsmith@gmail.com",
+        "password123", "leasee"));
+    landlordList.add(new Landlord("esmith", "Ernest", "Smith", "111 Street st", "esmith@gmail.com",
+        "password123", "landlord"));
+    DataWriter.saveLandlords();
+    assertEquals("esmith", DataReader.loadLandlords().get(4).getId());
+  }
+
+  @Test
+  void testWritingEmptyLandlord() {
+    landlordList.add(new Landlord("", "", "", "", "", "", ""));
+    DataWriter.saveLandlords();
+    assertEquals("", DataReader.loadLandlords().get(0).getId());
+  }
+
+  @Test
+  void testWritingNullLandlord() {
+    landlordList.add(new Landlord(null, "", "", "", "", "", ""));
+    DataWriter.saveLandlords();
+    assertEquals(null, DataReader.loadLandlords().get(0).getId());
   }
 
 }
