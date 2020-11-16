@@ -45,14 +45,14 @@ class LeaseeTester {
 	
 	@Test
 	public void testAddFavoriteProperty() {
-		Listing listingID = new Listing(0, null, 0, 0, 0, 0, 0, null, false, false, false, false, false, false, false, false);
+		Listing listingID = new Listing(12, "123 Baker Street", 0, 0, 0, 0, -400, null, false, false, false, false, false, false, false, false);
 		leasee.addFavoriteProperty(listingID);
 		assertEquals(leasee.getFavoriteListings(), listingID);
 	}
 	
 	@Test
 	public void testDeleteFavoriteProperty() {
-		Listing listingID = new Listing(0, null, 0, 0, 0, 0, 0, null, false, false, false, false, false, false, false, false);
+		Listing listingID = new Listing(12, "123 Baker Street", 0, 0, 0, 0, -400, null, false, false, false, false, false, false, false, false);
 		leasee.deleteFavoriteProperty(listingID);
 		assertNotEquals(leasee.getFavoriteListings(), listingID);
 	}
