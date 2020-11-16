@@ -12,14 +12,12 @@ public class DataReader extends DataConstants {
    */
   public static ArrayList<Listing> loadListings() {
     ArrayList<Listing> listings = new ArrayList<Listing>();
-    ArrayList<Review> reviews = new ArrayList<Review>();
 
     try {
       JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(LISTINGS_FILE_NAME);
       Object obj = parser.parse(reader);
-      JSONObject jsonobj = (JSONObject) obj;
-      JSONArray listingsJSON = (JSONArray) jsonobj.get("listings");
+      JSONArray listingsJSON = (JSONArray) obj;
 
       for (int i = 0; i < listingsJSON.size(); i++) {
         JSONObject listingJSON = (JSONObject) listingsJSON.get(i);
@@ -68,8 +66,7 @@ public class DataReader extends DataConstants {
       JSONParser parser = new JSONParser();
       FileReader reader = new FileReader(USERS_FILE_NAME);
       Object obj = parser.parse(reader);
-      JSONObject jsonobj = (JSONObject) obj;
-      JSONArray usersJSON = (JSONArray) jsonobj.get("users");
+      JSONArray usersJSON = (JSONArray) obj;
 
       for (int i = 0; i < usersJSON.size(); i++) {
         JSONObject userJSON = (JSONObject) usersJSON.get(i);

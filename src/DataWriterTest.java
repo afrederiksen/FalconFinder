@@ -54,7 +54,7 @@ class DataWriterTest {
     listingList.add(new Listing(5, "115 Street st", 3, 3, 3.5, 1200.0, 0, "esmith", true, true,
         true, true, true, true, true, true));
     DataWriter.saveListings();
-    assertEquals("115 Street st", DataReader.loadListings().get(4).getAddress());
+    assertEquals("esmith", DataReader.loadListings().get(4).getLandlordId());
   }
 
   @Test
