@@ -9,8 +9,8 @@ public class Users {
   }
 
   /**
-   *returns instance of Users
-  */
+   * returns instance of Users
+   */
   public static Users getInstance() {
     if (users == null) {
       users = new Users();
@@ -20,15 +20,15 @@ public class Users {
   }
 
   /**
-   *returns arrayList of users
-  */
+   * returns arrayList of users
+   */
   public ArrayList<User> getUsers() {
     return userList;
   }
 
   /**
-   *adds new User to arrayList of users
-  */
+   * adds new User to arrayList of users
+   */
   public static void addUser(String id, String firstName, String lastName, String address,
       String email, String password, String type) {
     userList.add(new User(id, firstName, lastName, address, email, password, type));
