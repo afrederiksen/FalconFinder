@@ -13,7 +13,7 @@ public class DataReader extends DataConstants {
 	*/
 	public static ArrayList<Listing> loadListings() {
 		ArrayList<Listing> listings = new ArrayList<Listing>();
-		ArrayList<Review> reviews = new ArrayList<Review>();
+//		ArrayList<Review> reviews = new ArrayList<Review>();
 
 		try {
 			JSONParser parser = new JSONParser();
@@ -106,7 +106,7 @@ public class DataReader extends DataConstants {
 
 	
 	/**
-	 *creates an arrayList of leasees
+	 *creates an arrayList of leasees 
 	 *fills arrayList with type Leasee
 	 *returns new filled arrayList of leasees
 	*/
